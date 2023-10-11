@@ -4,6 +4,7 @@ using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
+using EKSystemApp.Application.Mappings.EBACompanyMap;
 using EKSystemApp.Application.Mappings.MenuMap;
 using EKSystemApp.Application.Mappings.PositionsTypes;
 using EKSystemApp.Application.Mappings.Products;
@@ -31,7 +32,9 @@ namespace EKSystemApp.Application
                     new AppUserCompanyProfile(),
                     new MenuProfile(),
                     new PositionTypeProfile(),
-                    new TaskTypeProfile()
+                    new TaskTypeProfile(),
+                    new EBACompanyProfile()
+                    
                 });
             });
         }
