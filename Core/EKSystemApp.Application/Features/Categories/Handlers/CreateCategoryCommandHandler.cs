@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Categories;
+using EKSystemApp.Application.DTO.Categories.Create;
 using EKSystemApp.Application.Features.Categories.Commands;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities;

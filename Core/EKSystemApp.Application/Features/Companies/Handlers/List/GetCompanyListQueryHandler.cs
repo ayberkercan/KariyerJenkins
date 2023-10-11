@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Company;
+using EKSystemApp.Application.DTO.Company.List;
 using EKSystemApp.Application.Features.Companies.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities;

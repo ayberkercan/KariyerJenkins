@@ -27,6 +27,17 @@
     <Folder Include="Features\Menus\Handlers\Update\" />
     <Folder Include="Features\Menus\Handlers\Delete\" />
     <Folder Include="Features\Menus\Handlers\Create\" />
+    <Folder Include="Features\PositionsTypes\Commands\Remove\" />
+    <Folder Include="Features\PositionsTypes\Commands\Update\" />
+    <Folder Include="Features\PositionsTypes\Commands\Create\" />
+    <Folder Include="Features\PositionsTypes\Handlers\Create\" />
+    <Folder Include="Features\PositionsTypes\Handlers\Remove\" />
+    <Folder Include="Features\PositionsTypes\Handlers\Update\" />
+    <Folder Include="Features\TasksTypes\Commands\Create\" />
+    <Folder Include="Features\TasksTypes\Commands\Update\" />
+    <Folder Include="Features\TasksTypes\Handlers\Update\" />
+    <Folder Include="Features\TasksTypes\Handlers\Remove\" />
+    <Folder Include="Features\TasksTypes\Handlers\Create\" />
   </ItemGroup>
 
 </Project>

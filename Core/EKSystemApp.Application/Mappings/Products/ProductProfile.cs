@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Products;
+using EKSystemApp.Application.DTO.Products.Create;
+using EKSystemApp.Application.DTO.Products.List;
 using EKSystemApp.Domain.Entities;
 
 namespace EKSystemApp.Application.Mappings.Products

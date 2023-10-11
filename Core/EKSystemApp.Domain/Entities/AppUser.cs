@@ -9,7 +9,7 @@ namespace EKSystemApp.Domain.Entities
         public string LastName { get; set; } = null!;
         public Guid AppRoleId { get; set; }
         public AppRole AppRoles { get; set; }
-    
         public ICollection<AppUserCompany> AppUserCompanies { get; set; }
+        public ICollection<AppUserMenu> AppUserMenus { get; set; }
     }
 }

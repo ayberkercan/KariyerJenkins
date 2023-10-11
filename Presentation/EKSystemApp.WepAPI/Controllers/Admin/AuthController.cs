@@ -1,5 +1,9 @@
-﻿using EKSystemApp.Application.Features.Authentication.Commands;
+﻿using EKSystemApp.Application.Features.Authentication.Commands.Register;
+using EKSystemApp.Application.Features.Authentication.Commands.Remove;
+using EKSystemApp.Application.Features.Authentication.Commands.Update;
 using EKSystemApp.Application.Features.Authentication.Queries;
+using EKSystemApp.Application.Features.Categories.Commands;
+using EKSystemApp.Application.Features.Products.Commands;
 using EKSystemApp.Application.Tools;
 using EKSystemApp.Domain.Entities;
 using MediatR;
@@ -49,6 +53,17 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             var result = await _mediator.Send(request);
             return Created("", result);
+        }
+        [HttpPut("[action]")]
+        public async Task<IActionResult> Update(UpdateUserCommandRequest request)
+        {
+            var result = await _mediator.Send(request);
+            return Created("", result);
+        }
+        [HttpDelete("[action]")]
+        public async Task<IActionResult> UserRemove(Guid id)
+        {
+            return Ok(await _mediator.Send(new RemoveUserCommandRequest(id)));
         }
     }
 }

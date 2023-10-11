@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EKSystemApp.Persistence", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EKSystemApp.WepAPI", "Presentation\EKSystemApp.WepAPI\EKSystemApp.WepAPI.csproj", "{BFD7DBC9-B760-44E8-8815-38B56551E349}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SystemNUnitTest", "SystemNUnitTest", "{689718CB-5DA5-4F48-9260-B3425527890C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTest", "SystemNUnitTest\AppTest\AppTest.csproj", "{29060388-F9A5-413E-91D2-302E803FB8AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{BFD7DBC9-B760-44E8-8815-38B56551E349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD7DBC9-B760-44E8-8815-38B56551E349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD7DBC9-B760-44E8-8815-38B56551E349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29060388-F9A5-413E-91D2-302E803FB8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29060388-F9A5-413E-91D2-302E803FB8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29060388-F9A5-413E-91D2-302E803FB8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29060388-F9A5-413E-91D2-302E803FB8AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{4AD30C3B-EED1-46B0-BE0D-79D90D4D786A} = {4C4FF5C7-591A-4676-BB3C-17A7FDBAAE26}
 		{92C2A041-77E0-43EF-90B6-CC66B8C456B4} = {4D1F34FE-D557-4604-8285-5FD7431E380F}
 		{BFD7DBC9-B760-44E8-8815-38B56551E349} = {FA9DA1B3-C9B6-49B3-B19C-970FCDF787B0}
+		{29060388-F9A5-413E-91D2-302E803FB8AD} = {689718CB-5DA5-4F48-9260-B3425527890C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0BD0A3B-A4D5-47E4-9DB6-8AB9B954336D}

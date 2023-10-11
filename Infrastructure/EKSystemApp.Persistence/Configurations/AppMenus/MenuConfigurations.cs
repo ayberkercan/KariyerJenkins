@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using EKSystemApp.Domain.Entities;
-using EKSystemApp.Persistence.Context;
+﻿using EKSystemApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EKSystemApp.Persistence.Configurations.AppMenu
+namespace EKSystemApp.Persistence.Configurations.AppMenus
 {
     public class MenuConfigurations : IEntityTypeConfiguration<Menu>
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
            
-            var companyId = 
+           
             builder.HasData(
               new Menu
               {

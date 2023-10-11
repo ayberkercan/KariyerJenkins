@@ -5,7 +5,9 @@ using EKSystemApp.Application.Mappings.AppUserMap;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
 using EKSystemApp.Application.Mappings.MenuMap;
+using EKSystemApp.Application.Mappings.PositionsTypes;
 using EKSystemApp.Application.Mappings.Products;
+using EKSystemApp.Application.Mappings.TasksTypes;
 using EKSystemApp.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +29,9 @@ namespace EKSystemApp.Application
                     new AppUserProfile(),
                     new AppRoleProfile(),
                     new AppUserCompanyProfile(),
-                    new MenuProfile()
+                    new MenuProfile(),
+                    new PositionTypeProfile(),
+                    new TaskTypeProfile()
                 });
             });
         }

@@ -19,7 +19,7 @@ namespace EKSystemApp.Persistence.Repositories.User
               .Include(p => p.AppRoles)
               .Include(p => p.AppUserCompanies)
               .ThenInclude(p => p.Company)
-              .ThenInclude(p => p.CompanyMenues)
+              .Include(p => p.AppUserMenus)
               .ThenInclude(p => p.Menu)
               .OrderByDescending(d => d)
               .AsNoTracking()
@@ -28,13 +28,14 @@ namespace EKSystemApp.Persistence.Repositories.User
             var s = data.Select(
              p => (
                p.Id,
+               p.Registry,
                  p.FirstName,
                  p.LastName,
                  p.UserName,
                  p.AppRoleId,
                  p.AppRoles.Name,
-                 p.AppUserCompanies.Select(p => new { p.Company.Id, p.Company.CompanyName }),
-                 p.AppUserCompanies.Select(p => p.Company.CompanyMenues.Select(p => new { p.Menu.Id, p.Menu.Name })),
+                 p.AppUserCompanies.Select(p => p.Company.CompanyName),
+                 p.AppUserMenus.Select(p => p.Menu.Name),
                  p.Email
                  ));
             List<UsersDetailsDto> userDetail = new List<UsersDetailsDto>();
@@ -43,13 +44,14 @@ namespace EKSystemApp.Persistence.Repositories.User
                 var users = new UsersDetailsDto
                 {
                     Id = item.Id,
+                    Registry = item.Registry,
                     UserName = item.UserName,
                     FirstName = item.FirstName,
                     LastName = item.LastName,
-                    RoleId= item.Item5,
-                    RoleName = item.Item6,
-                    Companies = item.Item7,
-                    Menus = item.Item8,
+                    RoleId = item.Item6,
+                    RoleName = item.Item7,
+                    Companies = item.Item8,
+                    Menus = item.Item9,
                     Email = item.Email
                 };
                 userDetail.Add(users);

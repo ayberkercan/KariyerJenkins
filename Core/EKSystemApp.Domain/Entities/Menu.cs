@@ -11,8 +11,7 @@ namespace EKSystemApp.Domain.Entities
     public class Menu : BaseEntity
     {
         public string Name { get; set; }
-
-        public ICollection<CompanyMenu> CompanyMenues { get; set; }
+        public ICollection<AppUserMenu> AppUserMenus { get; set; }
 
     }
 }

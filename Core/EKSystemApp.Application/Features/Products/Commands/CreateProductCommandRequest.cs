@@ -1,4 +1,4 @@
-﻿using EKSystemApp.Application.DTO.Products;
+﻿using EKSystemApp.Application.DTO.Products.Create;
 using MediatR;
 
 namespace EKSystemApp.Application.Features.Products.Commands

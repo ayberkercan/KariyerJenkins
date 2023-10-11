@@ -7,9 +7,7 @@ namespace EKSystemApp.Domain.Entities
     {
         public string CompanyName { get; set; }
         public ICollection<AppUserCompany> AppUserCompanies { get; set; }
-        public ICollection<CompanyMenu> CompanyMenues { get; set; }
-
-
+    
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Menus;
+using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.DTO.Products;
 using EKSystemApp.Application.Features.Menus.Queries;
 using EKSystemApp.Application.Features.Products.Queries;

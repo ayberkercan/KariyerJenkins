@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using EKSystemApp.Application.DTO.Company;
+using EKSystemApp.Application.DTO.Company.List;
 using EKSystemApp.Application.DTO.Products;
 using EKSystemApp.Domain.Entities;
 

@@ -1,4 +1,4 @@
-﻿using EKSystemApp.Application.DTO.Categories;
+﻿using EKSystemApp.Application.DTO.Categories.Create;
 using MediatR;
 
 namespace EKSystemApp.Application.Features.Categories.Commands

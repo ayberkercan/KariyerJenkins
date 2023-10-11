@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Products;
+using EKSystemApp.Application.DTO.Products.Create;
 using EKSystemApp.Application.Features.Products.Commands;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities;

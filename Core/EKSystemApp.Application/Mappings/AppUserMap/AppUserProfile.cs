@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Authorization;
 using EKSystemApp.Application.DTO.Authorization.User;
+using EKSystemApp.Application.DTO.Authorization.User.Create;
+using EKSystemApp.Application.DTO.Authorization.User.List;
 using EKSystemApp.Domain.Entities;
 
 namespace EKSystemApp.Application.Mappings.AppUserMap
