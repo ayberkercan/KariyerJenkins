@@ -1,6 +1,5 @@
 ﻿using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.Interfaces.IUser;
-using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 

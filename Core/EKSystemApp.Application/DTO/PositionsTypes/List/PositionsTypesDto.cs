@@ -7,6 +7,5 @@ namespace EKSystemApp.Application.DTO.PositionsTypes.List
     {
         public string PositionName { get; set; }
         public Guid AdvertCreateId { get; set; }
-        public AdvertCreate AdvertCreate { get; set; }
     }
 }
