@@ -2,12 +2,8 @@
 using EKSystemApp.Application.Features.Authentication.Commands.Remove;
 using EKSystemApp.Application.Features.Authentication.Commands.Update;
 using EKSystemApp.Application.Features.Authentication.Queries;
-using EKSystemApp.Application.Features.Categories.Commands;
-using EKSystemApp.Application.Features.Products.Commands;
 using EKSystemApp.Application.Tools;
-using EKSystemApp.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
@@ -17,11 +13,9 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly RoleManager<AppRole> _roleManager;
-        public AuthController(IMediator mediator, RoleManager<AppRole> roleManager)
+        public AuthController(IMediator mediator)
         {
             _mediator = mediator;
-            _roleManager = roleManager;
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUsers()
