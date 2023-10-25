@@ -656,17 +656,17 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5a4d05a4-a357-417b-abba-0b7948d7ece3"),
+                            Id = new Guid("e90bfc30-a120-4ac4-84b5-5afcd89d9749"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-                            Id = new Guid("66b1e9ce-cc87-4711-a661-02fd2b6025a9"),
+                            Id = new Guid("303d1287-5aef-41a7-bd82-91a3c80b1f63"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-                            Id = new Guid("06efa92f-41cb-469a-983a-582d7abef858"),
+                            Id = new Guid("30c4095f-7f21-497d-8719-162507d34296"),
                             CompanyName = "D&R Market"
                         });
                 });
@@ -681,6 +681,14 @@ namespace EKSystemApp.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RouterIcon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RouterLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
@@ -688,118 +696,164 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b3351a39-3ba3-4972-b469-b961e8ed28d7"),
-                            Name = "Admin Kariyer | Giriş"
+                            Id = new Guid("27fa7e30-abde-4e7f-9df0-1ce51f721e41"),
+                            Name = "Admin Kariyer | Giriş",
+                            RouterIcon = "la la-home",
+                            RouterLink = "dashboard"
                         },
                         new
                         {
-                            Id = new Guid("fda69419-8c5f-4fd1-83d2-3c3cd35eb444"),
-                            Name = "Yeni İlan Oluştur"
+                            Id = new Guid("2c94328b-6aa5-401c-93ee-ba2a6310c9ac"),
+                            Name = "Yeni İlan Oluştur",
+                            RouterIcon = "la la-user-tie",
+                            RouterLink = "new-adwert-create"
                         },
                         new
                         {
-                            Id = new Guid("cd366272-b515-4358-aed8-ed4b3953cc4d"),
-                            Name = "İlanlar"
+                            Id = new Guid("945df3f0-104f-424a-9fed-cec893bbe80a"),
+                            Name = "İlanlar",
+                            RouterIcon = "la la-paper-plane",
+                            RouterLink = "adwerts"
                         },
                         new
                         {
-                            Id = new Guid("b7575648-0673-46ec-af38-488fd0440266"),
-                            Name = "Öne Çıkan İlanlar"
+                            Id = new Guid("2c027edb-4c89-4ab6-9486-b8739669bc96"),
+                            Name = "Öne Çıkan İlanlar",
+                            RouterIcon = "la la-briefcase",
+                            RouterLink = "on-front-adwert"
                         },
                         new
                         {
-                            Id = new Guid("8b247b65-5352-475a-9e99-19a0891ce26d"),
-                            Name = "Başvuran Aday Listeleri"
+                            Id = new Guid("0592a73b-2aff-4cb8-9528-53ffbd328e50"),
+                            Name = "Başvuran Aday Listeleri",
+                            RouterIcon = "la la-file-invoice",
+                            RouterLink = "application-candidate-lists"
                         },
                         new
                         {
-                            Id = new Guid("b28c2b90-45e0-4c5e-9e6c-6a2c062a1a7c"),
-                            Name = "Aday Soru | Cevap Listeleri"
+                            Id = new Guid("ffe6e61d-68e2-45b8-aaac-482f8fdb0f93"),
+                            Name = "Aday Soru | Cevap Listeleri",
+                            RouterIcon = "la la-bookmark-o",
+                            RouterLink = "candidate-question-and-answer-lists"
                         },
                         new
                         {
-                            Id = new Guid("4dcde5f3-2616-4c21-9075-f4a19a923af0"),
-                            Name = "Aday Havuzu"
+                            Id = new Guid("f6c775b8-d54a-41d4-88e0-07f9accdfd06"),
+                            Name = "Aday Havuzu",
+                            RouterIcon = "la la-box",
+                            RouterLink = "candidate-pool"
                         },
                         new
                         {
-                            Id = new Guid("b9e9b750-ba0a-4d7b-87c3-0e27d7255a14"),
-                            Name = "Mail | Mesaj Yönetimi"
+                            Id = new Guid("66315703-13e6-41c4-b7cd-baafaec72b58"),
+                            Name = "Mail | Mesaj Yönetimi",
+                            RouterIcon = "la la-comment-o",
+                            RouterLink = "mail-message-manager"
                         },
                         new
                         {
-                            Id = new Guid("7b515d9c-72db-42b5-a08d-1a22c3d31bb8"),
-                            Name = "Aday Dosyaları"
+                            Id = new Guid("066273c5-c087-4076-80b9-d8e6e7d0f788"),
+                            Name = "Aday Dosyaları",
+                            RouterIcon = "la la-bell",
+                            RouterLink = "candidate-files"
                         },
                         new
                         {
-                            Id = new Guid("9af1e7cd-d585-47e0-9611-4041eccdb17a"),
-                            Name = "Tanımlamalar"
+                            Id = new Guid("1429dc6b-40d0-40ce-b91a-3e99ba0b23dc"),
+                            Name = "Tanımlamalar",
+                            RouterIcon = "la la-lock",
+                            RouterLink = "navlink dropdown-toggle"
                         },
                         new
                         {
-                            Id = new Guid("ad738fec-3215-462b-a7b4-d189e5f016c5"),
-                            Name = "Yetenek ve Uzmanlıklar"
+                            Id = new Guid("2a0f040a-1a54-4bf4-96f6-16dd3db8c24f"),
+                            Name = "Yetenek ve Uzmanlıklar",
+                            RouterIcon = "la la-user-alt",
+                            RouterLink = "skills-and-experties"
                         },
                         new
                         {
-                            Id = new Guid("0bb1fcfa-3e4a-48ec-9619-2a91980c5035"),
-                            Name = "Mail | Mesaj Şablonu "
+                            Id = new Guid("368801c1-de66-40ea-b7c9-a98c6259d23e"),
+                            Name = "Mail | Mesaj Şablonu ",
+                            RouterIcon = "la la-sign-out",
+                            RouterLink = "mail-message-template "
                         },
                         new
                         {
-                            Id = new Guid("82d85766-9184-4c5b-b05d-46ae72bbe3a8"),
-                            Name = "Logo Yükleme Ekranı"
+                            Id = new Guid("25c938fa-eb68-4cae-bdbb-a5051cfaac48"),
+                            Name = "Logo Yükleme Ekranı",
+                            RouterIcon = "la la-cloud-upload-alt",
+                            RouterLink = "logo-import-screen"
                         },
                         new
                         {
-                            Id = new Guid("7b4f9e11-f4ae-45a0-90ce-fdf21505beab"),
-                            Name = "İlan Soru Tanımlama"
+                            Id = new Guid("6badd5da-3324-4607-9ade-4080796b03b2"),
+                            Name = "İlan Soru Tanımlama",
+                            RouterIcon = "la la-question",
+                            RouterLink = "adwert-question-defination"
                         },
                         new
                         {
-                            Id = new Guid("b0cb7a69-3b3e-4d5e-b0bf-cd00217fe343"),
-                            Name = "Talep Edilen Pozisyon Adı Aktar"
+                            Id = new Guid("46228b08-f18c-456b-901f-b473dd7f8ebe"),
+                            Name = "Talep Edilen Pozisyon Adı Aktar",
+                            RouterIcon = "la la-exchange-alt",
+                            RouterLink = "transfer-requested-posination-name"
                         },
                         new
                         {
-                            Id = new Guid("f9862a97-5f8c-4cad-99e7-cc5aef0756d2"),
-                            Name = "Portal | Ana Sayfa İçerik Yönetimi"
+                            Id = new Guid("2d832f97-c6b7-400b-a112-7f6551f9ba13"),
+                            Name = "Portal | Ana Sayfa İçerik Yönetimi",
+                            RouterIcon = "",
+                            RouterLink = ""
                         },
                         new
                         {
-                            Id = new Guid("2f71624e-e967-4bd4-a97f-1a0e6efc58eb"),
-                            Name = "Blog Manşet Yönetimi"
+                            Id = new Guid("ebea91fc-88bc-48c0-816f-3ad639794ed8"),
+                            Name = "Blog Manşet Yönetimi",
+                            RouterIcon = "la la-newspaper",
+                            RouterLink = "blog-headline-manager"
                         },
                         new
                         {
-                            Id = new Guid("4a09644d-7709-44f8-9cb6-6aa118e632de"),
-                            Name = "İş Adımları Yönetimi"
+                            Id = new Guid("69fc457e-6a5a-4f2d-b282-2de7cbfd0661"),
+                            Name = "İş Adımları Yönetimi",
+                            RouterIcon = "la la-list",
+                            RouterLink = "work-step-manager"
                         },
                         new
                         {
-                            Id = new Guid("fb9d0df7-2ace-43c4-92d8-123ee4e897cf"),
-                            Name = "İş Kategorileri Yönetimi"
+                            Id = new Guid("6fab4c60-b255-4f25-a7b5-f4093aa32c5a"),
+                            Name = "İş Kategorileri Yönetimi",
+                            RouterIcon = "la la-boxes",
+                            RouterLink = "work-category-manager"
                         },
                         new
                         {
-                            Id = new Guid("aea078e4-a426-4e49-a50d-c85168132ddd"),
-                            Name = "Raporlar"
+                            Id = new Guid("617c58fc-f39e-4c92-8092-28b0b4034088"),
+                            Name = "Raporlar",
+                            RouterIcon = "la la-file-alt",
+                            RouterLink = "report"
                         },
                         new
                         {
-                            Id = new Guid("b959ea2b-ad61-47e5-ba9b-e536e41983f9"),
-                            Name = "Kullanıcı Ayarları"
+                            Id = new Guid("cfb6e970-6692-44a0-9f9b-acda647d88b9"),
+                            Name = "Kullanıcı Ayarları",
+                            RouterIcon = " ",
+                            RouterLink = " "
                         },
                         new
                         {
-                            Id = new Guid("80718712-49b5-4fb1-bb74-98446b9f243d"),
-                            Name = "Yetki Tanımlama"
+                            Id = new Guid("dfd7deff-039a-49fc-b978-034b3432ac75"),
+                            Name = "Yetki Tanımlama",
+                            RouterIcon = "la la-user-plus",
+                            RouterLink = "auth-defination"
                         },
                         new
                         {
-                            Id = new Guid("34777ed8-fbec-45ce-9927-9a2193a827fa"),
-                            Name = "Rol Tanımlama"
+                            Id = new Guid("06f05193-0d74-4089-b66f-8700d1341733"),
+                            Name = "Rol Tanımlama",
+                            RouterIcon = "la la-plus-circle",
+                            RouterLink = "role-defination"
                         });
                 });
 

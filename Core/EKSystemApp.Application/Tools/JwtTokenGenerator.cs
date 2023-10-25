@@ -16,7 +16,18 @@ namespace EKSystemApp.Application.Tools
             var claims = new List<Claim>();
 
             if (!string.IsNullOrWhiteSpace(dto.Role))
-                claims.Add(new Claim(ClaimTypes.Role, dto.Role));
+                claims.Add(new Claim("Id", dto.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.Role, dto.Role!));
+            foreach (var item in dto.Menus!)
+            {
+                var claimMenu = new[]
+               {
+                   new Claim("Menus", new Claim("MenuName",item.Name).ToString()),
+                   new Claim("Menus", new Claim("RouterLink",item.RouterLink).ToString()),
+                   new Claim("Menus", new Claim("Icon",item.RouterIcon).ToString())
+                };
+                claims.AddRange(claimMenu);
+            }
 
             if (dto.Role == "HumanResources")
             {
@@ -66,7 +77,7 @@ namespace EKSystemApp.Application.Tools
 
             return new TokenResponseDto(tokenHandler.WriteToken(token), expireDate, claims);
         }
-    
+
     }
 
 }

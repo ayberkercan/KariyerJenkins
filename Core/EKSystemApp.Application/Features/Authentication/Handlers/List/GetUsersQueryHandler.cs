@@ -20,7 +20,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
 
         public async Task<ICollection<UsersDetailsDto>> Handle(GetUsersQueryRequest request, CancellationToken cancellationToken)
         {
-            var userData = await userRepository.GetUserRoleList();
+            var userData = await userRepository.GetUserRoleAndMenuList();
             return mapper.Map<ICollection<UsersDetailsDto>>(userData);
         }
     }

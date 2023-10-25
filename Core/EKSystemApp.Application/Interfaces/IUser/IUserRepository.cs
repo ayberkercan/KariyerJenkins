@@ -5,6 +5,7 @@ namespace EKSystemApp.Application.Interfaces.IUser
 {
     public interface IUserRepository
     {
-        Task<ICollection<UsersDetailsDto>> GetUserRoleList();
+        List<Menu> GetUserToMenu(Guid id);
+        Task<ICollection<UsersDetailsDto>> GetUserRoleAndMenuList();
     }
 }
