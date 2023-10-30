@@ -2,6 +2,7 @@
 using EKSystemApp.Application.Features.Authentication.Commands.Remove;
 using EKSystemApp.Application.Features.Authentication.Commands.Update;
 using EKSystemApp.Application.Features.Authentication.Queries;
+using EKSystemApp.Application.Features.Menus.Queries;
 using EKSystemApp.Application.Tools;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -59,5 +60,6 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await _mediator.Send(new RemoveUserCommandRequest(id)));
         }
+        
     }
 }

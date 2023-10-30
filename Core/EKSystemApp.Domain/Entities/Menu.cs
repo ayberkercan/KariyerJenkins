@@ -13,6 +13,7 @@ namespace EKSystemApp.Domain.Entities
         public string Name { get; set; }
         public string RouterLink { get; set; }
         public string RouterIcon { get; set; }
+        public string HtmlTag { get; set; }
         public ICollection<AppUserMenu> AppUserMenus { get; set; }
 
     }

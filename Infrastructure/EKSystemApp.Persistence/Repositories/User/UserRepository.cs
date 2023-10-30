@@ -1,4 +1,6 @@
-﻿using EKSystemApp.Application.DTO.Authorization.User;
+﻿using System.Collections;
+using EKSystemApp.Application.DTO.Authorization.User;
+using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
@@ -59,12 +61,24 @@ namespace EKSystemApp.Persistence.Repositories.User
             return userDetail;
         }
 
-        public List<Menu> GetUserToMenu(Guid id)
+        public async Task<ICollection<MenuListDto>> GetUserToMenu(Guid id)
         {
-            var userMenu = _context.AppUserMenus
-                            .Where(p => p.AppUserId == id)
-                            .Select(p =>p.Menu).ToList();
-            return userMenu;
+            var userMenu = await _context.AppUserMenus
+                                        .Include(p => p.Menu)
+                                        .Where(p=>p.AppUserId == id)
+                                        .ToListAsync();
+            List<MenuListDto> menuToUser = new List<MenuListDto>();
+            foreach (var item in userMenu)
+            {
+                var dto = new MenuListDto
+                {
+                    Name = item.Menu.Name,
+                    RouterLink = item.Menu.RouterLink,
+                    RouterIcon = item.Menu.RouterIcon,
+                };
+                menuToUser.Add(dto);
+            }
+            return menuToUser;
         }
     }
 }

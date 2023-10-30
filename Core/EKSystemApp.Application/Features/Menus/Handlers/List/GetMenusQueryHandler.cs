@@ -9,7 +9,7 @@ using MediatR;
 
 namespace EKSystemApp.Application.Features.Menus.Handlers.List
 {
-    public class GetMenusQueryHandler : IRequestHandler<GetMenusQueryRequest, ICollection<MenuListDto>>
+    public class GetMenusQueryHandler : IRequestHandler<GetMenusQueryRequest, ICollection<Menu>>
     {
         private readonly IGenericRepository<Menu> repository;
         private readonly IMapper _mapper;
@@ -18,10 +18,10 @@ namespace EKSystemApp.Application.Features.Menus.Handlers.List
             this.repository = repository;
             _mapper = mapper;
         }
-        public async Task<ICollection<MenuListDto>> Handle(GetMenusQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<Menu>> Handle(GetMenusQueryRequest request, CancellationToken cancellationToken)
         {
             var menuList = await this.repository.GetAllAsync();
-            return this._mapper.Map<ICollection<MenuListDto>>(menuList);
+            return this._mapper.Map<ICollection<Menu>>(menuList);
         }
     }
 }

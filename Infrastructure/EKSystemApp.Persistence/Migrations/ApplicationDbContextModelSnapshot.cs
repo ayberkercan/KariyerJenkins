@@ -656,17 +656,29 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("7a57a43b-3768-44bd-ab7b-dbdff21be46b"),
+=======
+                            Id = new Guid("d43e6c1d-56dc-40ca-8647-6add7c8cbb96"),
+>>>>>>> MenuToUser v1.
                             CompanyName = "Holding"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("7d419c8d-cc97-4c1c-818a-7ae526ac40b2"),
+=======
+                            Id = new Guid("81543cd8-ef38-4138-bea8-2b56949691cd"),
+>>>>>>> MenuToUser v1.
                             CompanyName = "D&R"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("18d02464-0fcf-4022-988b-e79f6db7d3b8"),
+=======
+                            Id = new Guid("f8f9ee6c-f357-42a1-9e2c-33ad9b56859f"),
+>>>>>>> MenuToUser v1.
                             CompanyName = "D&R Market"
                         });
                 });
@@ -676,6 +688,10 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("HtmlTag")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -696,161 +712,276 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("c693784e-9f46-4f92-b7e2-e102d8873881"),
+=======
+                            Id = new Guid("5ffb140a-5cf4-4353-a41c-7853bbb9b831"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Admin Kariyer | Giriş",
                             RouterIcon = "la la-home",
                             RouterLink = "dashboard"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("1de1ac2b-437b-446a-8ec3-8b11af26a35e"),
+=======
+                            Id = new Guid("f1e78bc1-ea39-4819-9909-224fa97d7576"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Yeni İlan Oluştur",
                             RouterIcon = "la la-user-tie",
                             RouterLink = "new-adwert-create"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("0257d982-a0fa-46cd-8d2a-ffa4634f0b4c"),
+=======
+                            Id = new Guid("167425bd-19ef-4ccb-85e3-8ed985c48de6"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "İlanlar",
                             RouterIcon = "la la-paper-plane",
                             RouterLink = "adwerts"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("8bc45f85-bb45-4fc3-8fb2-6acbb3ba2b7d"),
+=======
+                            Id = new Guid("378fe5cb-be1e-452f-84b3-55ecb4d39369"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Öne Çıkan İlanlar",
                             RouterIcon = "la la-briefcase",
                             RouterLink = "on-front-adwert"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("84040291-1f37-4c5a-b0fe-e6f0ed0e5e66"),
+=======
+                            Id = new Guid("3d26ed25-7eaa-40fa-97be-c49f8608a3c7"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Başvuran Aday Listeleri",
                             RouterIcon = "la la-file-invoice",
                             RouterLink = "application-candidate-lists"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("7b5abd77-f9b7-484d-95d2-3d9f7b26cf88"),
+=======
+                            Id = new Guid("b76fbfa2-14ee-4562-abef-06ad26f55b55"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Aday Soru | Cevap Listeleri",
                             RouterIcon = "la la-bookmark-o",
                             RouterLink = "candidate-question-and-answer-lists"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("5561789d-a145-418d-874e-3469fe149e11"),
+=======
+                            Id = new Guid("da5adbb2-a176-42a1-8f46-25f1b80218ab"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Aday Havuzu",
                             RouterIcon = "la la-box",
                             RouterLink = "candidate-pool"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("c0b1a4f7-5b4a-472b-95f2-b50c28a57252"),
+=======
+                            Id = new Guid("45bc86f5-62d5-489f-8fc7-740d7b90ca94"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Mail | Mesaj Yönetimi",
                             RouterIcon = "la la-comment-o",
                             RouterLink = "mail-message-manager"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("a5262b4a-af7f-49c6-bdc7-e2e9cea6a261"),
+=======
+                            Id = new Guid("2465a759-dc8d-47f9-9a92-488e9cc133d0"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Aday Dosyaları",
                             RouterIcon = "la la-bell",
                             RouterLink = "candidate-files"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("1e1b9368-5b14-4564-a2ab-a45c528fe14f"),
+=======
+                            Id = new Guid("be60616b-b777-4186-914e-a2fbb5c7d0bf"),
+                            HtmlTag = "",
+>>>>>>> MenuToUser v1.
                             Name = "Tanımlamalar",
                             RouterIcon = "la la-lock",
                             RouterLink = "navlink dropdown-toggle"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("83538e8a-b881-47b5-89ab-f353312e8b5c"),
+=======
+                            Id = new Guid("172d451f-9c65-48ed-912c-dde8a8d19355"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Yetenek ve Uzmanlıklar",
                             RouterIcon = "la la-user-alt",
                             RouterLink = "skills-and-experties"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("4636d33c-9f2c-4f84-86fa-58e8ab768973"),
+=======
+                            Id = new Guid("40924e89-02ae-410f-a2ab-f955abc9c8d0"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Mail | Mesaj Şablonu ",
                             RouterIcon = "la la-sign-out",
                             RouterLink = "mail-message-template "
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("ab36b788-455e-41cc-abd0-ea11b49ad2e8"),
+=======
+                            Id = new Guid("669084bd-937b-4466-8d09-f0c9e4b4ea77"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Logo Yükleme Ekranı",
                             RouterIcon = "la la-cloud-upload-alt",
                             RouterLink = "logo-import-screen"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("1567a8cb-95cf-47ba-bae4-ff0c5710894e"),
+=======
+                            Id = new Guid("76c37253-5266-44b1-b67d-ae0548a1638c"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "İlan Soru Tanımlama",
                             RouterIcon = "la la-question",
                             RouterLink = "adwert-question-defination"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("af7db1a5-4dcf-4a51-9976-cedb2bf87ed0"),
+=======
+                            Id = new Guid("c2473b11-2d73-45e0-ae74-273163514dcc"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Talep Edilen Pozisyon Adı Aktar",
                             RouterIcon = "la la-exchange-alt",
                             RouterLink = "transfer-requested-posination-name"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("70f5400b-7632-4a97-9d6b-5c74a931b693"),
+=======
+                            Id = new Guid("96ae8876-3873-4188-ba07-cc98b4e57f95"),
+                            HtmlTag = "",
+>>>>>>> MenuToUser v1.
                             Name = "Portal | Ana Sayfa İçerik Yönetimi",
                             RouterIcon = "",
                             RouterLink = ""
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("21b2d021-9087-4970-a77a-997b4e3a60c4"),
+=======
+                            Id = new Guid("a5b4bc4c-7f2d-4831-b11b-578247a3c3c2"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Blog Manşet Yönetimi",
                             RouterIcon = "la la-newspaper",
                             RouterLink = "blog-headline-manager"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("ad54b78a-3326-4b3e-a7d9-efbbfb4ad452"),
+=======
+                            Id = new Guid("696a7b0d-dac0-4e78-b8db-4773c8f49378"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "İş Adımları Yönetimi",
                             RouterIcon = "la la-list",
                             RouterLink = "work-step-manager"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("6e62262c-aa84-49ba-b282-93a74809a279"),
+=======
+                            Id = new Guid("615c7b97-53e2-4ea9-ac12-af90ca4ae188"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "İş Kategorileri Yönetimi",
                             RouterIcon = "la la-boxes",
                             RouterLink = "work-category-manager"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("5f4eec29-5e84-496b-a527-ce1f930fc6f0"),
+=======
+                            Id = new Guid("9249cc80-6c97-4d1b-8715-bfcac364501c"),
+                            HtmlTag = "",
+>>>>>>> MenuToUser v1.
                             Name = "Raporlar",
                             RouterIcon = "la la-file-alt",
                             RouterLink = "report"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("483e67b1-9f7b-4fce-b232-4c7c4c6f5e89"),
+=======
+                            Id = new Guid("08197f59-24e8-4888-9fb0-7df9af5f264b"),
+                            HtmlTag = "",
+>>>>>>> MenuToUser v1.
                             Name = "Kullanıcı Ayarları",
                             RouterIcon = " ",
                             RouterLink = " "
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("c08273b1-6cb3-4635-bbec-0e1b4b34f446"),
+=======
+                            Id = new Guid("7d89d449-817d-49b6-9146-a22fd5ed8b89"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Yetki Tanımlama",
                             RouterIcon = "la la-user-plus",
                             RouterLink = "auth-defination"
                         },
                         new
                         {
+<<<<<<< HEAD
                             Id = new Guid("f4ec320a-71f3-49bb-834e-63b8472b70e5"),
+=======
+                            Id = new Guid("cca5034e-2df6-4742-a5e6-b883879607ab"),
+                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>",
+>>>>>>> MenuToUser v1.
                             Name = "Rol Tanımlama",
                             RouterIcon = "la la-plus-circle",
                             RouterLink = "role-defination"

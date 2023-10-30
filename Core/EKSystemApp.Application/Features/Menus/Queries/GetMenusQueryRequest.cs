@@ -1,9 +1,10 @@
 ﻿using EKSystemApp.Application.DTO.Menus.List;
+using EKSystemApp.Domain.Entities;
 using MediatR;
 
 namespace EKSystemApp.Application.Features.Menus.Queries
 {
-    public class GetMenusQueryRequest : IRequest<ICollection<MenuListDto>>
+    public class GetMenusQueryRequest : IRequest<ICollection<Menu>>
     {
     }
 }

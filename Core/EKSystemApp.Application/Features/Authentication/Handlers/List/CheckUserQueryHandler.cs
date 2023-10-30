@@ -13,20 +13,22 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
         private readonly IGenericRepository<AppUser> userRepository;
         private readonly IGenericRepository<AppRole> roleRepository;
         private readonly SignInManager<AppUser> signInManager;
-        private readonly IUserRepository user;
+        private readonly IUserRepository userMenu;
 
-        public CheckUserQueryHandler(IGenericRepository<AppUser> userRepository, IGenericRepository<AppRole> roleRepository, SignInManager<AppUser> signInManager, IUserRepository user)
+        public CheckUserQueryHandler(IGenericRepository<AppUser> userRepository, IGenericRepository<AppRole> roleRepository, SignInManager<AppUser> signInManager, IUserRepository userMenu)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
             this.signInManager = signInManager;
-            this.user = user;
+            this.userMenu = userMenu;
         }
 
         public async Task<CheckUserResponseDto> Handle(CheckUserQueryRequest request, CancellationToken cancellationToken)
         {
             var dto = new CheckUserResponseDto();
             var isUser = (await userRepository.GetByFilterAsync(x => x.UserName == request.UserName))!;
+
+            
             if (isUser == null)
             {
                 dto.IsExist = false;
@@ -36,8 +38,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
                 dto.IsExist = true;
                 dto.UserName = isUser.UserName;
                 dto.Role = (await roleRepository.GetByFilterAsync(x => x.Id == isUser.AppRoleId))?.Name;
-                dto.Id = isUser.Id;
-                dto.Menus = this.user.GetUserToMenu(isUser.Id);
+                dto.Id = isUser.Id;                
             }
             return dto;
         }
