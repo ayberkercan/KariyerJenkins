@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EKSystemApp.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-    [Migration("20231025123814_Yusuf002")]
-    partial class Yusuf002
-=======
-    [Migration("20231025083307_MigEmre001")]
-    partial class MigEmre001
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
+    [Migration("20231030133723_MigYusuf003")]
+    partial class MigYusuf003
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -350,8 +345,9 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("UnitName")
-                        .HasColumnType("int");
+                    b.Property<string>("UnitName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -664,29 +660,17 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("7a57a43b-3768-44bd-ab7b-dbdff21be46b"),
-=======
-                            Id = new Guid("d43e6c1d-56dc-40ca-8647-6add7c8cbb96"),
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
+                            Id = new Guid("e659e700-880b-4b1c-b820-c286fea9d78d"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("7d419c8d-cc97-4c1c-818a-7ae526ac40b2"),
-=======
-                            Id = new Guid("81543cd8-ef38-4138-bea8-2b56949691cd"),
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
+                            Id = new Guid("589a75a4-f922-47be-83cb-517e55905a98"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("18d02464-0fcf-4022-988b-e79f6db7d3b8"),
-=======
-                            Id = new Guid("f8f9ee6c-f357-42a1-9e2c-33ad9b56859f"),
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
+                            Id = new Guid("c1a04522-f05b-4346-9183-81a07a0b44ce"),
                             CompanyName = "D&R Market"
                         });
                 });
@@ -720,276 +704,184 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("c693784e-9f46-4f92-b7e2-e102d8873881"),
-=======
-                            Id = new Guid("5ffb140a-5cf4-4353-a41c-7853bbb9b831"),
+                            Id = new Guid("845c4152-cf6d-4a63-b823-6266bfc5cda8"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Admin Kariyer | Giriş",
                             RouterIcon = "la la-home",
                             RouterLink = "dashboard"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("1de1ac2b-437b-446a-8ec3-8b11af26a35e"),
-=======
-                            Id = new Guid("f1e78bc1-ea39-4819-9909-224fa97d7576"),
+                            Id = new Guid("4b2c0adc-3a06-464d-9218-78db3a16ce18"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Yeni İlan Oluştur",
                             RouterIcon = "la la-user-tie",
                             RouterLink = "new-adwert-create"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("0257d982-a0fa-46cd-8d2a-ffa4634f0b4c"),
-=======
-                            Id = new Guid("167425bd-19ef-4ccb-85e3-8ed985c48de6"),
+                            Id = new Guid("2f3137c1-86b9-48e1-b882-9a323baf5957"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "İlanlar",
                             RouterIcon = "la la-paper-plane",
                             RouterLink = "adwerts"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("8bc45f85-bb45-4fc3-8fb2-6acbb3ba2b7d"),
-=======
-                            Id = new Guid("378fe5cb-be1e-452f-84b3-55ecb4d39369"),
+                            Id = new Guid("ce26df88-95fd-4454-a2fa-09c87c0b2088"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Öne Çıkan İlanlar",
                             RouterIcon = "la la-briefcase",
                             RouterLink = "on-front-adwert"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("84040291-1f37-4c5a-b0fe-e6f0ed0e5e66"),
-=======
-                            Id = new Guid("3d26ed25-7eaa-40fa-97be-c49f8608a3c7"),
+                            Id = new Guid("f5714cdc-fda2-41eb-b4d4-2698ce71a14a"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Başvuran Aday Listeleri",
                             RouterIcon = "la la-file-invoice",
                             RouterLink = "application-candidate-lists"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("7b5abd77-f9b7-484d-95d2-3d9f7b26cf88"),
-=======
-                            Id = new Guid("b76fbfa2-14ee-4562-abef-06ad26f55b55"),
+                            Id = new Guid("3bd792fa-6378-4ac8-b505-fc9600b6c443"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Aday Soru | Cevap Listeleri",
                             RouterIcon = "la la-bookmark-o",
                             RouterLink = "candidate-question-and-answer-lists"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("5561789d-a145-418d-874e-3469fe149e11"),
-=======
-                            Id = new Guid("da5adbb2-a176-42a1-8f46-25f1b80218ab"),
+                            Id = new Guid("0c854d83-1313-470f-a3b6-41756afd2340"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Aday Havuzu",
                             RouterIcon = "la la-box",
                             RouterLink = "candidate-pool"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("c0b1a4f7-5b4a-472b-95f2-b50c28a57252"),
-=======
-                            Id = new Guid("45bc86f5-62d5-489f-8fc7-740d7b90ca94"),
+                            Id = new Guid("3c568f1b-be99-4959-9637-0d88f9e0aae9"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Mail | Mesaj Yönetimi",
                             RouterIcon = "la la-comment-o",
                             RouterLink = "mail-message-manager"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("a5262b4a-af7f-49c6-bdc7-e2e9cea6a261"),
-=======
-                            Id = new Guid("2465a759-dc8d-47f9-9a92-488e9cc133d0"),
+                            Id = new Guid("ac2d9855-b304-4061-88ef-c3ac1f37ab31"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Aday Dosyaları",
                             RouterIcon = "la la-bell",
                             RouterLink = "candidate-files"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("1e1b9368-5b14-4564-a2ab-a45c528fe14f"),
-=======
-                            Id = new Guid("be60616b-b777-4186-914e-a2fbb5c7d0bf"),
+                            Id = new Guid("f83d58f0-99a2-4b6d-ad2e-fac88fe60850"),
                             HtmlTag = "",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Tanımlamalar",
                             RouterIcon = "la la-lock",
                             RouterLink = "navlink dropdown-toggle"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("83538e8a-b881-47b5-89ab-f353312e8b5c"),
-=======
-                            Id = new Guid("172d451f-9c65-48ed-912c-dde8a8d19355"),
+                            Id = new Guid("e0db5999-665c-477f-9d74-7ef0fd8db3b1"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Yetenek ve Uzmanlıklar",
                             RouterIcon = "la la-user-alt",
                             RouterLink = "skills-and-experties"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("4636d33c-9f2c-4f84-86fa-58e8ab768973"),
-=======
-                            Id = new Guid("40924e89-02ae-410f-a2ab-f955abc9c8d0"),
+                            Id = new Guid("e31c25d1-15b6-4700-a38a-5e50037718ec"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Mail | Mesaj Şablonu ",
                             RouterIcon = "la la-sign-out",
                             RouterLink = "mail-message-template "
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("ab36b788-455e-41cc-abd0-ea11b49ad2e8"),
-=======
-                            Id = new Guid("669084bd-937b-4466-8d09-f0c9e4b4ea77"),
+                            Id = new Guid("7784f651-bc1f-42e2-a8b4-f1a10071eb5a"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Logo Yükleme Ekranı",
                             RouterIcon = "la la-cloud-upload-alt",
                             RouterLink = "logo-import-screen"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("1567a8cb-95cf-47ba-bae4-ff0c5710894e"),
-=======
-                            Id = new Guid("76c37253-5266-44b1-b67d-ae0548a1638c"),
+                            Id = new Guid("52c65ac1-6211-40a7-86f1-406ab3448b58"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "İlan Soru Tanımlama",
                             RouterIcon = "la la-question",
                             RouterLink = "adwert-question-defination"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("af7db1a5-4dcf-4a51-9976-cedb2bf87ed0"),
-=======
-                            Id = new Guid("c2473b11-2d73-45e0-ae74-273163514dcc"),
+                            Id = new Guid("94557435-d8bc-4760-a3fd-aa78231c89a7"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Talep Edilen Pozisyon Adı Aktar",
                             RouterIcon = "la la-exchange-alt",
                             RouterLink = "transfer-requested-posination-name"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("70f5400b-7632-4a97-9d6b-5c74a931b693"),
-=======
-                            Id = new Guid("96ae8876-3873-4188-ba07-cc98b4e57f95"),
+                            Id = new Guid("af6b423c-290a-4d94-905c-fb20ea893273"),
                             HtmlTag = "",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Portal | Ana Sayfa İçerik Yönetimi",
                             RouterIcon = "",
                             RouterLink = ""
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("21b2d021-9087-4970-a77a-997b4e3a60c4"),
-=======
-                            Id = new Guid("a5b4bc4c-7f2d-4831-b11b-578247a3c3c2"),
+                            Id = new Guid("c8cd8914-0338-421a-b533-446ddb687a55"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Blog Manşet Yönetimi",
                             RouterIcon = "la la-newspaper",
                             RouterLink = "blog-headline-manager"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("ad54b78a-3326-4b3e-a7d9-efbbfb4ad452"),
-=======
-                            Id = new Guid("696a7b0d-dac0-4e78-b8db-4773c8f49378"),
+                            Id = new Guid("90ed3da4-5c24-4de7-b83e-84e4453c746b"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "İş Adımları Yönetimi",
                             RouterIcon = "la la-list",
                             RouterLink = "work-step-manager"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("6e62262c-aa84-49ba-b282-93a74809a279"),
-=======
-                            Id = new Guid("615c7b97-53e2-4ea9-ac12-af90ca4ae188"),
+                            Id = new Guid("bab5a8a4-457a-4b7f-845a-f29568384c95"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "İş Kategorileri Yönetimi",
                             RouterIcon = "la la-boxes",
                             RouterLink = "work-category-manager"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("5f4eec29-5e84-496b-a527-ce1f930fc6f0"),
-=======
-                            Id = new Guid("9249cc80-6c97-4d1b-8715-bfcac364501c"),
+                            Id = new Guid("2b816f77-db0f-4d2f-8847-1d738c07e4a6"),
                             HtmlTag = "",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Raporlar",
                             RouterIcon = "la la-file-alt",
                             RouterLink = "report"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("483e67b1-9f7b-4fce-b232-4c7c4c6f5e89"),
-=======
-                            Id = new Guid("08197f59-24e8-4888-9fb0-7df9af5f264b"),
+                            Id = new Guid("ae1178de-98c0-41c5-8444-bd9371c8d264"),
                             HtmlTag = "",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Kullanıcı Ayarları",
                             RouterIcon = " ",
                             RouterLink = " "
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("c08273b1-6cb3-4635-bbec-0e1b4b34f446"),
-=======
-                            Id = new Guid("7d89d449-817d-49b6-9146-a22fd5ed8b89"),
+                            Id = new Guid("ea498181-e98f-4332-a579-c56ef0a467f2"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Yetki Tanımlama",
                             RouterIcon = "la la-user-plus",
                             RouterLink = "auth-defination"
                         },
                         new
                         {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.Designer.cs
-                            Id = new Guid("f4ec320a-71f3-49bb-834e-63b8472b70e5"),
-=======
-                            Id = new Guid("cca5034e-2df6-4742-a5e6-b883879607ab"),
+                            Id = new Guid("f468e5c7-652e-4092-a1b6-8d44671fbe9f"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>",
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.Designer.cs
                             Name = "Rol Tanımlama",
                             RouterIcon = "la la-plus-circle",
                             RouterLink = "role-defination"

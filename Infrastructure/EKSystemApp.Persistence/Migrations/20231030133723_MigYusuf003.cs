@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EKSystemApp.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Yusuf002 : Migration
+    public partial class MigYusuf003 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -221,7 +221,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UnitName = table.Column<int>(type: "int", nullable: false),
+                    UnitName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -684,15 +684,9 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "CompanyName" },
                 values: new object[,]
                 {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.cs
-                    { new Guid("18d02464-0fcf-4022-988b-e79f6db7d3b8"), "D&R Market" },
-                    { new Guid("7a57a43b-3768-44bd-ab7b-dbdff21be46b"), "Holding" },
-                    { new Guid("7d419c8d-cc97-4c1c-818a-7ae526ac40b2"), "D&R" }
-=======
-                    { new Guid("81543cd8-ef38-4138-bea8-2b56949691cd"), "D&R" },
-                    { new Guid("d43e6c1d-56dc-40ca-8647-6add7c8cbb96"), "Holding" },
-                    { new Guid("f8f9ee6c-f357-42a1-9e2c-33ad9b56859f"), "D&R Market" }
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.cs
+                    { new Guid("589a75a4-f922-47be-83cb-517e55905a98"), "D&R" },
+                    { new Guid("c1a04522-f05b-4346-9183-81a07a0b44ce"), "D&R Market" },
+                    { new Guid("e659e700-880b-4b1c-b820-c286fea9d78d"), "Holding" }
                 });
 
             migrationBuilder.InsertData(
@@ -700,55 +694,29 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "HtmlTag", "Name", "RouterIcon", "RouterLink" },
                 values: new object[,]
                 {
-<<<<<<< HEAD:Infrastructure/EKSystemApp.Persistence/Migrations/20231025123814_Yusuf002.cs
-                    { new Guid("0257d982-a0fa-46cd-8d2a-ffa4634f0b4c"), "İlanlar", "la la-paper-plane", "adwerts" },
-                    { new Guid("1567a8cb-95cf-47ba-bae4-ff0c5710894e"), "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
-                    { new Guid("1de1ac2b-437b-446a-8ec3-8b11af26a35e"), "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
-                    { new Guid("1e1b9368-5b14-4564-a2ab-a45c528fe14f"), "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
-                    { new Guid("21b2d021-9087-4970-a77a-997b4e3a60c4"), "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
-                    { new Guid("4636d33c-9f2c-4f84-86fa-58e8ab768973"), "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
-                    { new Guid("483e67b1-9f7b-4fce-b232-4c7c4c6f5e89"), "Kullanıcı Ayarları", " ", " " },
-                    { new Guid("5561789d-a145-418d-874e-3469fe149e11"), "Aday Havuzu", "la la-box", "candidate-pool" },
-                    { new Guid("5f4eec29-5e84-496b-a527-ce1f930fc6f0"), "Raporlar", "la la-file-alt", "report" },
-                    { new Guid("6e62262c-aa84-49ba-b282-93a74809a279"), "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
-                    { new Guid("70f5400b-7632-4a97-9d6b-5c74a931b693"), "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
-                    { new Guid("7b5abd77-f9b7-484d-95d2-3d9f7b26cf88"), "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
-                    { new Guid("83538e8a-b881-47b5-89ab-f353312e8b5c"), "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
-                    { new Guid("84040291-1f37-4c5a-b0fe-e6f0ed0e5e66"), "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
-                    { new Guid("8bc45f85-bb45-4fc3-8fb2-6acbb3ba2b7d"), "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
-                    { new Guid("a5262b4a-af7f-49c6-bdc7-e2e9cea6a261"), "Aday Dosyaları", "la la-bell", "candidate-files" },
-                    { new Guid("ab36b788-455e-41cc-abd0-ea11b49ad2e8"), "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
-                    { new Guid("ad54b78a-3326-4b3e-a7d9-efbbfb4ad452"), "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
-                    { new Guid("af7db1a5-4dcf-4a51-9976-cedb2bf87ed0"), "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
-                    { new Guid("c08273b1-6cb3-4635-bbec-0e1b4b34f446"), "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
-                    { new Guid("c0b1a4f7-5b4a-472b-95f2-b50c28a57252"), "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
-                    { new Guid("c693784e-9f46-4f92-b7e2-e102d8873881"), "Admin Kariyer | Giriş", "la la-home", "dashboard" },
-                    { new Guid("f4ec320a-71f3-49bb-834e-63b8472b70e5"), "Rol Tanımlama", "la la-plus-circle", "role-defination" }
-=======
-                    { new Guid("08197f59-24e8-4888-9fb0-7df9af5f264b"), "", "Kullanıcı Ayarları", " ", " " },
-                    { new Guid("167425bd-19ef-4ccb-85e3-8ed985c48de6"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>", "İlanlar", "la la-paper-plane", "adwerts" },
-                    { new Guid("172d451f-9c65-48ed-912c-dde8a8d19355"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>", "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
-                    { new Guid("2465a759-dc8d-47f9-9a92-488e9cc133d0"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>", "Aday Dosyaları", "la la-bell", "candidate-files" },
-                    { new Guid("378fe5cb-be1e-452f-84b3-55ecb4d39369"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>", "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
-                    { new Guid("3d26ed25-7eaa-40fa-97be-c49f8608a3c7"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>", "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
-                    { new Guid("40924e89-02ae-410f-a2ab-f955abc9c8d0"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>", "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
-                    { new Guid("45bc86f5-62d5-489f-8fc7-740d7b90ca94"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>", "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
-                    { new Guid("5ffb140a-5cf4-4353-a41c-7853bbb9b831"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>", "Admin Kariyer | Giriş", "la la-home", "dashboard" },
-                    { new Guid("615c7b97-53e2-4ea9-ac12-af90ca4ae188"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>", "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
-                    { new Guid("669084bd-937b-4466-8d09-f0c9e4b4ea77"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>", "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
-                    { new Guid("696a7b0d-dac0-4e78-b8db-4773c8f49378"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>", "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
-                    { new Guid("76c37253-5266-44b1-b67d-ae0548a1638c"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>", "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
-                    { new Guid("7d89d449-817d-49b6-9146-a22fd5ed8b89"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>", "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
-                    { new Guid("9249cc80-6c97-4d1b-8715-bfcac364501c"), "", "Raporlar", "la la-file-alt", "report" },
-                    { new Guid("96ae8876-3873-4188-ba07-cc98b4e57f95"), "", "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
-                    { new Guid("a5b4bc4c-7f2d-4831-b11b-578247a3c3c2"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>", "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
-                    { new Guid("b76fbfa2-14ee-4562-abef-06ad26f55b55"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>", "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
-                    { new Guid("be60616b-b777-4186-914e-a2fbb5c7d0bf"), "", "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
-                    { new Guid("c2473b11-2d73-45e0-ae74-273163514dcc"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>", "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
-                    { new Guid("cca5034e-2df6-4742-a5e6-b883879607ab"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>", "Rol Tanımlama", "la la-plus-circle", "role-defination" },
-                    { new Guid("da5adbb2-a176-42a1-8f46-25f1b80218ab"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>", "Aday Havuzu", "la la-box", "candidate-pool" },
-                    { new Guid("f1e78bc1-ea39-4819-9909-224fa97d7576"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>", "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" }
->>>>>>> MenuToUser v1.:Infrastructure/EKSystemApp.Persistence/Migrations/20231025083307_MigEmre001.cs
+                    { new Guid("0c854d83-1313-470f-a3b6-41756afd2340"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>", "Aday Havuzu", "la la-box", "candidate-pool" },
+                    { new Guid("2b816f77-db0f-4d2f-8847-1d738c07e4a6"), "", "Raporlar", "la la-file-alt", "report" },
+                    { new Guid("2f3137c1-86b9-48e1-b882-9a323baf5957"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>", "İlanlar", "la la-paper-plane", "adwerts" },
+                    { new Guid("3bd792fa-6378-4ac8-b505-fc9600b6c443"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>", "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
+                    { new Guid("3c568f1b-be99-4959-9637-0d88f9e0aae9"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>", "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
+                    { new Guid("4b2c0adc-3a06-464d-9218-78db3a16ce18"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>", "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
+                    { new Guid("52c65ac1-6211-40a7-86f1-406ab3448b58"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>", "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
+                    { new Guid("7784f651-bc1f-42e2-a8b4-f1a10071eb5a"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>", "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
+                    { new Guid("845c4152-cf6d-4a63-b823-6266bfc5cda8"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>", "Admin Kariyer | Giriş", "la la-home", "dashboard" },
+                    { new Guid("90ed3da4-5c24-4de7-b83e-84e4453c746b"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>", "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
+                    { new Guid("94557435-d8bc-4760-a3fd-aa78231c89a7"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>", "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
+                    { new Guid("ac2d9855-b304-4061-88ef-c3ac1f37ab31"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>", "Aday Dosyaları", "la la-bell", "candidate-files" },
+                    { new Guid("ae1178de-98c0-41c5-8444-bd9371c8d264"), "", "Kullanıcı Ayarları", " ", " " },
+                    { new Guid("af6b423c-290a-4d94-905c-fb20ea893273"), "", "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
+                    { new Guid("bab5a8a4-457a-4b7f-845a-f29568384c95"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>", "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
+                    { new Guid("c8cd8914-0338-421a-b533-446ddb687a55"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>", "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
+                    { new Guid("ce26df88-95fd-4454-a2fa-09c87c0b2088"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>", "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
+                    { new Guid("e0db5999-665c-477f-9d74-7ef0fd8db3b1"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>", "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
+                    { new Guid("e31c25d1-15b6-4700-a38a-5e50037718ec"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>", "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
+                    { new Guid("ea498181-e98f-4332-a579-c56ef0a467f2"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>", "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
+                    { new Guid("f468e5c7-652e-4092-a1b6-8d44671fbe9f"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>", "Rol Tanımlama", "la la-plus-circle", "role-defination" },
+                    { new Guid("f5714cdc-fda2-41eb-b4d4-2698ce71a14a"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>", "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
+                    { new Guid("f83d58f0-99a2-4b6d-ad2e-fac88fe60850"), "", "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" }
                 });
 
             migrationBuilder.CreateIndex(
