@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EKSystemApp.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class MigEmre001 : Migration
+    public partial class Yusuf002 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -162,25 +162,7 @@ namespace EKSystemApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Departments",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Departments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Departments_AdvertCreates_AdvertCreateId",
-                        column: x => x.AdvertCreateId,
-                        principalTable: "AdvertCreates",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EBACompanies",
+                name: "EbaCompanies",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -189,9 +171,63 @@ namespace EKSystemApp.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EBACompanies", x => x.Id);
+                    table.PrimaryKey("PK_EbaCompanies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EBACompanies_AdvertCreates_AdvertCreateId",
+                        name: "FK_EbaCompanies_AdvertCreates_AdvertCreateId",
+                        column: x => x.AdvertCreateId,
+                        principalTable: "AdvertCreates",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EbaDepartments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EbaDepartments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EbaDepartments_AdvertCreates_AdvertCreateId",
+                        column: x => x.AdvertCreateId,
+                        principalTable: "AdvertCreates",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EbaGroups",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EbaGroups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EbaGroups_AdvertCreates_AdvertCreateId",
+                        column: x => x.AdvertCreateId,
+                        principalTable: "AdvertCreates",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EbaUnits",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UnitName = table.Column<int>(type: "int", nullable: false),
+                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EbaUnits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EbaUnits_AdvertCreates_AdvertCreateId",
                         column: x => x.AdvertCreateId,
                         principalTable: "AdvertCreates",
                         principalColumn: "Id");
@@ -246,24 +282,6 @@ namespace EKSystemApp.Persistence.Migrations
                     table.PrimaryKey("PK_ForignLanguages", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ForignLanguages_AdvertCreates_AdvertCreateId",
-                        column: x => x.AdvertCreateId,
-                        principalTable: "AdvertCreates",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GroupName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Groups_AdvertCreates_AdvertCreateId",
                         column: x => x.AdvertCreateId,
                         principalTable: "AdvertCreates",
                         principalColumn: "Id");
@@ -409,24 +427,6 @@ namespace EKSystemApp.Persistence.Migrations
                     table.PrimaryKey("PK_TaskTypes", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TaskTypes_AdvertCreates_AdvertCreateId",
-                        column: x => x.AdvertCreateId,
-                        principalTable: "AdvertCreates",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Unit",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdUnit = table.Column<int>(type: "int", nullable: false),
-                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Unit", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Unit_AdvertCreates_AdvertCreateId",
                         column: x => x.AdvertCreateId,
                         principalTable: "AdvertCreates",
                         principalColumn: "Id");
@@ -683,9 +683,9 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "CompanyName" },
                 values: new object[,]
                 {
-                    { new Guid("303d1287-5aef-41a7-bd82-91a3c80b1f63"), "D&R" },
-                    { new Guid("30c4095f-7f21-497d-8719-162507d34296"), "D&R Market" },
-                    { new Guid("e90bfc30-a120-4ac4-84b5-5afcd89d9749"), "Holding" }
+                    { new Guid("18d02464-0fcf-4022-988b-e79f6db7d3b8"), "D&R Market" },
+                    { new Guid("7a57a43b-3768-44bd-ab7b-dbdff21be46b"), "Holding" },
+                    { new Guid("7d419c8d-cc97-4c1c-818a-7ae526ac40b2"), "D&R" }
                 });
 
             migrationBuilder.InsertData(
@@ -693,29 +693,29 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "Name", "RouterIcon", "RouterLink" },
                 values: new object[,]
                 {
-                    { new Guid("0592a73b-2aff-4cb8-9528-53ffbd328e50"), "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
-                    { new Guid("066273c5-c087-4076-80b9-d8e6e7d0f788"), "Aday Dosyaları", "la la-bell", "candidate-files" },
-                    { new Guid("06f05193-0d74-4089-b66f-8700d1341733"), "Rol Tanımlama", "la la-plus-circle", "role-defination" },
-                    { new Guid("1429dc6b-40d0-40ce-b91a-3e99ba0b23dc"), "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
-                    { new Guid("25c938fa-eb68-4cae-bdbb-a5051cfaac48"), "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
-                    { new Guid("27fa7e30-abde-4e7f-9df0-1ce51f721e41"), "Admin Kariyer | Giriş", "la la-home", "dashboard" },
-                    { new Guid("2a0f040a-1a54-4bf4-96f6-16dd3db8c24f"), "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
-                    { new Guid("2c027edb-4c89-4ab6-9486-b8739669bc96"), "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
-                    { new Guid("2c94328b-6aa5-401c-93ee-ba2a6310c9ac"), "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
-                    { new Guid("2d832f97-c6b7-400b-a112-7f6551f9ba13"), "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
-                    { new Guid("368801c1-de66-40ea-b7c9-a98c6259d23e"), "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
-                    { new Guid("46228b08-f18c-456b-901f-b473dd7f8ebe"), "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
-                    { new Guid("617c58fc-f39e-4c92-8092-28b0b4034088"), "Raporlar", "la la-file-alt", "report" },
-                    { new Guid("66315703-13e6-41c4-b7cd-baafaec72b58"), "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
-                    { new Guid("69fc457e-6a5a-4f2d-b282-2de7cbfd0661"), "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
-                    { new Guid("6badd5da-3324-4607-9ade-4080796b03b2"), "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
-                    { new Guid("6fab4c60-b255-4f25-a7b5-f4093aa32c5a"), "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
-                    { new Guid("945df3f0-104f-424a-9fed-cec893bbe80a"), "İlanlar", "la la-paper-plane", "adwerts" },
-                    { new Guid("cfb6e970-6692-44a0-9f9b-acda647d88b9"), "Kullanıcı Ayarları", " ", " " },
-                    { new Guid("dfd7deff-039a-49fc-b978-034b3432ac75"), "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
-                    { new Guid("ebea91fc-88bc-48c0-816f-3ad639794ed8"), "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
-                    { new Guid("f6c775b8-d54a-41d4-88e0-07f9accdfd06"), "Aday Havuzu", "la la-box", "candidate-pool" },
-                    { new Guid("ffe6e61d-68e2-45b8-aaac-482f8fdb0f93"), "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" }
+                    { new Guid("0257d982-a0fa-46cd-8d2a-ffa4634f0b4c"), "İlanlar", "la la-paper-plane", "adwerts" },
+                    { new Guid("1567a8cb-95cf-47ba-bae4-ff0c5710894e"), "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
+                    { new Guid("1de1ac2b-437b-446a-8ec3-8b11af26a35e"), "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
+                    { new Guid("1e1b9368-5b14-4564-a2ab-a45c528fe14f"), "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
+                    { new Guid("21b2d021-9087-4970-a77a-997b4e3a60c4"), "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
+                    { new Guid("4636d33c-9f2c-4f84-86fa-58e8ab768973"), "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
+                    { new Guid("483e67b1-9f7b-4fce-b232-4c7c4c6f5e89"), "Kullanıcı Ayarları", " ", " " },
+                    { new Guid("5561789d-a145-418d-874e-3469fe149e11"), "Aday Havuzu", "la la-box", "candidate-pool" },
+                    { new Guid("5f4eec29-5e84-496b-a527-ce1f930fc6f0"), "Raporlar", "la la-file-alt", "report" },
+                    { new Guid("6e62262c-aa84-49ba-b282-93a74809a279"), "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
+                    { new Guid("70f5400b-7632-4a97-9d6b-5c74a931b693"), "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
+                    { new Guid("7b5abd77-f9b7-484d-95d2-3d9f7b26cf88"), "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
+                    { new Guid("83538e8a-b881-47b5-89ab-f353312e8b5c"), "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
+                    { new Guid("84040291-1f37-4c5a-b0fe-e6f0ed0e5e66"), "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
+                    { new Guid("8bc45f85-bb45-4fc3-8fb2-6acbb3ba2b7d"), "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
+                    { new Guid("a5262b4a-af7f-49c6-bdc7-e2e9cea6a261"), "Aday Dosyaları", "la la-bell", "candidate-files" },
+                    { new Guid("ab36b788-455e-41cc-abd0-ea11b49ad2e8"), "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
+                    { new Guid("ad54b78a-3326-4b3e-a7d9-efbbfb4ad452"), "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
+                    { new Guid("af7db1a5-4dcf-4a51-9976-cedb2bf87ed0"), "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
+                    { new Guid("c08273b1-6cb3-4635-bbec-0e1b4b34f446"), "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
+                    { new Guid("c0b1a4f7-5b4a-472b-95f2-b50c28a57252"), "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
+                    { new Guid("c693784e-9f46-4f92-b7e2-e102d8873881"), "Admin Kariyer | Giriş", "la la-home", "dashboard" },
+                    { new Guid("f4ec320a-71f3-49bb-834e-63b8472b70e5"), "Rol Tanımlama", "la la-plus-circle", "role-defination" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -788,13 +788,23 @@ namespace EKSystemApp.Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Departments_AdvertCreateId",
-                table: "Departments",
+                name: "IX_EbaCompanies_AdvertCreateId",
+                table: "EbaCompanies",
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EBACompanies_AdvertCreateId",
-                table: "EBACompanies",
+                name: "IX_EbaDepartments_AdvertCreateId",
+                table: "EbaDepartments",
+                column: "AdvertCreateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EbaGroups_AdvertCreateId",
+                table: "EbaGroups",
+                column: "AdvertCreateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EbaUnits_AdvertCreateId",
+                table: "EbaUnits",
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
@@ -810,11 +820,6 @@ namespace EKSystemApp.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ForignLanguages_AdvertCreateId",
                 table: "ForignLanguages",
-                column: "AdvertCreateId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Groups_AdvertCreateId",
-                table: "Groups",
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
@@ -863,11 +868,6 @@ namespace EKSystemApp.Persistence.Migrations
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Unit_AdvertCreateId",
-                table: "Unit",
-                column: "AdvertCreateId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_WorkModels_AdvertCreateId",
                 table: "WorkModels",
                 column: "AdvertCreateId");
@@ -912,13 +912,19 @@ namespace EKSystemApp.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "EbaCompanies");
 
             migrationBuilder.DropTable(
-                name: "EBACompanies");
+                name: "EbaDepartments");
+
+            migrationBuilder.DropTable(
+                name: "EbaGroups");
 
             migrationBuilder.DropTable(
                 name: "Ebas");
+
+            migrationBuilder.DropTable(
+                name: "EbaUnits");
 
             migrationBuilder.DropTable(
                 name: "EducationLevels");
@@ -928,9 +934,6 @@ namespace EKSystemApp.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ForignLanguages");
-
-            migrationBuilder.DropTable(
-                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "JobCategories");
@@ -961,9 +964,6 @@ namespace EKSystemApp.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "TaskTypes");
-
-            migrationBuilder.DropTable(
-                name: "Unit");
 
             migrationBuilder.DropTable(
                 name: "WorkModels");

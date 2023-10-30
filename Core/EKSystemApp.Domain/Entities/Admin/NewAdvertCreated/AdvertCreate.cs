@@ -8,11 +8,11 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
     {
         public ICollection<Position> Positions { get; set; }
         public ICollection<TaskType> TasksTypes { get; set; }
-        public ICollection<EBACompany> EBACompanies { get; set; }
+        public ICollection<EbaCompany> EBACompanies { get; set; }
         public ICollection<Organization> Organizations { get; set; }
-        public ICollection<Group> Groups { get; set; }
-        public ICollection<Department> Departments { get; set; }
-        public ICollection<Unit> Units { get; set; }
+        public ICollection<EbaGroup> Groups { get; set; }
+        public ICollection<EbaDepartment> Departments { get; set; }
+        public ICollection<EbaUnit> Units { get; set; }
         public ICollection<WorkType> WorkTypes { get; set; }
         public ICollection<PositionType> PositionTypes { get; set; }
         public ICollection<WorkModel> WorkModels { get; set; }

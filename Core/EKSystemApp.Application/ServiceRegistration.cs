@@ -4,12 +4,14 @@ using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
-using EKSystemApp.Application.Mappings.EBACompanyMap;
+using EKSystemApp.Application.Mappings.Eba.EBACompanyMap;
+using EKSystemApp.Application.Mappings.Eba.EbaDepartmentMap;
+using EKSystemApp.Application.Mappings.Eba.EbaGroupMap;
+using EKSystemApp.Application.Mappings.Eba.EbaUnitMap;
 using EKSystemApp.Application.Mappings.MenuMap;
 using EKSystemApp.Application.Mappings.PositionsTypes;
 using EKSystemApp.Application.Mappings.Products;
 using EKSystemApp.Application.Mappings.TasksTypes;
-using EKSystemApp.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,7 +35,10 @@ namespace EKSystemApp.Application
                     new MenuProfile(),
                     new PositionTypeProfile(),
                     new TaskTypeProfile(),
-                    new EBACompanyProfile()
+                    new EBACompanyProfile(),
+                    new EbaUnitProfile(),
+                    new EbaGroupProfile(),
+                    new EbaDepartmentProfile(),
                     
                 });
             });

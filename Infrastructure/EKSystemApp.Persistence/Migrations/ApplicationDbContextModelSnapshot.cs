@@ -262,27 +262,18 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("WorkTypes");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Department", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Eba", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertCreateId");
-
-                    b.ToTable("Departments");
+                    b.ToTable("Ebas");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EBACompany", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaCompany", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -299,21 +290,30 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.HasIndex("AdvertCreateId");
 
-                    b.ToTable("EBACompanies");
+                    b.ToTable("EbaCompanies");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Eba", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaDepartment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AdvertCreateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Ebas");
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("EbaDepartments");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Group", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaGroup", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,7 +330,26 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.HasIndex("AdvertCreateId");
 
-                    b.ToTable("Groups");
+                    b.ToTable("EbaGroups");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaUnit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("UnitName")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("EbaUnits");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Locaiton", b =>
@@ -426,25 +445,6 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasIndex("AdvertCreateId");
 
                     b.ToTable("TaskTypes");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Unit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("IdUnit")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvertCreateId");
-
-                    b.ToTable("Unit");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", b =>
@@ -656,17 +656,17 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e90bfc30-a120-4ac4-84b5-5afcd89d9749"),
+                            Id = new Guid("7a57a43b-3768-44bd-ab7b-dbdff21be46b"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-                            Id = new Guid("303d1287-5aef-41a7-bd82-91a3c80b1f63"),
+                            Id = new Guid("7d419c8d-cc97-4c1c-818a-7ae526ac40b2"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-                            Id = new Guid("30c4095f-7f21-497d-8719-162507d34296"),
+                            Id = new Guid("18d02464-0fcf-4022-988b-e79f6db7d3b8"),
                             CompanyName = "D&R Market"
                         });
                 });
@@ -696,161 +696,161 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("27fa7e30-abde-4e7f-9df0-1ce51f721e41"),
+                            Id = new Guid("c693784e-9f46-4f92-b7e2-e102d8873881"),
                             Name = "Admin Kariyer | Giriş",
                             RouterIcon = "la la-home",
                             RouterLink = "dashboard"
                         },
                         new
                         {
-                            Id = new Guid("2c94328b-6aa5-401c-93ee-ba2a6310c9ac"),
+                            Id = new Guid("1de1ac2b-437b-446a-8ec3-8b11af26a35e"),
                             Name = "Yeni İlan Oluştur",
                             RouterIcon = "la la-user-tie",
                             RouterLink = "new-adwert-create"
                         },
                         new
                         {
-                            Id = new Guid("945df3f0-104f-424a-9fed-cec893bbe80a"),
+                            Id = new Guid("0257d982-a0fa-46cd-8d2a-ffa4634f0b4c"),
                             Name = "İlanlar",
                             RouterIcon = "la la-paper-plane",
                             RouterLink = "adwerts"
                         },
                         new
                         {
-                            Id = new Guid("2c027edb-4c89-4ab6-9486-b8739669bc96"),
+                            Id = new Guid("8bc45f85-bb45-4fc3-8fb2-6acbb3ba2b7d"),
                             Name = "Öne Çıkan İlanlar",
                             RouterIcon = "la la-briefcase",
                             RouterLink = "on-front-adwert"
                         },
                         new
                         {
-                            Id = new Guid("0592a73b-2aff-4cb8-9528-53ffbd328e50"),
+                            Id = new Guid("84040291-1f37-4c5a-b0fe-e6f0ed0e5e66"),
                             Name = "Başvuran Aday Listeleri",
                             RouterIcon = "la la-file-invoice",
                             RouterLink = "application-candidate-lists"
                         },
                         new
                         {
-                            Id = new Guid("ffe6e61d-68e2-45b8-aaac-482f8fdb0f93"),
+                            Id = new Guid("7b5abd77-f9b7-484d-95d2-3d9f7b26cf88"),
                             Name = "Aday Soru | Cevap Listeleri",
                             RouterIcon = "la la-bookmark-o",
                             RouterLink = "candidate-question-and-answer-lists"
                         },
                         new
                         {
-                            Id = new Guid("f6c775b8-d54a-41d4-88e0-07f9accdfd06"),
+                            Id = new Guid("5561789d-a145-418d-874e-3469fe149e11"),
                             Name = "Aday Havuzu",
                             RouterIcon = "la la-box",
                             RouterLink = "candidate-pool"
                         },
                         new
                         {
-                            Id = new Guid("66315703-13e6-41c4-b7cd-baafaec72b58"),
+                            Id = new Guid("c0b1a4f7-5b4a-472b-95f2-b50c28a57252"),
                             Name = "Mail | Mesaj Yönetimi",
                             RouterIcon = "la la-comment-o",
                             RouterLink = "mail-message-manager"
                         },
                         new
                         {
-                            Id = new Guid("066273c5-c087-4076-80b9-d8e6e7d0f788"),
+                            Id = new Guid("a5262b4a-af7f-49c6-bdc7-e2e9cea6a261"),
                             Name = "Aday Dosyaları",
                             RouterIcon = "la la-bell",
                             RouterLink = "candidate-files"
                         },
                         new
                         {
-                            Id = new Guid("1429dc6b-40d0-40ce-b91a-3e99ba0b23dc"),
+                            Id = new Guid("1e1b9368-5b14-4564-a2ab-a45c528fe14f"),
                             Name = "Tanımlamalar",
                             RouterIcon = "la la-lock",
                             RouterLink = "navlink dropdown-toggle"
                         },
                         new
                         {
-                            Id = new Guid("2a0f040a-1a54-4bf4-96f6-16dd3db8c24f"),
+                            Id = new Guid("83538e8a-b881-47b5-89ab-f353312e8b5c"),
                             Name = "Yetenek ve Uzmanlıklar",
                             RouterIcon = "la la-user-alt",
                             RouterLink = "skills-and-experties"
                         },
                         new
                         {
-                            Id = new Guid("368801c1-de66-40ea-b7c9-a98c6259d23e"),
+                            Id = new Guid("4636d33c-9f2c-4f84-86fa-58e8ab768973"),
                             Name = "Mail | Mesaj Şablonu ",
                             RouterIcon = "la la-sign-out",
                             RouterLink = "mail-message-template "
                         },
                         new
                         {
-                            Id = new Guid("25c938fa-eb68-4cae-bdbb-a5051cfaac48"),
+                            Id = new Guid("ab36b788-455e-41cc-abd0-ea11b49ad2e8"),
                             Name = "Logo Yükleme Ekranı",
                             RouterIcon = "la la-cloud-upload-alt",
                             RouterLink = "logo-import-screen"
                         },
                         new
                         {
-                            Id = new Guid("6badd5da-3324-4607-9ade-4080796b03b2"),
+                            Id = new Guid("1567a8cb-95cf-47ba-bae4-ff0c5710894e"),
                             Name = "İlan Soru Tanımlama",
                             RouterIcon = "la la-question",
                             RouterLink = "adwert-question-defination"
                         },
                         new
                         {
-                            Id = new Guid("46228b08-f18c-456b-901f-b473dd7f8ebe"),
+                            Id = new Guid("af7db1a5-4dcf-4a51-9976-cedb2bf87ed0"),
                             Name = "Talep Edilen Pozisyon Adı Aktar",
                             RouterIcon = "la la-exchange-alt",
                             RouterLink = "transfer-requested-posination-name"
                         },
                         new
                         {
-                            Id = new Guid("2d832f97-c6b7-400b-a112-7f6551f9ba13"),
+                            Id = new Guid("70f5400b-7632-4a97-9d6b-5c74a931b693"),
                             Name = "Portal | Ana Sayfa İçerik Yönetimi",
                             RouterIcon = "",
                             RouterLink = ""
                         },
                         new
                         {
-                            Id = new Guid("ebea91fc-88bc-48c0-816f-3ad639794ed8"),
+                            Id = new Guid("21b2d021-9087-4970-a77a-997b4e3a60c4"),
                             Name = "Blog Manşet Yönetimi",
                             RouterIcon = "la la-newspaper",
                             RouterLink = "blog-headline-manager"
                         },
                         new
                         {
-                            Id = new Guid("69fc457e-6a5a-4f2d-b282-2de7cbfd0661"),
+                            Id = new Guid("ad54b78a-3326-4b3e-a7d9-efbbfb4ad452"),
                             Name = "İş Adımları Yönetimi",
                             RouterIcon = "la la-list",
                             RouterLink = "work-step-manager"
                         },
                         new
                         {
-                            Id = new Guid("6fab4c60-b255-4f25-a7b5-f4093aa32c5a"),
+                            Id = new Guid("6e62262c-aa84-49ba-b282-93a74809a279"),
                             Name = "İş Kategorileri Yönetimi",
                             RouterIcon = "la la-boxes",
                             RouterLink = "work-category-manager"
                         },
                         new
                         {
-                            Id = new Guid("617c58fc-f39e-4c92-8092-28b0b4034088"),
+                            Id = new Guid("5f4eec29-5e84-496b-a527-ce1f930fc6f0"),
                             Name = "Raporlar",
                             RouterIcon = "la la-file-alt",
                             RouterLink = "report"
                         },
                         new
                         {
-                            Id = new Guid("cfb6e970-6692-44a0-9f9b-acda647d88b9"),
+                            Id = new Guid("483e67b1-9f7b-4fce-b232-4c7c4c6f5e89"),
                             Name = "Kullanıcı Ayarları",
                             RouterIcon = " ",
                             RouterLink = " "
                         },
                         new
                         {
-                            Id = new Guid("dfd7deff-039a-49fc-b978-034b3432ac75"),
+                            Id = new Guid("c08273b1-6cb3-4635-bbec-0e1b4b34f446"),
                             Name = "Yetki Tanımlama",
                             RouterIcon = "la la-user-plus",
                             RouterLink = "auth-defination"
                         },
                         new
                         {
-                            Id = new Guid("06f05193-0d74-4089-b66f-8700d1341733"),
+                            Id = new Guid("f4ec320a-71f3-49bb-834e-63b8472b70e5"),
                             Name = "Rol Tanımlama",
                             RouterIcon = "la la-plus-circle",
                             RouterLink = "role-defination"
@@ -1117,14 +1117,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("AdvertCreate");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Department", b =>
-                {
-                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", null)
-                        .WithMany("Departments")
-                        .HasForeignKey("AdvertCreateId");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EBACompany", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaCompany", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("EBACompanies")
@@ -1135,10 +1128,28 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("AdvertCreate");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Group", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaDepartment", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", null)
+                        .WithMany("Departments")
+                        .HasForeignKey("AdvertCreateId");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaGroup", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("Groups")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaUnit", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Units")
                         .HasForeignKey("AdvertCreateId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -1183,17 +1194,6 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("TasksTypes")
-                        .HasForeignKey("AdvertCreateId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AdvertCreate");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Unit", b =>
-                {
-                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
-                        .WithMany("Units")
                         .HasForeignKey("AdvertCreateId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
