@@ -5,7 +5,7 @@ using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.Eba;
 using MediatR;
 
-namespace EKSystemApp.Application.Features.EBA.EBACompanies.Handlers.List
+namespace EKSystemApp.Application.Features.EBA.EbaCompanies.Handlers.List
 {
     public class GetEBACompaniesQueryHandler : IRequestHandler<GetEBACompaniesQueryRequest, ICollection<EbaCompanyDto>>
     {
