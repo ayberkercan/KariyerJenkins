@@ -27,5 +27,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             return Ok(await _mediator.Send(new GetMenuQueryRequest(id)));
 
         }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetUserRoleAndMenuListById(Guid id)
+        {
+            return Ok(await _mediator.Send(new GetMenuQueryRequest(id)));
+
+        }
     }
 }

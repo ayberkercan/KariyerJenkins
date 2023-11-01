@@ -37,7 +37,7 @@ namespace EKSystemApp.Persistence.DbInitializerService
             var user = new AppUser
             {
                 AccessFailedCount = 0,
-                Registry="12345",
+                Registry = "12345",
                 Email = configurations.GetSection("Application:defaultSystemAdministratorEmail").Value!,
                 EmailConfirmed = false,
                 LockoutEnabled = true,
@@ -56,7 +56,10 @@ namespace EKSystemApp.Persistence.DbInitializerService
                 var data = await this.userManager.AddToRoleAsync(adminUser, "SystemAdministrators");
                 var claims = new List<Claim> {
                     new Claim(type: JwtClaimTypes.Name, value: "SystemAdministrators"),
-
+                    new Claim(type: "Permission", value: "Read"),
+                    new Claim(type: "Permission", value: "Update"),
+                    new Claim(type: "Permission", value: "Delete"),
+                    new Claim(type: "Permission", value: "Create"),
                 };
                 await this.userManager.AddClaimsAsync(adminUser, claims);
             }
