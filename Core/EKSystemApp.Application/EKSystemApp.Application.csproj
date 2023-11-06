@@ -34,6 +34,7 @@
     <Folder Include="Features\EBA\EbaDepartments\Handlers\Update\" />
     <Folder Include="Features\EBA\EbaGroups\Commands\" />
     <Folder Include="Features\EBA\EbaUnits\Commands\" />
+    <Folder Include="Features\EBA\TMP\Commands\" />
     <Folder Include="Features\Menus\Commands\" />
     <Folder Include="Features\Menus\Handlers\Update\" />
     <Folder Include="Features\Menus\Handlers\Delete\" />

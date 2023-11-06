@@ -4,6 +4,7 @@ using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
+using EKSystemApp.Application.Mappings.Eba;
 using EKSystemApp.Application.Mappings.Eba.EBACompanyMap;
 using EKSystemApp.Application.Mappings.Eba.EbaDepartmentMap;
 using EKSystemApp.Application.Mappings.Eba.EbaGroupMap;
@@ -39,6 +40,7 @@ namespace EKSystemApp.Application
                     new EbaUnitProfile(),
                     new EbaGroupProfile(),
                     new EbaDepartmentProfile(),
+                    new EbaProfile(),
                     
                 });
             });

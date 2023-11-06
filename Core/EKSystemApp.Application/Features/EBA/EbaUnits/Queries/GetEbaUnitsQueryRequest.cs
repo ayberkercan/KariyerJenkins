@@ -1,4 +1,4 @@
-﻿using EKSystemApp.Application.DTO.Eba.EbaUnit;
+﻿using EKSystemApp.Application.DTO.Eba.TMP;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.EBA.EbaUnits.Queries
 {
-    public class GetEbaUnitsQueryRequest : IRequest<ICollection<EbaUnitDto>>
+    public class GetEbaUnitsQueryRequest : IRequest<ICollection<EbaKvpDto>>
     {
     }
 }

@@ -9,6 +9,7 @@ using EKSystemApp.Persistence.Context;
 using EKSystemApp.Persistence.DbInitializerService;
 using EKSystemApp.Persistence.DbInitiliazers;
 using EKSystemApp.Persistence.Repositories;
+using EKSystemApp.Persistence.Repositories.Eba;
 using EKSystemApp.Persistence.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -27,6 +28,11 @@ namespace EKSystemApp.Persistence
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("Local"));
+            });
+
+            services.AddDbContext<EbaDbContext>(opt =>
+            {
+                opt.UseSqlServer(configuration.GetConnectionString("eBA"));
             });
             #endregion
 
@@ -77,8 +83,10 @@ namespace EKSystemApp.Persistence
 
             #region IOC
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IEbaGenericRepository<>), typeof(EbaGenericRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDbInitiliazerContext, DBInitiliazerContext>();
+            services.AddScoped<IEbaRepository, EbaRepository>();
             #endregion
 
             //#region CORS 

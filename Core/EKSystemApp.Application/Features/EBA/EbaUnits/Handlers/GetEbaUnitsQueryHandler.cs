@@ -2,6 +2,7 @@
 using EKSystemApp.Application.DTO.Eba.EbaDepartment;
 using EKSystemApp.Application.DTO.Eba.EbaGroup;
 using EKSystemApp.Application.DTO.Eba.EbaUnit;
+using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.Features.EBA.EbaUnits.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.Eba;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.EBA.EbaUnits.Handlers
 {
-    public class GetEbaUnitsQueryHandler : IRequestHandler<GetEbaUnitsQueryRequest, ICollection<EbaUnitDto>>
+    public class GetEbaUnitsQueryHandler : IRequestHandler<GetEbaUnitsQueryRequest, ICollection<EbaKvpDto>>
     {
         private readonly IMapper mapper;
         private IGenericRepository<EbaUnit> genericRepository;
@@ -25,10 +26,10 @@ namespace EKSystemApp.Application.Features.EBA.EbaUnits.Handlers
             this.genericRepository = genericRepository;
         }
 
-        public async Task<ICollection<EbaUnitDto>> Handle(GetEbaUnitsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<EbaKvpDto>> Handle(GetEbaUnitsQueryRequest request, CancellationToken cancellationToken)
         {
             var data = await genericRepository.GetAllAsync();
-            return mapper.Map<ICollection<EbaUnitDto>>(data);
+            return mapper.Map<ICollection<EbaKvpDto>>(data);
         }
     }
 }
