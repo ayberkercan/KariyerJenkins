@@ -9,15 +9,16 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     [ApiController]
     public class PositionTypeController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator mediator;
+
         public PositionTypeController(IMediator mediator)
         {
-            _mediator = mediator;
+            this.mediator = mediator;
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetPositionsTypes()
         {
-            return Ok(await _mediator.Send(new GetPositionsQueryRequest()));
+            return Ok(await mediator.Send(new GetPositionsQueryRequest()));
         }
     }
 }

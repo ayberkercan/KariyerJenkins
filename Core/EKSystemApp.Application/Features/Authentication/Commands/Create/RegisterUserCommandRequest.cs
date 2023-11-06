@@ -1,6 +1,4 @@
 ﻿using EKSystemApp.Application.DTO.Authorization.User.Create;
-using EKSystemApp.Application.DTO.Company;
-using EKSystemApp.Domain.Entities;
 using MediatR;
 
 namespace EKSystemApp.Application.Features.Authentication.Commands.Register

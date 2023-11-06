@@ -2,9 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using EKSystemApp.Application.DTO.Jwt;
-using EKSystemApp.Domain.Entities;
 using EKSystemApp.Domain.PermissonList;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EKSystemApp.Application.Tools
@@ -18,19 +16,17 @@ namespace EKSystemApp.Application.Tools
             if (!string.IsNullOrWhiteSpace(dto.Role))
                 claims.Add(new Claim("Id", dto.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Role, dto.Role!));
-
-            //foreach (var item in dto.Menus!)
-            //{
-            //    var claimMenu = new[]
-            //   {
-            //       new Claim("Menus",item.Name),
-            //       new Claim(item.Name,item.RouterLink),
-            //       new Claim(item.RouterLink, item.RouterIcon),
-            //    };
-            //    claims.AddRange(claimMenu);
-            //}
-
-
+            foreach (var item in dto.Menus!)
+            {
+                var claimMenu = new[]
+               {
+                   new Claim("Menus",item.Name!),
+                   new Claim("MenuRouter",item.RouterLink!),
+                   new Claim("MenuIcon", item.RouterIcon!),
+                };
+                claims.AddRange(claimMenu);
+            }
+            claims.Add(new Claim("Role", dto.Role!));
             if (dto.Role == "HumanResources")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));

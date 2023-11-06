@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Task.List;
+using EKSystemApp.Application.DTO.TaskType;
 using EKSystemApp.Application.Features.TasksTypes.Queries.List;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.Eba;
@@ -20,7 +20,7 @@ namespace EKSystemApp.Application.Features.TasksTypes.Handlers.List
 
         public async Task<ICollection<TaskTypeDto>> Handle(GetTasksTypesQueryRequest request, CancellationToken cancellationToken)
         {
-            var data =await repository.GetAllAsync();
+            var data = await repository.GetAllAsync();
             return mapper.Map<ICollection<TaskTypeDto>>(data);
         }
     }

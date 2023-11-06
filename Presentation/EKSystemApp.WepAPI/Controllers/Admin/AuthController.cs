@@ -24,6 +24,12 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             var result = await _mediator.Send(new GetUsersQueryRequest());
             return Ok(result);
         }
+        [HttpGet("[action]/{role}")]
+        public async Task<IActionResult> GetUsersById(string role)
+        {
+            var result = await _mediator.Send(new GetAllUsersInTableViewQueryRequest(role));
+            return Ok(result);
+        }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetRoles()
         {
