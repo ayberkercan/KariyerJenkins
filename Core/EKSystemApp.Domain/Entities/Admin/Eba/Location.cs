@@ -3,9 +3,9 @@ using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 
 namespace EKSystemApp.Domain.Entities.Admin.Eba
 {
-    public class Locaiton : BaseEntity
+    public class Location : BaseEntity
     {
-        public string LocaitonName { get; set; }
+        public string LocationName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Eba.EBACompany;
 using EKSystemApp.Application.DTO.Eba.EbaGroup;
 using EKSystemApp.Domain.Entities.Admin.Eba;
 

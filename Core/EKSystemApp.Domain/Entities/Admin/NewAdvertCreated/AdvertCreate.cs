@@ -16,7 +16,7 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public ICollection<WorkType> WorkTypes { get; set; }
         public ICollection<PositionType> PositionTypes { get; set; }
         public ICollection<WorkModel> WorkModels { get; set; }
-        public ICollection<Locaiton> Locaitons { get; set; }
+        public ICollection<Location> Locations { get; set; }
         public ICollection<EducationLevel> EducationLevels { get; set; }
         public ICollection<ExperiencePeriod> ExperiencePeriods { get; set; }
         public ICollection<MillitaryStatus> MillitaryStatuses { get; set; }

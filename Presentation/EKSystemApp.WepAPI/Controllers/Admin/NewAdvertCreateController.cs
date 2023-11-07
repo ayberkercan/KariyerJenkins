@@ -1,10 +1,12 @@
 ﻿using EKSystemApp.Application.Features.AdPublishers;
 using EKSystemApp.Application.Features.AdQuestions.Questions;
 using EKSystemApp.Application.Features.AdStatuses.Queries;
-using EKSystemApp.Application.Features.EBA.EBACompanies.Queries;
+using EKSystemApp.Application.Features.Adverts.Commands.Create;
+using EKSystemApp.Application.Features.Companies.Queries;
 using EKSystemApp.Application.Features.EBA.EbaDepartments.Queries;
 using EKSystemApp.Application.Features.EBA.EbaGroups.Queries;
 using EKSystemApp.Application.Features.EBA.EbaLocations.Queries;
+using EKSystemApp.Application.Features.EBA.EbaOrganization.Queries;
 using EKSystemApp.Application.Features.EBA.EbaPositions.Queries;
 using EKSystemApp.Application.Features.EBA.EbaUnits.Queries;
 using EKSystemApp.Application.Features.EducationLevels.Queries;
@@ -18,9 +20,7 @@ using EKSystemApp.Application.Features.TasksTypes.Queries.List;
 using EKSystemApp.Application.Features.WorkModels.Queries;
 using EKSystemApp.Application.Features.WorkTypes.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
 {
@@ -36,10 +36,33 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             this.mediator = mediator;
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Create(NewAdvertCreateCommandRequest request)
+        {
+            var result = await mediator.Send(request);
+            return Created("", result);
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllEBACompany()
         {
-            return Ok(await this.mediator.Send(new GetEBACompaniesQueryRequest()));
+            return Ok(await this.mediator.Send(new GetCompanyQueryRequest()));
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllEBALocation()
+        {
+            return Ok(await this.mediator.Send(new GetEbaLocationsQueryRequest()));
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllEBAOrganization()
+        {
+            return Ok(await this.mediator.Send(new GetEbaOrganizationQueryRequest()));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllEBAPosition()
+        {
+            return Ok(await this.mediator.Send(new GetEbaPositionQueryRequest()));
         }
 
         [HttpGet("[action]")]
@@ -79,25 +102,13 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllEbaLocaiton()
-        {
-            return Ok(await this.mediator.Send(new GetEbaLocationsQueryRequest()));
-        }
-
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllEbaPosition()
-        {
-            return Ok(await this.mediator.Send(new GetEbaPositionQueryRequest()));
-        }
-
-        [HttpGet("[action]")]
         public async Task<IActionResult> GetAllEducationLevel()
         {
             return Ok(await this.mediator.Send(new GetEducationLevelsQueryRequest()));
         }
         
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllExperincePeriod()
+        public async Task<IActionResult> GetAllExperiencePeriod()
         {
             return Ok(await this.mediator.Send(new GetExperiencePeriodsQueryRequest()));
         }
@@ -123,7 +134,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllPositionsTypes()
         {
-            return Ok(await this.mediator.Send(new GetPositionsQueryRequest()));
+            return Ok(await this.mediator.Send(new GetPositionsTypeQueryRequest()));
         }
 
         [HttpGet("[action]")]
@@ -149,7 +160,5 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetWorkTypesQueryRequest()));
         }
-
-
     }
 }

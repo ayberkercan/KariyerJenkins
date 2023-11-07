@@ -11,8 +11,8 @@ namespace EKSystemApp.Application.Features.EBA.EbaLocations.Handler.List
     public class GetEbaLocationQueryHandler : IRequestHandler<GetEbaLocationsQueryRequest, ICollection<EbaLocationDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<Locaiton> genericRepository;
-        public GetEbaLocationQueryHandler(IMapper mapper, IGenericRepository<Locaiton> genericRepository)
+        private IGenericRepository<Location> genericRepository;
+        public GetEbaLocationQueryHandler(IMapper mapper, IGenericRepository<Location> genericRepository)
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;

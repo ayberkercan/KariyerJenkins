@@ -16,9 +16,9 @@ namespace EKSystemApp.Application.Features.JobCategories.Handler.List
     public class GetJobCategoriesQueryHandler : IRequestHandler<GetJobCategoriesQueryRequest, ICollection<JobCategoryDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<AdStatus> genericRepository;
+        private IGenericRepository<JobCategory> genericRepository;
 
-        public GetJobCategoriesQueryHandler(IMapper mapper, IGenericRepository<AdStatus> genericRepository)
+        public GetJobCategoriesQueryHandler(IMapper mapper, IGenericRepository<JobCategory> genericRepository)
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;

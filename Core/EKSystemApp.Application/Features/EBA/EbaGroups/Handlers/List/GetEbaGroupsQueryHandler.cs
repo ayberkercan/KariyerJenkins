@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Eba.EbaDepartment;
 using EKSystemApp.Application.DTO.Eba.EbaGroup;
 using EKSystemApp.Application.Features.EBA.EbaGroups.Queries;
 using EKSystemApp.Application.Interfaces;

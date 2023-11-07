@@ -3,6 +3,7 @@ using AutoMapper;
 using EKSystemApp.Application.Mappings.AdPublisherMap;
 using EKSystemApp.Application.Mappings.AdQuestionMap;
 using EKSystemApp.Application.Mappings.AdStatusMap;
+using EKSystemApp.Application.Mappings.AdvertMap;
 using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
@@ -11,9 +12,12 @@ using EKSystemApp.Application.Mappings.Eba;
 using EKSystemApp.Application.Mappings.Eba.EBACompanyMap;
 using EKSystemApp.Application.Mappings.Eba.EbaDepartmentMap;
 using EKSystemApp.Application.Mappings.Eba.EbaGroupMap;
+using EKSystemApp.Application.Mappings.Eba.EbaLocationMap;
+using EKSystemApp.Application.Mappings.Eba.EbaOrganizationMap;
 using EKSystemApp.Application.Mappings.Eba.EbaPositionMap;
 using EKSystemApp.Application.Mappings.Eba.EbaUnitMap;
 using EKSystemApp.Application.Mappings.EducationLevelMap;
+using EKSystemApp.Application.Mappings.ExperiencePeriodMap;
 using EKSystemApp.Application.Mappings.ForignLanguagesMap;
 using EKSystemApp.Application.Mappings.JobCategoriesMap;
 using EKSystemApp.Application.Mappings.MenuMap;
@@ -67,6 +71,14 @@ namespace EKSystemApp.Application
                     new TaskTypeProfile(),
                     new WorkModelProfile(),
                     new WorkTypeProfile(),
+                    new EbaOrganizationProfile(),
+                    new EbaLocationProfile(),
+                    new ExperiencePeriodProfile(),
+                    new AdStatusProfile(),
+                    new AdvertProfile(),
+
+
+
                     new EbaProfile(),
                 });
             });

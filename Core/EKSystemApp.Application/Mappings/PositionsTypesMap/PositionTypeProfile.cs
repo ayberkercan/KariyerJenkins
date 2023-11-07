@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.PositionsTypes.List;
-using EKSystemApp.Domain.Entities.Admin.Eba;
+using EKSystemApp.Application.DTO.PositionsTypes;
+using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 
 namespace EKSystemApp.Application.Mappings.PositionsTypes
 {
@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.Mappings.PositionsTypes
     {
         public PositionTypeProfile()
         {
-            this.CreateMap<Position, PositionsTypesDto>().ReverseMap();
+            this.CreateMap<PositionType, PositionsTypesDto>().ReverseMap();
         }
     }
 }

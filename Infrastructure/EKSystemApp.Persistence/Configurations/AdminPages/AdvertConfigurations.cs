@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EKSystemApp.Persistence.Configurations.AdminPages
 {
-    public class AdwertConfigurations : IEntityTypeConfiguration<AdvertCreate>
+    public class AdvertConfigurations : IEntityTypeConfiguration<AdvertCreate>
     {
         public void Configure(EntityTypeBuilder<AdvertCreate> builder)
         {
@@ -54,7 +54,7 @@ namespace EKSystemApp.Persistence.Configurations.AdminPages
                 .HasForeignKey(p => p.AdvertCreateId)
                 .OnDelete(DeleteBehavior.NoAction);
             builder
-                .HasMany(p => p.Locaitons)
+                .HasMany(p => p.Locations)
                 .WithOne(p => p.AdvertCreate)
                 .HasForeignKey(p => p.AdvertCreateId)
                 .OnDelete(DeleteBehavior.NoAction);

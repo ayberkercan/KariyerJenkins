@@ -29,7 +29,7 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.ApplyConfiguration(new MenuConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserCompanyConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserMenuConfigurations());
-            modelBuilder.ApplyConfiguration(new AdwertConfigurations());
+            modelBuilder.ApplyConfiguration(new AdvertConfigurations());
             base.OnModelCreating(modelBuilder);
         }
         #region DBSET
@@ -61,7 +61,7 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<WorkType> WorkTypes { get; set; }
         public DbSet<EbaDepartment> EbaDepartments { get; set; }
         public DbSet<Eba> Ebas { get; set; }
-        public DbSet<Locaiton> Locaitons{ get; set; }
+        public DbSet<Location> Locations{ get; set; }
         public DbSet<Profession> Professions{ get; set; }
         public DbSet<EbaUnit> EbaUnits { get; set; }
         #endregion

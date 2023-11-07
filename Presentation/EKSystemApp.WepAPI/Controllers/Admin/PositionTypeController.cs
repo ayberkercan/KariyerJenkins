@@ -18,7 +18,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetPositionsTypes()
         {
-            return Ok(await mediator.Send(new GetPositionsQueryRequest()));
+            return Ok(await mediator.Send(new GetPositionsTypeQueryRequest()));
         }
     }
 }

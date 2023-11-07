@@ -4,11 +4,11 @@ using EKSystemApp.Domain.Entities.Admin.Eba;
 
 namespace EKSystemApp.Application.Mappings.Eba.EbaLocationMap
 {
-    public class EbaLocaitonProfile:Profile
+    public class EbaLocationProfile:Profile
     {
-        EbaLocaitonProfile() 
+        public EbaLocationProfile() 
         {
-            this.CreateMap<Locaiton, EbaLocationDto>().ReverseMap();
+            this.CreateMap<Location, EbaLocationDto>().ReverseMap();
         }
     }
 }
