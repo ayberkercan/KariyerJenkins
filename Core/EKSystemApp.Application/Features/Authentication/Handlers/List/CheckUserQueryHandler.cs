@@ -28,7 +28,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
             var dto = new CheckUserResponseDto();
             var isUser = (await userRepository.GetByFilterAsync(x => x.UserName == request.UserName))!;
             var menus = (await userMenu.GetUserToMenu(isUser.Id));
-            
+            var company = (await userMenu.GetUserToCompaniesList(isUser.Id));
             if (isUser == null)
             {
                 dto.IsExist = false;
@@ -40,6 +40,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
                 dto.Role = (await roleRepository.GetByFilterAsync(x => x.Id == isUser.AppRoleId))?.Name;
                 dto.Id = isUser.Id;
                 dto.Menus = menus;
+                dto.Companies = company;
             }
             return dto;
         }

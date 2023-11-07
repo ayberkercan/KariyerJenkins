@@ -11,6 +11,7 @@ using EKSystemApp.Persistence.DbInitiliazers;
 using EKSystemApp.Persistence.Repositories;
 using EKSystemApp.Persistence.Repositories.Eba;
 using EKSystemApp.Persistence.Repositories.User;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -98,6 +99,7 @@ namespace EKSystemApp.Persistence
             //    .AllowCredentials()
             // ));
             //#endregion
+            services.AddAuthentication( CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
         }
         
     }

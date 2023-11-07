@@ -33,6 +33,13 @@ namespace EKSystemApp.Domain.PermissonList
             public const string Update = "Permissions.Category.Update";
             public const string Delete = "Permissions.Category.Delete";
         }
+        public static class AuthDefination
+        {
+            public const string Read = "Permissions.AuthDefination.Read";
+            public const string Create = "Permissions.AuthDefination.Create";
+            public const string Update = "Permissions.AuthDefination.Update";
+            public const string Delete = "Permissions.AuthDefination.Delete";
+        }
 
     }
 }

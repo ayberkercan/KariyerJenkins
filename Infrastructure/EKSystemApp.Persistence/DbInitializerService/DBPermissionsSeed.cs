@@ -41,20 +41,24 @@ namespace EKSystemApp.Persistence.DbInitializerService
         {
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Product.Read));
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Category.Read));
+            await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.AuthDefination.Read));
         }
 
         public static async Task AddUpdateAndCreatePermission(AppRole role, RoleManager<AppRole> roleManager)
         {
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Product.Create));
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Category.Create));
+            await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.AuthDefination.Create));
 
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Product.Update));
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Category.Update));
+            await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.AuthDefination.Update));
         }
         public static async Task AddDeletePermission(AppRole role, RoleManager<AppRole> roleManager)
         {
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Product.Delete));
             await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.Category.Delete));
+            await roleManager.AddClaimAsync(role, new Claim("Permission", Permissions.AuthDefination.Delete));
         }
 
         public static async Task AddPermissionClaim(this RoleManager<AppRole> roleManager, AppRole role, string module)

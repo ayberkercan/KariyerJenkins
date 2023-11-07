@@ -9,6 +9,7 @@ namespace EKSystemApp.Application.Mappings.CompanyMap
         public AppUserCompanyProfile()
         {
             this.CreateMap<Company, CompaniesListDto>().ReverseMap();
+            this.CreateMap<Company, CompanyListDto>().ReverseMap();
         }
     }
 }

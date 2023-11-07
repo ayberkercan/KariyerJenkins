@@ -56,10 +56,6 @@ namespace EKSystemApp.Persistence.DbInitializerService
                 var data = await this.userManager.AddToRoleAsync(adminUser, "SystemAdministrators");
                 var claims = new List<Claim> {
                     new Claim(type: JwtClaimTypes.Name, value: "SystemAdministrators"),
-                    new Claim(type: "Permission", value: "Read"),
-                    new Claim(type: "Permission", value: "Update"),
-                    new Claim(type: "Permission", value: "Delete"),
-                    new Claim(type: "Permission", value: "Create"),
                 };
                 await this.userManager.AddClaimsAsync(adminUser, claims);
             }

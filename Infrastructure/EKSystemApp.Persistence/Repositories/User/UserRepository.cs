@@ -1,9 +1,12 @@
 ﻿using EKSystemApp.Application.DTO.Authorization.User;
+using EKSystemApp.Application.DTO.Company.List;
 using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Interfaces.IUser;
+using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Nest;
 
 namespace EKSystemApp.Persistence.Repositories.User
 {
@@ -14,8 +17,11 @@ namespace EKSystemApp.Persistence.Repositories.User
         {
             _context = context;
         }
-        public async Task<ICollection<UsersDetailsDto>> GetUserRoleAndMenuListById(string role)
+        public async Task<ICollection<UsersDetailsDto>> GetUserRoleAndMenuListById(string role, string organization)
         {
+            List<string> companies = new List<string>();
+            var userCompany = organization.Split(",")[0];
+            companies.Add(userCompany);
             List<UsersDetailsDto> userDetail = new List<UsersDetailsDto>();
             switch (role)
             {
@@ -64,91 +70,104 @@ namespace EKSystemApp.Persistence.Repositories.User
                     }
                     return userDetail;
                 case "Administrators":
-                    var administrator = await _context.AppUsers
-                      .Include(p => p.AppRoles)
-                        .Where(p => p.AppRoles.Name == role || p.AppRoles.Name == "HumanResources")
-                      .Include(p => p.AppUserCompanies)
-                      .ThenInclude(p => p.Company)
-                      .Include(p => p.AppUserMenus)
-                      .ThenInclude(p => p.Menu)
-                      .OrderByDescending(d => d)
-                      .AsNoTracking()
-                      .Distinct()
-                      .ToListAsync();
-
-                    var adminHuman = administrator.Select(
-                     p => (
-                         p.Id,
-                         p.Registry,
-                         p.FirstName,
-                         p.LastName,
-                         p.UserName,
-                         p.AppRoleId,
-                         p.AppRoles.Name,
-                         p.AppUserCompanies.Select(p => p.Company.CompanyName),
-                         p.AppUserMenus.Select(p => p.Menu.Name),
-                         p.Email
-                         ));
-                    foreach (var item in adminHuman)
+                    foreach (var companyUser in companies)
                     {
-                        var users = new UsersDetailsDto
+                        var administrator = await _context.AppUsers
+                     .Include(p => p.AppRoles)
+                     .Include(p => p.AppUserCompanies
+                     .Where(p => p.Company.CompanyName == companyUser)
+                     .Where(p => p.AppUser.AppRoles.Name == role || p.AppUser.AppRoles.Name == "HumanResources"))
+                     .ThenInclude(p => p.Company)
+                     .Include(p => p.AppUserMenus)
+                     .ThenInclude(p => p.Menu)
+                     .OrderByDescending(d => d)
+                     .Distinct()
+                     .ToListAsync();
+
+                        var adminHuman = administrator.Select(
+                         p => (
+                             p.Id,
+                             p.Registry,
+                             p.FirstName,
+                             p.LastName,
+                             p.UserName,
+                             p.AppRoleId,
+                             p.AppRoles.Name,
+                             p.AppUserCompanies.Select(p => p.Company.CompanyName),
+                             p.AppUserMenus.Select(p => p.Menu.Name),
+                             p.Email
+                             ));
+                        foreach (var item in adminHuman)
                         {
-                            Id = item.Id,
-                            Registry = item.Registry,
-                            UserName = item.UserName,
-                            FirstName = item.FirstName,
-                            LastName = item.LastName,
-                            RoleId = item.Item6,
-                            RoleName = item.Item7,
-                            Companies = item.Item8,
-                            Menus = item.Item9,
-                            Email = item.Email
-                        };
-                        userDetail.Add(users);
+                            if (item.Item8.Count() > 0)
+                            {
+                                var users = new UsersDetailsDto
+                                {
+                                    Id = item.Id,
+                                    Registry = item.Registry,
+                                    UserName = item.UserName,
+                                    FirstName = item.FirstName,
+                                    LastName = item.LastName,
+                                    RoleId = item.Item6,
+                                    RoleName = item.Item7,
+                                    Companies = item.Item8,
+                                    Menus = item.Item9,
+                                    Email = item.Email
+                                };
+                                userDetail.Add(users);
+                            }
+                        }
                     }
                     return userDetail;
-                case "HumanResources":
-                    var humanResource = await _context.AppUsers
-                    .Include(p => p.AppRoles)
-                      .Where(p => p.AppRoles.Name == role)
-                    .Include(p => p.AppUserCompanies)
-                    .ThenInclude(p => p.Company)
-                    .Include(p => p.AppUserMenus)
-                    .ThenInclude(p => p.Menu)
-                    .OrderByDescending(d => d)
-                    .AsNoTracking()
-                    .Distinct()
-                    .ToListAsync();
 
-                    var human = humanResource.Select(
-                     p => (
-                         p.Id,
-                         p.Registry,
-                         p.FirstName,
-                         p.LastName,
-                         p.UserName,
-                         p.AppRoleId,
-                         p.AppRoles.Name,
-                         p.AppUserCompanies.Select(p => p.Company.CompanyName),
-                         p.AppUserMenus.Select(p => p.Menu.Name),
-                         p.Email
-                         ));
-                    foreach (var item in human)
+                case "HumanResources":
+                    foreach (var companyUser in companies)
                     {
-                        var users = new UsersDetailsDto
+                        var administrator = await _context.AppUsers
+                     .Include(p => p.AppRoles)
+                     .Include(p => p.AppUserCompanies
+                     .Where(p => p.Company.CompanyName == companyUser)
+                     .Where(p => p.AppUser.AppRoles.Name == role))
+                     .ThenInclude(p => p.Company)
+                     .Include(p => p.AppUserMenus)
+                     .ThenInclude(p => p.Menu)
+                     .OrderByDescending(d => d)
+                     .Distinct()
+                     .ToListAsync();
+
+                        var adminHuman = administrator.Select(
+                         p => (
+                             p.Id,
+                             p.Registry,
+                             p.FirstName,
+                             p.LastName,
+                             p.UserName,
+                             p.AppRoleId,
+                             p.AppRoles.Name,
+                             p.AppUserCompanies.Select(p => p.Company.CompanyName),
+                             p.AppUserMenus.Select(p => p.Menu.Name),
+                             p.Email
+                             ));
+                        foreach (var item in adminHuman)
                         {
-                            Id = item.Id,
-                            Registry = item.Registry,
-                            UserName = item.UserName,
-                            FirstName = item.FirstName,
-                            LastName = item.LastName,
-                            RoleId = item.Item6,
-                            RoleName = item.Item7,
-                            Companies = item.Item8,
-                            Menus = item.Item9,
-                            Email = item.Email
-                        };
-                        userDetail.Add(users);
+                            if (item.Item8.Count() > 0)
+                            {
+                                var users = new UsersDetailsDto
+                                {
+                                    Id = item.Id,
+                                    Registry = item.Registry,
+                                    UserName = item.UserName,
+                                    FirstName = item.FirstName,
+                                    LastName = item.LastName,
+                                    RoleId = item.Item6,
+                                    RoleName = item.Item7,
+                                    Companies = item.Item8,
+                                    Menus = item.Item9,
+                                    Email = item.Email
+                                };
+                                userDetail.Add(users);
+                            }
+                        }
                     }
                     return userDetail;
             }
@@ -220,6 +239,26 @@ namespace EKSystemApp.Persistence.Repositories.User
                 menuToUser.Add(dto);
             }
             return menuToUser;
+        }
+
+        public async Task<ICollection<CompaniesListDto>> GetUserToCompaniesList(Guid id)
+        {
+            var organization = await _context
+                                            .AppUserCompany
+                                            .Include(p => p.Company)
+                                            .Include(p => p.AppUser)
+                                            .Where(p => p.AppUserId == id)
+                                            .ToListAsync();
+            List<CompaniesListDto> organizastionList = new List<CompaniesListDto>();
+            foreach (var item in organization)
+            {
+                var dto = new CompaniesListDto
+                {
+                    CompanyName = item.Company.CompanyName,
+                };
+                organizastionList.Add(dto);
+            }
+            return organizastionList;
         }
     }
 }

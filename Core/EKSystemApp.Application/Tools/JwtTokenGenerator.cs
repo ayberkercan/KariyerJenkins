@@ -26,31 +26,49 @@ namespace EKSystemApp.Application.Tools
                 };
                 claims.AddRange(claimMenu);
             }
+            foreach (var organizations in dto.Companies)
+            {
+                claims.Add(new Claim("Organizations", organizations.CompanyName));
+            }
             claims.Add(new Claim("Role", dto.Role!));
             if (dto.Role == "HumanResources")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
                 claims.Add(new Claim("Permission", Permissions.Category.Read));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Read));
             };
             if (dto.Role == "Administrators")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
                 claims.Add(new Claim("Permission", Permissions.Category.Read));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Read));
+
                 claims.Add(new Claim("Permission", Permissions.Product.Create));
                 claims.Add(new Claim("Permission", Permissions.Category.Create));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Create));
+
                 claims.Add(new Claim("Permission", Permissions.Product.Update));
                 claims.Add(new Claim("Permission", Permissions.Category.Update));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Update));
+
             }
             if (dto.Role == "SystemAdministrators")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
                 claims.Add(new Claim("Permission", Permissions.Category.Read));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Read));
+
                 claims.Add(new Claim("Permission", Permissions.Product.Create));
                 claims.Add(new Claim("Permission", Permissions.Category.Create));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Create));
+
                 claims.Add(new Claim("Permission", Permissions.Product.Update));
                 claims.Add(new Claim("Permission", Permissions.Category.Update));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Update));
+
                 claims.Add(new Claim("Permission", Permissions.Product.Delete));
                 claims.Add(new Claim("Permission", Permissions.Category.Delete));
+                claims.Add(new Claim("Permission", Permissions.AuthDefination.Delete));
             }
             claims.Add(new Claim(ClaimTypes.NameIdentifier, dto.Id.ToString()));
 

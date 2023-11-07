@@ -22,7 +22,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
         }
         public async Task<ICollection<UsersDetailsDto>> Handle(GetAllUsersInTableViewQueryRequest request, CancellationToken cancellationToken)
         {
-            var userAllTable = await this.userRepository.GetUserRoleAndMenuListById(request.role);
+            var userAllTable = await this.userRepository.GetUserRoleAndMenuListById(request.role,request.organization);
             return mapper.Map<ICollection<UsersDetailsDto>>(userAllTable);
         }
     }

@@ -11,9 +11,11 @@ namespace EKSystemApp.Application.Features.Authentication.Queries
     public class GetAllUsersInTableViewQueryRequest : IRequest<ICollection<UsersDetailsDto>>
     {
         public string role { get; set; }
-        public GetAllUsersInTableViewQueryRequest(string role)
+        public string organization { get; set; }
+        public GetAllUsersInTableViewQueryRequest(string role, string organization)
         {
-            this.role= role;
+            this.role = role;
+            this.organization = organization;
         }
     }
 }
