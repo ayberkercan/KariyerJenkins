@@ -51,7 +51,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllEBAGroups()
         {
-            return Ok(await this.mediator.Send(new GetEbaGroupQueryRequest()));
+            return Ok(await this.mediator.Send(new GetEbaGroupsQueryRequest()));
         }
 
         [HttpGet("[action]")]

@@ -8,7 +8,7 @@ using MediatR;
 
 namespace EKSystemApp.Application.Features.EBA.EbaGroups.Handlers.List
 {
-    public class GetEbaGroupsQueryHandler : IRequestHandler<GetEbaGroupQueryRequest, ICollection<EbaGroupDto>>
+    public class GetEbaGroupsQueryHandler : IRequestHandler<GetEbaGroupsQueryRequest, ICollection<EbaGroupDto>>
     {
         private readonly IMapper mapper;
         private IGenericRepository<EbaGroup> genericRepository;
@@ -19,7 +19,7 @@ namespace EKSystemApp.Application.Features.EBA.EbaGroups.Handlers.List
             this.genericRepository = genericRepository;
         }
 
-        public async Task<ICollection<EbaGroupDto>> Handle(GetEbaGroupQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<EbaGroupDto>> Handle(GetEbaGroupsQueryRequest request, CancellationToken cancellationToken)
         {
             var data = await genericRepository.GetAllAsync();
             return mapper.Map<ICollection<EbaGroupDto>>(data);

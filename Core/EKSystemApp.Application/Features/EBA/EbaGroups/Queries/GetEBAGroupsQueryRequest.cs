@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.EBA.EbaGroups.Queries
 {
-    public class GetEbaGroupQueryRequest : IRequest<ICollection<EbaGroupDto>>
+    public class GetEbaGroupsQueryRequest : IRequest<ICollection<EbaGroupDto>>
     {
     }
 }
