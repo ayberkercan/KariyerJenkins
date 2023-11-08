@@ -14,16 +14,6 @@ using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
 using EKSystemApp.Domain.Entities.Member.Countries;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Persistence.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Nest;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Nest.JoinField;
 
 namespace EKSystemApp.Persistence.Repositories.Eba
 {
@@ -75,25 +65,25 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
             string sorguId;
 
-            if (!string.IsNullOrEmpty(request.orgId) && !string.IsNullOrEmpty(request.groupId) && !string.IsNullOrEmpty(request.departmentId) && !string.IsNullOrEmpty(request.unitId))
+            if (!string.IsNullOrEmpty(request.OrgId) && !string.IsNullOrEmpty(request.GroupId) && !string.IsNullOrEmpty(request.DepartmentId) && !string.IsNullOrEmpty(request.UnitId))
             {
-                sorguId = request.unitId;
+                sorguId = request.UnitId;
             }
-            else if (!string.IsNullOrEmpty(request.orgId) && !string.IsNullOrEmpty(request.groupId) && !string.IsNullOrEmpty(request.departmentId))
+            else if (!string.IsNullOrEmpty(request.OrgId) && !string.IsNullOrEmpty(request.GroupId) && !string.IsNullOrEmpty(request.DepartmentId))
             {
-                sorguId = request.departmentId;
+                sorguId = request.DepartmentId;
             }
-            else if (!string.IsNullOrEmpty(request.orgId) && !string.IsNullOrEmpty(request.groupId))
+            else if (!string.IsNullOrEmpty(request.OrgId) && !string.IsNullOrEmpty(request.GroupId))
             {
-                sorguId = request.groupId;
+                sorguId = request.GroupId;
             }
             else
             {
-                sorguId = request.orgId;
+                sorguId = request.OrgId;
             }
 
             var filteredList = combinedResultList
-            .Where(x => x.UP_OBJID == Convert.ToInt32(sorguId) || (sorguId != request.orgId && (x.UP_OBJID == Convert.ToInt32(sorguId) || x.OBJID == Convert.ToInt32(sorguId))))
+            .Where(x => x.UP_OBJID == Convert.ToInt32(sorguId) || (sorguId != request.OrgId && (x.UP_OBJID == Convert.ToInt32(sorguId) || x.OBJID == Convert.ToInt32(sorguId))))
             .Select(x=>x.POZISYON)
             .ToList();
 
@@ -142,13 +132,13 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             var formDetails = (from frm in _context.IseAlimForm
                                join fd in _context.FlowDocuments on frm.ID equals fd.FILEPROFILEID
                                join lf in _context.LiveFlows on fd.PROCESSID equals lf.ID
-                               where lf.DELETED == 0 && lf.ID == request.processId
+                               where lf.DELETED == 0 && lf.ID == request.ProcessId
                                select frm).FirstOrDefault();
 
             if (formDetails != null)
             {
                 mainFormId = formDetails.ID;
-                processId = request.processId;
+                processId = request.ProcessId;
 
                 var selectedSkills = (from skl in _context.IseAlimGeneralSkillsDataGrid
                                       where skl.FORMID == mainFormId

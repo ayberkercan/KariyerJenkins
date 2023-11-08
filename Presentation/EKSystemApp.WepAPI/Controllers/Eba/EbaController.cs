@@ -62,7 +62,7 @@ namespace EKSystemApp.WepAPI.Controllers.Eba
         /// Parametrik organizasyon kodu bilgisi ile eBA grup combobox içeriğini döndüren endpoint
         /// </summary>
         /// <example>50026999</example>
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public async Task<IActionResult> GetAllEBAGroups(CheckEbaGroupQueryRequest request)
         {
             return Ok(await _mediator.Send(new GetEbaGroupQueryRequest(request)));
@@ -72,7 +72,7 @@ namespace EKSystemApp.WepAPI.Controllers.Eba
         /// Parametrik grup kodu bilgisi ile eBA bölüm combobox içeriğini döndüren endpoint
         /// </summary>
         /// <example>50035218</example>
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public async Task<IActionResult> GetAllEBADepartments(CheckEbaDepartmentQueryRequest request)
         {
             return Ok(await _mediator.Send(new GetEbaDepartmentQueryRequest(request)));
@@ -82,7 +82,7 @@ namespace EKSystemApp.WepAPI.Controllers.Eba
         /// Parametrik bölüm kodu bilgisi ile eBA birim combobox içeriğini döndüren endpoint
         /// </summary>
         /// <example>50035219</example>
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public async Task<IActionResult> GetAllEBAUnits(CheckEbaUnitQueryRequest request)
         {
             return Ok(await _mediator.Send(new GetEbaUnitQueryRequest(request)));
