@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using EKSystemApp.Application.DTO.Eba.TMP;
+using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
 using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
+using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
@@ -176,6 +179,41 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                 return new EbaIseAlimTurkuvazFormDto();
             }
             
+        }
+
+        public async Task<ICollection<OrganizationTreeDto>> GetOrganizationTreeById(string key)
+        {
+            var organizationList = _context.TmpZhrCalisanPersWs.ToList();
+
+            var filteredOrganizationList = organizationList.DistinctBy(x => x.ZORG).Where(x => x.ZORG == key).OrderBy(x => x.ORGTX).ToList();
+
+            var mappedOrganizationList = _mapper.Map<IEnumerable<TmpZhrCalisanPersWs>, ICollection<OrganizationTreeDto>>(filteredOrganizationList);
+
+            if (mappedOrganizationList.Any())
+            {
+                foreach (var organization in mappedOrganizationList)
+                {
+                    organization.Groups = GetEbaItemsByUpObjId<GroupTreeDto>(Convert.ToInt32(organization.Key)).Result;
+
+                    if (organization.Groups.Any())
+                    {
+                        foreach (var groups in organization.Groups)
+                        {
+                            groups.Departments = GetEbaItemsByUpObjId<DepartmentTreeDto>(Convert.ToInt32(groups.Key)).Result;
+
+                            if (groups.Departments.Any())
+                            {
+                                foreach (var departments in groups.Departments)
+                                {
+                                    departments.Units = GetEbaItemsByUpObjId<UnitTreeDto>(Convert.ToInt32(departments.Key)).Result;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return mappedOrganizationList;
         }
     }
 }

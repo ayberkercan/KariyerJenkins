@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EKSystemApp.Application.DTO.Eba.TMP;
+using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
 using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
@@ -21,6 +22,21 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForMember(dest => dest.Pozisyon, opt => opt.MapFrom(src => src.ORGTX));
 
             CreateMap<TmpOrganizationTree, EbaKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.OBJID))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
+
+            CreateMap<TmpOrganizationTree, GroupTreeDto>()
+                .ForMember(dest => dest.UpKey, opt => opt.MapFrom(src => src.UP_OBJID))
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.OBJID))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
+
+            CreateMap<TmpOrganizationTree, DepartmentTreeDto>()
+                .ForMember(dest => dest.UpKey, opt => opt.MapFrom(src => src.UP_OBJID))
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.OBJID))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
+
+            CreateMap<TmpOrganizationTree, UnitTreeDto>()
+                .ForMember(dest => dest.UpKey, opt => opt.MapFrom(src => src.UP_OBJID))
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.OBJID))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
 
@@ -81,6 +97,10 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGKEY));
 
             CreateMap<TmpZhrCalisanPersWs, EbaStrKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ZORG))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
+
+            CreateMap<TmpZhrCalisanPersWs, OrganizationTreeDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ZORG))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGTX));
 
