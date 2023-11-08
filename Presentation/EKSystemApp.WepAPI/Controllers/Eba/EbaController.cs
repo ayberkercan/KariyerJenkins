@@ -43,7 +43,7 @@ namespace EKSystemApp.WepAPI.Controllers.Eba
         /// <summary>
         /// Parametrik organizasyon kodu bilgisi ile eBA organizasyon ağaç yapısı içeriğini döndüren endpoint
         /// </summary>
-        [HttpGet("[action]/{Key}")]
+        [HttpGet("[action]/{key?}")]
         public async Task<IActionResult> GetEBAOrganizationTreeById([FromRoute] string key)
         {
             return Ok(await _mediator.Send(new GetEbaOrganizationTreeQueryRequest(key)));
