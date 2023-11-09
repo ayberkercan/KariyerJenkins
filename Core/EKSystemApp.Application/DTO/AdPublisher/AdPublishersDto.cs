@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.AdPublisher
 {
     public class AdPublishersDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string AdPublisherName { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.SkillAndExpertises.Queries
 {
-    public class GetSkillAndExpertisesQueryRequest:IRequest<ICollection<SkillAndExpertisDto>>
+    public class GetSkillAndExpertisesQueryRequest:IRequest<ICollection<SkillAndExpertiseDto>>
     {
     }
 }

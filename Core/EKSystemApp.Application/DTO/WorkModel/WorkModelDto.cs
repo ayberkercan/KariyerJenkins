@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.WorkModel
 {
     public class WorkModelDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string WorkModelName { get; set; }
     }
 }

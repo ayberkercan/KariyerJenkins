@@ -76,9 +76,6 @@ namespace EKSystemApp.Application
                     new ExperiencePeriodProfile(),
                     new AdStatusProfile(),
                     new AdvertProfile(),
-
-
-
                     new EbaProfile(),
                 });
             });

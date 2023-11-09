@@ -10,7 +10,7 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class AdQuestion : BaseEntity
     {
-        public string Name { get; set; }
+        public string AdQuestionName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
     }

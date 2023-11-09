@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.EducationLevel
 {
     public class EducationLevelDto : BaseEntity
     {
-        public string Name { get; set; }
+        public string EducationLevelName { get; set; }
     }
 }

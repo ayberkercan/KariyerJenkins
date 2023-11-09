@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.AdQuestion
 {
     public class AdQuestionsDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string AdQuestionName { get; set; }
     }
 }

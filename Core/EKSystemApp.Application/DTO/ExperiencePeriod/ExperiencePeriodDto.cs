@@ -4,6 +4,6 @@ namespace EKSystemApp.Application.DTO.ExperiencePeriod
 {
     public class ExperiencePeriodDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string ExperiencePeriodName { get; set; }
     }
 }

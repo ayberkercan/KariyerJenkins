@@ -10,7 +10,7 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class ForignLanguage : BaseEntity
     {
-        public string Name { get; set; }
+        public string ForignLanguageName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
     }

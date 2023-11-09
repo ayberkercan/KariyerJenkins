@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.AdStatus
 {
     public class AdStatusDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string AdStatusName { get; set; }
     }
 }

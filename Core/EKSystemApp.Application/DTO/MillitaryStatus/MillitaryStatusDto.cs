@@ -4,6 +4,6 @@ namespace EKSystemApp.Application.DTO.MillitaryStatus
 {
     public class MillitaryStatusDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string MillitaryStatusName { get; set; }
     }
 }

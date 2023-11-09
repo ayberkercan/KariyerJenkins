@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.SkillAndExpertis
 {
-    public class SkillAndExpertisDto:BaseEntity
+    public class SkillAndExpertiseDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string SkillAndExpertiseName { get; set; }
     }
 }

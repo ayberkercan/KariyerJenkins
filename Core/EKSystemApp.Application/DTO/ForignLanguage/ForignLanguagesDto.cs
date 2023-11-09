@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.ForignLanguages
 {
     public class ForignLanguageDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string ForignLanguageName { get; set; }
     }
 }

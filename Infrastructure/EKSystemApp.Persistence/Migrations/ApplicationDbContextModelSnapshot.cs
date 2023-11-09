@@ -28,12 +28,12 @@ namespace EKSystemApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("AdPublisherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -48,12 +48,12 @@ namespace EKSystemApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("AdQuestionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -68,12 +68,12 @@ namespace EKSystemApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("AdStatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -91,7 +91,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("EducationLevelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -111,7 +111,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ExperiencePeriodName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -131,7 +131,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ForignLanguageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -151,7 +151,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("JobCategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -171,7 +171,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MillitaryStatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -191,7 +191,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PositionTypeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -211,7 +211,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("SkillAndExpertiseName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -231,7 +231,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("WorkModelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -251,7 +251,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("WorkTypeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -299,7 +299,7 @@ namespace EKSystemApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AdvertCreateId")
+                    b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DepartmentName")
@@ -353,7 +353,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("EbaUnits");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Locaiton", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Location", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -362,7 +362,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<Guid>("AdvertCreateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("LocaitonName")
+                    b.Property<string>("LocationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -370,7 +370,7 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.HasIndex("AdvertCreateId");
 
-                    b.ToTable("Locaitons");
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Organization", b =>
@@ -460,8 +460,9 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Logo")
-                        .HasColumnType("int");
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PeriotNumberId")
                         .HasColumnType("int");
@@ -657,17 +658,17 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9850be7e-8ba5-4aa3-ab64-2cef9fd9237c"),
+                            Id = new Guid("838a65f8-9a3f-4678-a8be-605231efc054"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-                            Id = new Guid("0288b3d9-5807-4b71-9a8d-075832773587"),
+                            Id = new Guid("fe83d7aa-4d0c-44b1-98cc-fd91188bb434"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-                            Id = new Guid("108e3e45-725b-4dc6-8ed9-6eccb59492d8"),
+                            Id = new Guid("83a6ecc0-ee1b-4349-a0b6-4109ab30f90a"),
                             CompanyName = "D&R Market"
                         });
                 });
@@ -701,7 +702,7 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4d6d1bdc-d450-45bc-94ca-28790015ecee"),
+                            Id = new Guid("be637abc-4e18-4959-8f55-c1bcac61604c"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>",
                             Name = "Admin Kariyer | Giriş",
                             RouterIcon = "la la-home",
@@ -709,7 +710,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cbe00595-8e93-40b6-9809-99e699e958c7"),
+                            Id = new Guid("d9fad97f-38b7-475c-8ed7-e34205cc18bb"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>",
                             Name = "Yeni İlan Oluştur",
                             RouterIcon = "la la-user-tie",
@@ -717,7 +718,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4c2d86b0-d486-46ce-b53e-8c0357a93e51"),
+                            Id = new Guid("f00652d9-7603-4f1a-8833-8841ea3aaf1c"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>",
                             Name = "İlanlar",
                             RouterIcon = "la la-paper-plane",
@@ -725,7 +726,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("131d2053-67a0-4953-bd17-39125d6bd2ea"),
+                            Id = new Guid("cf677ef7-01aa-4150-bfcc-a12be057c140"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>",
                             Name = "Öne Çıkan İlanlar",
                             RouterIcon = "la la-briefcase",
@@ -733,7 +734,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("150bba4d-1d76-48ad-b403-65a0f03041b7"),
+                            Id = new Guid("ed5e9f09-dc56-4d5c-ad5d-fbd1f3696271"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>",
                             Name = "Başvuran Aday Listeleri",
                             RouterIcon = "la la-file-invoice",
@@ -741,7 +742,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("450d24bc-10eb-4741-9f9a-b4067c6571d4"),
+                            Id = new Guid("caeb652a-275f-403e-b644-86e5c23e703b"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>",
                             Name = "Aday Soru | Cevap Listeleri",
                             RouterIcon = "la la-bookmark-o",
@@ -749,7 +750,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("732c32da-647f-461f-a59a-b3ed22a35260"),
+                            Id = new Guid("7b514650-4d4c-4f79-bce3-7afb73bd406b"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>",
                             Name = "Aday Havuzu",
                             RouterIcon = "la la-box",
@@ -757,7 +758,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("51a77404-14c6-4821-9391-0d24d86b0a04"),
+                            Id = new Guid("ea2c4847-3ce2-42c6-944c-d10a609e577d"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>",
                             Name = "Mail | Mesaj Yönetimi",
                             RouterIcon = "la la-comment-o",
@@ -765,7 +766,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ef19c94b-7443-4edd-92ea-fd43b7fe4a8d"),
+                            Id = new Guid("e479523d-bca6-4774-8786-8f816bacc184"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>",
                             Name = "Aday Dosyaları",
                             RouterIcon = "la la-bell",
@@ -773,7 +774,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("747b78aa-5f0e-4f92-9346-c4de38815c6c"),
+                            Id = new Guid("f72495d6-7b4e-4abc-b7b3-23c4b061f594"),
                             HtmlTag = "",
                             Name = "Tanımlamalar",
                             RouterIcon = "la la-lock",
@@ -781,7 +782,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a2488d32-10ee-4c89-b8c9-5292f189ada4"),
+                            Id = new Guid("a6905d72-c247-4a8e-b65d-325f66b61520"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>",
                             Name = "Yetenek ve Uzmanlıklar",
                             RouterIcon = "la la-user-alt",
@@ -789,7 +790,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cd09506c-1848-422d-90c6-cf26afde4345"),
+                            Id = new Guid("1b24114f-3a6e-4c41-8ef0-872d4cc6a12b"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>",
                             Name = "Mail | Mesaj Şablonu ",
                             RouterIcon = "la la-sign-out",
@@ -797,7 +798,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b594cedf-e32c-46fe-b638-da07b5413aa8"),
+                            Id = new Guid("7258e49a-825d-4f1e-9afb-bbe63c88c55d"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>",
                             Name = "Logo Yükleme Ekranı",
                             RouterIcon = "la la-cloud-upload-alt",
@@ -805,7 +806,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ea38d1d3-b178-4805-89b1-94f20fa72b64"),
+                            Id = new Guid("c44c557a-b628-4e04-88f4-43810352fb7d"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>",
                             Name = "İlan Soru Tanımlama",
                             RouterIcon = "la la-question",
@@ -813,7 +814,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cacb6576-5983-4e30-833f-5f8d2632daea"),
+                            Id = new Guid("93a88293-7ba1-42f0-84e3-cab07f50d383"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>",
                             Name = "Talep Edilen Pozisyon Adı Aktar",
                             RouterIcon = "la la-exchange-alt",
@@ -821,7 +822,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9fe20e5d-1bab-4249-9631-25c8ea7a8f41"),
+                            Id = new Guid("05a2bcb2-909d-41c8-855a-15871446b905"),
                             HtmlTag = "",
                             Name = "Portal | Ana Sayfa İçerik Yönetimi",
                             RouterIcon = "",
@@ -829,7 +830,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("531336a4-f17f-4be6-ab96-46c69907d0af"),
+                            Id = new Guid("812d8ee4-1292-4d90-873a-93533535a0ab"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>",
                             Name = "Blog Manşet Yönetimi",
                             RouterIcon = "la la-newspaper",
@@ -837,7 +838,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5456c742-b886-45a1-8a05-f1798b70d7d9"),
+                            Id = new Guid("9436f34e-0e66-4480-beb0-a38e9ebcee2a"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>",
                             Name = "İş Adımları Yönetimi",
                             RouterIcon = "la la-list",
@@ -845,7 +846,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("11253690-b604-43b0-88bd-d6f98db83642"),
+                            Id = new Guid("3abbb5e1-d661-490c-9a95-76c75a7d7cbe"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>",
                             Name = "İş Kategorileri Yönetimi",
                             RouterIcon = "la la-boxes",
@@ -853,7 +854,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7df847dc-3da2-4291-999d-7e5a17272b73"),
+                            Id = new Guid("02a817be-c080-4898-8a94-f40c78157057"),
                             HtmlTag = "",
                             Name = "Raporlar",
                             RouterIcon = "la la-file-alt",
@@ -861,7 +862,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ea2f2ab5-5273-4fcb-b3b2-4efdc24724ff"),
+                            Id = new Guid("8bca2fe7-7442-4520-b554-31563c955cbf"),
                             HtmlTag = "",
                             Name = "Kullanıcı Ayarları",
                             RouterIcon = " ",
@@ -869,7 +870,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b2a8b6a4-813c-4260-ad69-4acc6eea8e3c"),
+                            Id = new Guid("bd5a64df-e5d6-4fd4-b6cd-40ac567d3620"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>",
                             Name = "Yetki Tanımlama",
                             RouterIcon = "la la-user-plus",
@@ -877,7 +878,7 @@ namespace EKSystemApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ced851dc-6a4f-4794-a496-bd2aa669e9d4"),
+                            Id = new Guid("67bf5682-9607-4cdf-adb9-61921ae6f9b2"),
                             HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>",
                             Name = "Rol Tanımlama",
                             RouterIcon = "la la-plus-circle",
@@ -1158,9 +1159,13 @@ namespace EKSystemApp.Persistence.Migrations
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaDepartment", b =>
                 {
-                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", null)
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("Departments")
-                        .HasForeignKey("AdvertCreateId");
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaGroup", b =>
@@ -1185,10 +1190,10 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("AdvertCreate");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Locaiton", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Location", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
-                        .WithMany("Locaitons")
+                        .WithMany("Locations")
                         .HasForeignKey("AdvertCreateId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -1362,7 +1367,7 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.Navigation("JobCategories");
 
-                    b.Navigation("Locaitons");
+                    b.Navigation("Locations");
 
                     b.Navigation("MillitaryStatuses");
 

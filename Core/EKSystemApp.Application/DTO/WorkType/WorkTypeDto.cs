@@ -4,6 +4,6 @@ namespace EKSystemApp.Application.DTO.WorkType
 {
     public class WorkTypeDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string WorkTypeName { get; set; }
     }
 }

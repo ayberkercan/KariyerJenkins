@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EKSystemApp.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class MigEmre001 : Migration
+    public partial class MigYusuf001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace EKSystemApp.Persistence.Migrations
                     PublicQuality = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Logo = table.Column<int>(type: "int", nullable: false),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PeriotNumberId = table.Column<int>(type: "int", nullable: false),
                     AdwertNumberId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -113,7 +113,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdPublisherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -131,7 +131,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdQuestionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -149,7 +149,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdStatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -186,7 +186,7 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,7 +195,8 @@ namespace EKSystemApp.Persistence.Migrations
                         name: "FK_EbaDepartments_AdvertCreates_AdvertCreateId",
                         column: x => x.AdvertCreateId,
                         principalTable: "AdvertCreates",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -239,7 +240,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EducationLevelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -257,7 +258,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExperiencePeriodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -275,7 +276,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ForignLanguageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -293,7 +294,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -307,18 +308,18 @@ namespace EKSystemApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Locaitons",
+                name: "Locations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LocaitonName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locaitons", x => x.Id);
+                    table.PrimaryKey("PK_Locations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Locaitons_AdvertCreates_AdvertCreateId",
+                        name: "FK_Locations_AdvertCreates_AdvertCreateId",
                         column: x => x.AdvertCreateId,
                         principalTable: "AdvertCreates",
                         principalColumn: "Id");
@@ -329,7 +330,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MillitaryStatusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -383,7 +384,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PositionTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -401,7 +402,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SkillAndExpertiseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -438,7 +439,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkModelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -456,7 +457,7 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AdvertCreateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -684,9 +685,9 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "CompanyName" },
                 values: new object[,]
                 {
-                    { new Guid("0288b3d9-5807-4b71-9a8d-075832773587"), "D&R" },
-                    { new Guid("108e3e45-725b-4dc6-8ed9-6eccb59492d8"), "D&R Market" },
-                    { new Guid("9850be7e-8ba5-4aa3-ab64-2cef9fd9237c"), "Holding" }
+                    { new Guid("838a65f8-9a3f-4678-a8be-605231efc054"), "Holding" },
+                    { new Guid("83a6ecc0-ee1b-4349-a0b6-4109ab30f90a"), "D&R Market" },
+                    { new Guid("fe83d7aa-4d0c-44b1-98cc-fd91188bb434"), "D&R" }
                 });
 
             migrationBuilder.InsertData(
@@ -694,29 +695,29 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "HtmlTag", "Name", "RouterIcon", "RouterLink" },
                 values: new object[,]
                 {
-                    { new Guid("11253690-b604-43b0-88bd-d6f98db83642"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>", "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
-                    { new Guid("131d2053-67a0-4953-bd17-39125d6bd2ea"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>", "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
-                    { new Guid("150bba4d-1d76-48ad-b403-65a0f03041b7"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>", "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
-                    { new Guid("450d24bc-10eb-4741-9f9a-b4067c6571d4"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>", "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
-                    { new Guid("4c2d86b0-d486-46ce-b53e-8c0357a93e51"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>", "İlanlar", "la la-paper-plane", "adwerts" },
-                    { new Guid("4d6d1bdc-d450-45bc-94ca-28790015ecee"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>", "Admin Kariyer | Giriş", "la la-home", "dashboard" },
-                    { new Guid("51a77404-14c6-4821-9391-0d24d86b0a04"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>", "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
-                    { new Guid("531336a4-f17f-4be6-ab96-46c69907d0af"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>", "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
-                    { new Guid("5456c742-b886-45a1-8a05-f1798b70d7d9"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>", "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
-                    { new Guid("732c32da-647f-461f-a59a-b3ed22a35260"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>", "Aday Havuzu", "la la-box", "candidate-pool" },
-                    { new Guid("747b78aa-5f0e-4f92-9346-c4de38815c6c"), "", "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
-                    { new Guid("7df847dc-3da2-4291-999d-7e5a17272b73"), "", "Raporlar", "la la-file-alt", "report" },
-                    { new Guid("9fe20e5d-1bab-4249-9631-25c8ea7a8f41"), "", "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
-                    { new Guid("a2488d32-10ee-4c89-b8c9-5292f189ada4"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>", "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
-                    { new Guid("b2a8b6a4-813c-4260-ad69-4acc6eea8e3c"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>", "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
-                    { new Guid("b594cedf-e32c-46fe-b638-da07b5413aa8"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>", "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
-                    { new Guid("cacb6576-5983-4e30-833f-5f8d2632daea"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>", "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
-                    { new Guid("cbe00595-8e93-40b6-9809-99e699e958c7"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>", "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
-                    { new Guid("cd09506c-1848-422d-90c6-cf26afde4345"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>", "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
-                    { new Guid("ced851dc-6a4f-4794-a496-bd2aa669e9d4"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>", "Rol Tanımlama", "la la-plus-circle", "role-defination" },
-                    { new Guid("ea2f2ab5-5273-4fcb-b3b2-4efdc24724ff"), "", "Kullanıcı Ayarları", " ", " " },
-                    { new Guid("ea38d1d3-b178-4805-89b1-94f20fa72b64"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>", "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
-                    { new Guid("ef19c94b-7443-4edd-92ea-fd43b7fe4a8d"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>", "Aday Dosyaları", "la la-bell", "candidate-files" }
+                    { new Guid("02a817be-c080-4898-8a94-f40c78157057"), "", "Raporlar", "la la-file-alt", "report" },
+                    { new Guid("05a2bcb2-909d-41c8-855a-15871446b905"), "", "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
+                    { new Guid("1b24114f-3a6e-4c41-8ef0-872d4cc6a12b"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>", "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
+                    { new Guid("3abbb5e1-d661-490c-9a95-76c75a7d7cbe"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>", "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
+                    { new Guid("67bf5682-9607-4cdf-adb9-61921ae6f9b2"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>", "Rol Tanımlama", "la la-plus-circle", "role-defination" },
+                    { new Guid("7258e49a-825d-4f1e-9afb-bbe63c88c55d"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>", "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
+                    { new Guid("7b514650-4d4c-4f79-bce3-7afb73bd406b"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>", "Aday Havuzu", "la la-box", "candidate-pool" },
+                    { new Guid("812d8ee4-1292-4d90-873a-93533535a0ab"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>", "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
+                    { new Guid("8bca2fe7-7442-4520-b554-31563c955cbf"), "", "Kullanıcı Ayarları", " ", " " },
+                    { new Guid("93a88293-7ba1-42f0-84e3-cab07f50d383"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>", "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
+                    { new Guid("9436f34e-0e66-4480-beb0-a38e9ebcee2a"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>", "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
+                    { new Guid("a6905d72-c247-4a8e-b65d-325f66b61520"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>", "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
+                    { new Guid("bd5a64df-e5d6-4fd4-b6cd-40ac567d3620"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>", "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
+                    { new Guid("be637abc-4e18-4959-8f55-c1bcac61604c"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>", "Admin Kariyer | Giriş", "la la-home", "dashboard" },
+                    { new Guid("c44c557a-b628-4e04-88f4-43810352fb7d"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>", "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
+                    { new Guid("caeb652a-275f-403e-b644-86e5c23e703b"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>", "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
+                    { new Guid("cf677ef7-01aa-4150-bfcc-a12be057c140"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>", "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" },
+                    { new Guid("d9fad97f-38b7-475c-8ed7-e34205cc18bb"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>", "Yeni İlan Oluştur", "la la-user-tie", "new-adwert-create" },
+                    { new Guid("e479523d-bca6-4774-8786-8f816bacc184"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>", "Aday Dosyaları", "la la-bell", "candidate-files" },
+                    { new Guid("ea2c4847-3ce2-42c6-944c-d10a609e577d"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>", "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
+                    { new Guid("ed5e9f09-dc56-4d5c-ad5d-fbd1f3696271"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>", "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
+                    { new Guid("f00652d9-7603-4f1a-8833-8841ea3aaf1c"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>", "İlanlar", "la la-paper-plane", "adwerts" },
+                    { new Guid("f72495d6-7b4e-4abc-b7b3-23c4b061f594"), "", "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -829,8 +830,8 @@ namespace EKSystemApp.Persistence.Migrations
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Locaitons_AdvertCreateId",
-                table: "Locaitons",
+                name: "IX_Locations_AdvertCreateId",
+                table: "Locations",
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
@@ -940,7 +941,7 @@ namespace EKSystemApp.Persistence.Migrations
                 name: "JobCategories");
 
             migrationBuilder.DropTable(
-                name: "Locaitons");
+                name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "MillitaryStatuses");

@@ -29,7 +29,7 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public string PublicQuality { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Logo { get; set; }
+        public string Logo { get; set; }
         public int PeriotNumberId { get; set; }
         public int AdwertNumberId { get; set; }
     }

@@ -4,6 +4,6 @@ namespace EKSystemApp.Application.DTO.JobCategory
 {
     public class JobCategoryDto:BaseEntity
     {
-        public string Name { get; set; }
+        public string JobCategoryName { get; set; }
     }
 }

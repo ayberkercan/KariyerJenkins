@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.Eba.EbaUnit
 {
-    /*public class EbaUnitDto : BaseEntity
+    public class EbaUnitDto : BaseEntity
     {
         public string UnitName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
-    }*/
+    }
 }

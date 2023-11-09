@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.Mappings.Eba.EbaUnitMap
     {
         public EbaUnitProfile()
         {
-            //CreateMap<EbaUnit, EbaUnitDto>().ReverseMap();
+            CreateMap<EbaUnit, EbaUnitDto>().ReverseMap();
         }
     }
 }

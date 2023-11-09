@@ -138,7 +138,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllSkillAndExpertis()
+        public async Task<IActionResult> GetAllSkillAndExpertise()
         {
             return Ok(await this.mediator.Send(new GetSkillAndExpertisesQueryRequest()));
         }

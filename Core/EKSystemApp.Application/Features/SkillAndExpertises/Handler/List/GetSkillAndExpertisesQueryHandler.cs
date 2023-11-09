@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.SkillAndExpertises.Handler.List
 {
-    public class GetSkillAndExpertisesQueryHandler : IRequestHandler<GetSkillAndExpertisesQueryRequest, ICollection<SkillAndExpertisDto>>
+    public class GetSkillAndExpertisesQueryHandler : IRequestHandler<GetSkillAndExpertisesQueryRequest, ICollection<SkillAndExpertiseDto>>
     {
         private readonly IMapper mapper;
         private IGenericRepository<SkillAndExpertise> genericRepository;
@@ -24,10 +24,10 @@ namespace EKSystemApp.Application.Features.SkillAndExpertises.Handler.List
             this.genericRepository = genericRepository;
         }
 
-        public async Task<ICollection<SkillAndExpertisDto>> Handle(GetSkillAndExpertisesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<SkillAndExpertiseDto>> Handle(GetSkillAndExpertisesQueryRequest request, CancellationToken cancellationToken)
         {
             var data = await genericRepository.GetAllAsync();
-            return mapper.Map<ICollection<SkillAndExpertisDto>>(data);
+            return mapper.Map<ICollection<SkillAndExpertiseDto>>(data);
         }
     }
 }
