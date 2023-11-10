@@ -1,6 +1,8 @@
 ﻿using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
+using EKSystemApp.Application.DTO.Member.CountriesTree;
+using EKSystemApp.Application.DTO.Member.Education.UniversitiesTree;
 using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Domain.Entities;
@@ -16,5 +18,7 @@ namespace EKSystemApp.Application.Interfaces.IUser
         Task<ICollection<EbaKvpDto>> GetEbaGeneralSkills();
         Task<EbaIseAlimTurkuvazFormDto> GetIseAlimTurkuvazFormDetailsByProcessId(CheckEbaIseAlimFormDetailsQueryRequest request);
         Task<ICollection<OrganizationTreeDto>> GetOrganizationTreeById(string key);
+        Task<ICollection<CountryTreeDto>> GetCountryTreeById(int key);
+        Task<ICollection<UniversityTreeDto>> GetUniversityTreeById(int key);
     }
 }

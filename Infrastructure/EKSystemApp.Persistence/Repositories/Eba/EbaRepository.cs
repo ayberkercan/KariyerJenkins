@@ -2,6 +2,8 @@
 using Azure.Core;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
+using EKSystemApp.Application.DTO.Member.CountriesTree;
+using EKSystemApp.Application.DTO.Member.Education.UniversitiesTree;
 using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Application.Interfaces;
@@ -9,6 +11,8 @@ using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
+using EKSystemApp.Domain.Entities.Member.Countries;
+using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -214,6 +218,52 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             }
 
             return mappedOrganizationList;
+        }
+
+        public async Task<ICollection<CountryTreeDto>> GetCountryTreeById(int key)
+        {
+            var countryList = _context.ST_Countries.ToList();
+
+            var filteredCountryList = countryList.Where(x => x.Key == key).OrderBy(x => x.Value).ToList();
+
+            var mappedCountryList = _mapper.Map<ICollection<ST_Countries>, ICollection<CountryTreeDto>>(filteredCountryList);
+
+            foreach (var country in mappedCountryList)
+            {
+                var provinceList = _context.ST_Provinces.Where(x => x.UpKey == key).ToList();
+                var mappedProvinceList = _mapper.Map<ICollection<ProvinceTreeDto>>(provinceList);
+
+                country.Provinces = mappedProvinceList;
+
+                foreach (var province in country.Provinces)
+                {
+                    var cityList = _context.ST_Cities.Where(x => x.UpKey == province.Key).ToList();
+                    var mappedCityList = _mapper.Map<ICollection<CityTreeDto>>(cityList);
+
+                    province.Cities = mappedCityList;
+                }
+            }
+
+            return mappedCountryList;
+        }
+
+        public async Task<ICollection<UniversityTreeDto>> GetUniversityTreeById(int key)
+        {
+            var universityList = _context.ST_Universities.ToList();
+
+            var filteredUniversityList = universityList.Where(x => x.Key == key).OrderBy(x => x.Value).ToList();
+
+            var mappedUniversityList = _mapper.Map<ICollection<ST_Universities>, ICollection<UniversityTreeDto>>(filteredUniversityList);
+
+            foreach (var university in mappedUniversityList)
+            {
+                var departmentList = _context.ST_Departments.Where(x => x.UpKey == university.Key).ToList();
+                var mappedDepartmentList = _mapper.Map<ICollection<EducationDepartmentTreeDto>>(departmentList);
+
+                university.Departments = mappedDepartmentList;
+            }
+
+            return mappedUniversityList;
         }
     }
 }

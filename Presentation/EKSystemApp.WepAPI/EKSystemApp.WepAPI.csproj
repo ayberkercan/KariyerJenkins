@@ -35,8 +35,4 @@
     <ProjectReference Include="..\..\Infrastructure\EKSystemApp.Persistence\EKSystemApp.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Member\" />
-  </ItemGroup>
-
 </Project>

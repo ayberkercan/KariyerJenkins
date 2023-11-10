@@ -2,6 +2,11 @@
 using EKSystemApp.Domain.Entities.eBA.EntitiesOfSystemTables;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
+using EKSystemApp.Domain.Entities.Member.Cities;
+using EKSystemApp.Domain.Entities.Member.Countries;
+using EKSystemApp.Domain.Entities.Member.Education.Departments;
+using EKSystemApp.Domain.Entities.Member.Education.Universities;
+using EKSystemApp.Domain.Entities.Member.Provinces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -69,6 +74,15 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.Entity<IseAlimGeneralSkillsDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_Form_dtyGenelYetkinlik");
             modelBuilder.Entity<IseAlimForeignLanguagesDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_Form_dtyYabanciDil");
 
+
+            modelBuilder.Entity<ST_Countries>().ToTable("Portal_ST_Ulke");
+            modelBuilder.Entity<ST_Provinces>().ToTable("Portal_ST_Il");
+            modelBuilder.Entity<ST_Cities>().ToTable("Portal_ST_Ilce");
+
+
+            modelBuilder.Entity<ST_Universities>().ToTable("Portal_ST_Universite");
+            modelBuilder.Entity<ST_Departments>().ToTable("Portal_ST_Universite_Bolum");
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -106,6 +120,15 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<IseAlimForm> IseAlimForm { get; set; }
         public DbSet<IseAlimGeneralSkillsDataGrid> IseAlimGeneralSkillsDataGrid { get; set; }
         public DbSet<IseAlimForeignLanguagesDataGrid> IseAlimForeignLanguagesDataGrid { get; set; }
+
+
+        public DbSet<ST_Countries> ST_Countries { get; set; }
+        public DbSet<ST_Provinces> ST_Provinces { get; set; }
+        public DbSet<ST_Cities> ST_Cities { get; set; }
+
+
+        public DbSet<ST_Universities> ST_Universities { get; set; }
+        public DbSet<ST_Departments> ST_Departments { get; set; }
         #endregion
     }
 }
