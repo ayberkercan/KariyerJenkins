@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class AdQuestion : BaseEntity
+    public class AdvertForignLanguages : BaseEntity
     {
-        public string AdQuestionName { get; set; }
+        public string ForignLanguageName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
     }

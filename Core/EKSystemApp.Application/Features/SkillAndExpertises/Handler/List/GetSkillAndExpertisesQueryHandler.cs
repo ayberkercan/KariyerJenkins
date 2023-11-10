@@ -16,9 +16,9 @@ namespace EKSystemApp.Application.Features.SkillAndExpertises.Handler.List
     public class GetSkillAndExpertisesQueryHandler : IRequestHandler<GetSkillAndExpertisesQueryRequest, ICollection<SkillAndExpertiseDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<SkillAndExpertise> genericRepository;
+        private IGenericRepository<AdvertSkillAndExpertises> genericRepository;
 
-        public GetSkillAndExpertisesQueryHandler(IMapper mapper, IGenericRepository<SkillAndExpertise> genericRepository)
+        public GetSkillAndExpertisesQueryHandler(IMapper mapper, IGenericRepository<AdvertSkillAndExpertises> genericRepository)
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;

@@ -34,6 +34,9 @@ namespace EKSystemApp.Persistence.Context
         }
         #region DBSET
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AdvertAdQuestions> AdvertAdQuestions { get; set; }
+        public DbSet<AdvertForignLanguages> AdvertForignLanguages { get; set; }
+        public DbSet <AdvertSkillAndExpertises> AdvertSkillAndExpertises { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Menu> Menus { get; set; }
@@ -48,15 +51,15 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<EbaGroup> EbaGroups { get; set; }
         public DbSet<AdPublisher> AdPublishers { get; set; }
-        public DbSet<AdQuestion> AdQuestions { get; set; }
+        public DbSet<AdvertAdQuestions> AdQuestions { get; set; }
         public DbSet<AdStatus> AdStatuses { get; set; }
         public DbSet<EducationLevel> EducationLevels { get; set; }
         public DbSet<ExperiencePeriod> ExperiencePeriods { get; set; }
-        public DbSet<ForignLanguage> ForignLanguages { get; set; }
+        public DbSet<AdvertForignLanguages> ForignLanguages { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
         public DbSet<MillitaryStatus> MillitaryStatuses { get; set; }
         public DbSet<PositionType> PositionTypes { get; set; }
-        public DbSet<SkillAndExpertise> SkillAndExpertises { get; set; }
+        public DbSet<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
         public DbSet<WorkModel> WorkModels { get; set; }
         public DbSet<WorkType> WorkTypes { get; set; }
         public DbSet<EbaDepartment> EbaDepartments { get; set; }

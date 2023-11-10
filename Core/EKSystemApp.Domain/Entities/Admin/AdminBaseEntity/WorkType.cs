@@ -5,8 +5,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class WorkType : BaseEntity
     {
-        public string WorkTypeName { get; set; }
-        public Guid AdvertCreateId { get; set; }
-        public AdvertCreate AdvertCreate { get; set; }
+        public string Name { get; set; }
     }
 }

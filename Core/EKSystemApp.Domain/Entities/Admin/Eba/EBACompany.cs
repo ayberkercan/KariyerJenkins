@@ -6,7 +6,5 @@ namespace EKSystemApp.Domain.Entities.Admin.Eba
     public class EbaCompany : BaseEntity
     {
         public string CompanyName { get; set; }
-        public Guid AdvertCreateId { get; set; }
-        public AdvertCreate AdvertCreate { get; set; }
     }
 }

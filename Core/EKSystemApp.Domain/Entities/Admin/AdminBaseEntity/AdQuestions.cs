@@ -2,7 +2,7 @@
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class ForignLanguage : BaseEntity
+    public class AdQuestions : BaseEntity
     {
         public string Name { get; set; }
     }

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class JobCategory : BaseEntity
+    public class AdvertSkillAndExpertises : BaseEntity
     {
-        public string Name { get; set; }
+        public string SkillAndExpertiseName { get; set; }
+        public Guid AdvertCreateId { get; set; }
+        public AdvertCreate AdvertCreate { get; set; }
     }
 }

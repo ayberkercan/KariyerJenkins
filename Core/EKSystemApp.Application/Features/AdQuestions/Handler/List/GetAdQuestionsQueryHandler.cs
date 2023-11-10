@@ -10,8 +10,8 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.List
     public class GetAdQuestionsQueryHandler : IRequestHandler<GetAdQuestionsQueryRequest, ICollection<AdQuestionsDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<AdQuestion> genericRepository;
-        public GetAdQuestionsQueryHandler(IMapper mapper, IGenericRepository<AdQuestion> genericRepository)
+        private IGenericRepository<AdvertAdQuestions> genericRepository;
+        public GetAdQuestionsQueryHandler(IMapper mapper, IGenericRepository<AdvertAdQuestions> genericRepository)
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;
