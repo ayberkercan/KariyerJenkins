@@ -13,7 +13,7 @@ namespace EKSystemApp.Application.Features.Authentication.Commands.Update
         public string UserName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public Guid RoleId { get; set; }
-        //public ICollection<AppUserCompany> AppUserCompanies { get; set; }
-        //public ICollection<AppUserMenu> AppUserMenus { get; set; }
+        public ICollection<Object> Companies { get; set; }
+        public ICollection<Object> Menus { get; set; }
     }
 }

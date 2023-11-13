@@ -2,9 +2,7 @@
 using EKSystemApp.Application.DTO.Advert.Create;
 using EKSystemApp.Application.Features.Adverts.Commands.Create;
 using EKSystemApp.Application.Interfaces;
-using EKSystemApp.Domain.Entities;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
-using EKSystemApp.Domain.Entities.Admin.Eba;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using MediatR;
 
@@ -14,48 +12,16 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
     {
         private readonly IGenericRepository<AdvertCreate> AdvertCreateRepository;
         private readonly IMapper mapper;
-        private readonly IGenericRepository<Position> PositionRepository;
-        private readonly IGenericRepository<TaskType> TaskTypeRepository;
-        private readonly IGenericRepository<EbaCompany>  CompanyRepository;
-        private readonly IGenericRepository<Organization> OrganizationRepository;
-        private readonly IGenericRepository<EbaGroup> EbaGroupRepository;
-        private readonly IGenericRepository<EbaDepartment> EbaDepartmentRepository;
-        private readonly IGenericRepository<EbaUnit> EbaUnitRepository;
-        private readonly IGenericRepository<WorkType> WorkTypeRepository;
-        private readonly IGenericRepository<PositionType> PositionTypeRepository;
-        private readonly IGenericRepository<WorkModel> WorkModelRepository;
-        private readonly IGenericRepository<Location> LocationRepository;
-        private readonly IGenericRepository<EducationLevel> EducationLevelRepository;
-        private readonly IGenericRepository<ExperiencePeriod> ExperiencePeriodRepository;
         private readonly IGenericRepository<MillitaryStatus> MillitaryStatusRepository;
         private readonly IGenericRepository<AdvertForignLanguages> ForignLanguageRepository;
         private readonly IGenericRepository<AdvertSkillAndExpertises> SkillAndExpertiseRepository;
-        private readonly IGenericRepository<JobCategory> JobCategoryRepository;
-        private readonly IGenericRepository<AdStatus> AdStatusRepository;
-        private readonly IGenericRepository<AdPublisher> AdPublisherRepository;
         private readonly IGenericRepository<AdvertAdQuestions> AdQuestionRepository;
 
         public CreateAdvertCommandHandler(IGenericRepository<AdvertCreate> AdvertCreateRepository,
-            IGenericRepository<Position> PositionRepository,
-            IGenericRepository<TaskType> TaskTypeRepository,
-            IGenericRepository<EbaCompany> CompanyRepository,
-            IGenericRepository<Organization> OrganizationRepository,
-            IGenericRepository<EbaGroup> EbaGroupRepository,
-            IGenericRepository<EbaDepartment> EbaDepartmentRepository,
-            IGenericRepository<EbaUnit> EbaUnitRepository,
-            IGenericRepository<WorkType> WorkTypeRepository,
-            IGenericRepository<PositionType> PositionTypeRepository,
-            IGenericRepository<WorkModel> WorkModelRepository,
-            IGenericRepository<Location> LocationRepository,
-            IGenericRepository<EducationLevel> EducationLevelRepository,
-            IGenericRepository<ExperiencePeriod> ExperiencePeriodRepository,
             IGenericRepository<MillitaryStatus> MillitaryStatusRepository,
             IGenericRepository<AdvertSkillAndExpertises> SkillAndExpertiseRepository,
-            IGenericRepository<JobCategory> JobCategoryRepository,
-            IGenericRepository<AdStatus> AdStatusRepository,
-            IGenericRepository<AdPublisher> AdPublisherRepository,
-            IGenericRepository<AdvertAdQuestions> AdQuestionRepository,
             IGenericRepository<AdvertForignLanguages> ForignLanguageRepository,
+             IGenericRepository<AdvertAdQuestions> AdQuestionRepository,
             IMapper mapper)
         {
             this.AdvertCreateRepository = AdvertCreateRepository;
@@ -63,6 +29,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             this.MillitaryStatusRepository = MillitaryStatusRepository;
             this.ForignLanguageRepository = ForignLanguageRepository;
             this.SkillAndExpertiseRepository = SkillAndExpertiseRepository;
+            this.AdQuestionRepository = AdQuestionRepository;
         }
 
         public async Task<CreateAdvertDto> Handle(NewAdvertCreateCommandRequest request, CancellationToken cancellationToken)
@@ -91,38 +58,40 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 ExperiencePeriodName = request.ExperiencePeriodName,
                 MillitaryStatusName = request.MillitaryStatusName,
                 JobCategoryName = request.JobCategoryName,
-                AdStatusName = request.AdStatusName,
-                AdPublisherName = request.AdPublisherName
-                
+                AddStatusName = request.AddStatusName,
+                AddPublisherName = request.AddPublisherName,
+                AddQuestions = request.AddQuestions,
+                ForeignLanguages = request.ForeignLanguages,
+                SkillAndExpertises = request.SkillAndExpertises
+
             });
 
-            var ForignLanguage = new AdvertForignLanguages();
-            foreach (var item in request.ForignLanguageName)
-            {
-                ForignLanguage.AdvertCreateId = data.Id;
-                ForignLanguage.Id = Guid.NewGuid();
-                ForignLanguage.ForignLanguageName = item.ToString()!;
-            };
-            await ForignLanguageRepository.CreateAsync(ForignLanguage);
+            //var ForignLanguage = new AdvertForignLanguages();
+            //foreach (var item in request.ForeignLanguages)
+            //{
+            //    ForignLanguage.AdvertCreateId = data.Id;
+            //    ForignLanguage.Id = Guid.NewGuid();
+            //    ForignLanguage.ForignLanguageName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", "");
+            //};
+            //await ForignLanguageRepository.CreateAsync(ForignLanguage);
 
-            var skillAndexpertise = new AdvertSkillAndExpertises();
-            foreach (var item in request.SkillAndExpertiseName)
-            {
-                skillAndexpertise.AdvertCreateId = data.Id;
-                skillAndexpertise.Id = Guid.NewGuid();
-                skillAndexpertise.SkillAndExpertiseName = item.ToString()!;
-            };
-            await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
-
-            var adQuestions = new AdvertAdQuestions();
-            foreach (var item in request.AdQuestionName)
-            {
-                adQuestions.AdvertCreateId = data.Id;
-                adQuestions.Id = Guid.NewGuid();
-                adQuestions.AdQuestionName = item.ToString()!;
-            };
-            await AdQuestionRepository.CreateAsync(adQuestions);
-
+            //var skillAndexpertise = new AdvertSkillAndExpertises();
+            //foreach (var item in request.SkillAndExpertises)
+            //{
+            //    skillAndexpertise.AdvertCreateId = data.Id;
+            //    skillAndexpertise.Id = Guid.NewGuid();
+            //    skillAndexpertise.SkillAndExpertiseName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", "");
+            //};
+            //await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
+            
+            //var adQuestions = new AdvertAdQuestions();
+            //foreach (var item in request.AddQuestions)
+            //{
+            //    adQuestions.AdvertCreateId = data.Id;
+            //    adQuestions.Id = Guid.NewGuid();
+            //    adQuestions.AdQuestionName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", ""); 
+            //};
+            //await AdQuestionRepository.CreateAsync(adQuestions);
             return this.mapper.Map<CreateAdvertDto>(data);
         }
     }
