@@ -86,7 +86,10 @@ namespace EKSystemApp.Application
                     new ProvinceProfile(),
                     new CityProfile(),
                     new UniversityProfile(),
-                    new DepartmentProfile()
+                    new DepartmentProfile(),
+                    new AdQuestionProfile(),
+                    new ForignLanguagesProfile(),
+                    new SkillAndExpertisesProfile(),
                 });
             });
         }

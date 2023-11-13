@@ -5,6 +5,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class PositionType : BaseEntity
     {
-        public string Name { get; set; }
+        public string PositionTypeName { get; set; }
     }
 }

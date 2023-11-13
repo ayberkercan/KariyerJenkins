@@ -5,6 +5,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class WorkType : BaseEntity
     {
-        public string Name { get; set; }
+        public string WorkTypeName { get; set; }
     }
 }

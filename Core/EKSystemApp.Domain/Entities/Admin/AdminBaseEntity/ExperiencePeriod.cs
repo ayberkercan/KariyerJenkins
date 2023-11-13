@@ -10,6 +10,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class ExperiencePeriod : BaseEntity
     {
-        public string Name { get; set; }
+        public string ExperiencePeriodName { get; set; }
     }
 }

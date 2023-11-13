@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.Mappings.AdQuestionMap
     {
         public AdQuestionProfile()
         {
-            this.CreateMap<AdvertAdQuestions, AdQuestionsDto>().ReverseMap();
+            this.CreateMap<AdQuestion , AdQuestionsDto>().ReverseMap();
         }
     }
 }

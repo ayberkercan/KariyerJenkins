@@ -10,6 +10,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class AdPublisher : BaseEntity
     {
-        public string Name { get; set; }
+        public string AdPublisherName { get; set; }
     }
 }

@@ -51,15 +51,12 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<EbaGroup> EbaGroups { get; set; }
         public DbSet<AdPublisher> AdPublishers { get; set; }
-        public DbSet<AdvertAdQuestions> AdQuestions { get; set; }
         public DbSet<AdStatus> AdStatuses { get; set; }
         public DbSet<EducationLevel> EducationLevels { get; set; }
         public DbSet<ExperiencePeriod> ExperiencePeriods { get; set; }
-        public DbSet<AdvertForignLanguages> ForignLanguages { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
         public DbSet<MillitaryStatus> MillitaryStatuses { get; set; }
         public DbSet<PositionType> PositionTypes { get; set; }
-        public DbSet<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
         public DbSet<WorkModel> WorkModels { get; set; }
         public DbSet<WorkType> WorkTypes { get; set; }
         public DbSet<EbaDepartment> EbaDepartments { get; set; }
@@ -67,6 +64,10 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<Location> Locations{ get; set; }
         public DbSet<Profession> Professions{ get; set; }
         public DbSet<EbaUnit> EbaUnits { get; set; }
+        public DbSet<AdQuestion> AdQuestions { get; set; }
+        public DbSet <ForignLanguage> ForignLanguages { get; set; }
+        public DbSet <SkillAndExpertise> SkillAndExpertises { get; set; }
+
         #endregion
 
 

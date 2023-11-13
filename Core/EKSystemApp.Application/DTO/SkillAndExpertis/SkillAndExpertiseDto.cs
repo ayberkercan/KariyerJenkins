@@ -9,6 +9,6 @@ namespace EKSystemApp.Application.DTO.SkillAndExpertis
 {
     public class SkillAndExpertiseDto:BaseEntity
     {
-        public string SkillAndExpertiseName { get; set; }
+        public string SkillAndExpertisesName { get; set; }
     }
 }

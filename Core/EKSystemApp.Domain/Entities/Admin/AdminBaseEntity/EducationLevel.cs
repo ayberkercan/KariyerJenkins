@@ -10,6 +10,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class EducationLevel : BaseEntity
     {
-        public string Name { get; set; }
+        public string EducationLevelName { get; set; }
     }
 }

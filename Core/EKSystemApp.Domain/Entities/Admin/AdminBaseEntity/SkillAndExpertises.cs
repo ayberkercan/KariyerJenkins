@@ -2,8 +2,8 @@
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class SkillAndExpertises : BaseEntity
+    public class SkillAndExpertise : BaseEntity
     {
-        public string Name { get; set; }
+        public string SkillAndExpertisesName { get; set; }
     }
 }

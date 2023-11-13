@@ -58,40 +58,37 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 ExperiencePeriodName = request.ExperiencePeriodName,
                 MillitaryStatusName = request.MillitaryStatusName,
                 JobCategoryName = request.JobCategoryName,
-                AddStatusName = request.AddStatusName,
-                AddPublisherName = request.AddPublisherName,
-                AddQuestions = request.AddQuestions,
-                ForeignLanguages = request.ForeignLanguages,
-                SkillAndExpertises = request.SkillAndExpertises
+                AdStatusName = request.AdStatusName,
+                AdPublisherName = request.AdPublisherName,
 
             });
 
-            //var ForignLanguage = new AdvertForignLanguages();
-            //foreach (var item in request.ForeignLanguages)
-            //{
-            //    ForignLanguage.AdvertCreateId = data.Id;
-            //    ForignLanguage.Id = Guid.NewGuid();
-            //    ForignLanguage.ForignLanguageName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", "");
-            //};
-            //await ForignLanguageRepository.CreateAsync(ForignLanguage);
+            var ForignLanguage = new AdvertForignLanguages();
+            foreach (var item in request.ForeignLanguages)
+            {
+                ForignLanguage.AdvertCreateId = data.Id;
+                ForignLanguage.Id = Guid.NewGuid();
+                ForignLanguage.ForeignLanguageName = item.ToString();
+            };
+            await ForignLanguageRepository.CreateAsync(ForignLanguage);
 
-            //var skillAndexpertise = new AdvertSkillAndExpertises();
-            //foreach (var item in request.SkillAndExpertises)
-            //{
-            //    skillAndexpertise.AdvertCreateId = data.Id;
-            //    skillAndexpertise.Id = Guid.NewGuid();
-            //    skillAndexpertise.SkillAndExpertiseName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", "");
-            //};
-            //await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
-            
-            //var adQuestions = new AdvertAdQuestions();
-            //foreach (var item in request.AddQuestions)
-            //{
-            //    adQuestions.AdvertCreateId = data.Id;
-            //    adQuestions.Id = Guid.NewGuid();
-            //    adQuestions.AdQuestionName = item.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", ""); 
-            //};
-            //await AdQuestionRepository.CreateAsync(adQuestions);
+            var skillAndexpertise = new AdvertSkillAndExpertises();
+            foreach (var item in request.SkillAndExpertises)
+            {
+                skillAndexpertise.AdvertCreateId = data.Id;
+                skillAndexpertise.Id = Guid.NewGuid();
+                skillAndexpertise.SkillAndExpertiseName = item.ToString();
+            };
+            await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
+
+            var adQuestions = new AdvertAdQuestions();
+            foreach (var item in request.AdQuestions)
+            {
+                adQuestions.AdvertCreateId = data.Id;
+                adQuestions.Id = Guid.NewGuid();
+                adQuestions.AdQuestionName = item.ToString();
+            };
+            await AdQuestionRepository.CreateAsync(adQuestions);
             return this.mapper.Map<CreateAdvertDto>(data);
         }
     }

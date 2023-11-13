@@ -2,8 +2,8 @@
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class AdQuestions : BaseEntity
+    public class AdQuestion : BaseEntity
     {
-        public string Name { get; set; }
+        public string AdQuestionsName { get; set; }
     }
 }

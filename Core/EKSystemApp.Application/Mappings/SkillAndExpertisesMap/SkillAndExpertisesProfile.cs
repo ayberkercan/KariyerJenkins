@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.Mappings.SkillAndExpertisesMap
     {
         public SkillAndExpertisesProfile()
         {
-            CreateMap<AdvertSkillAndExpertises, SkillAndExpertiseDto>().ReverseMap();
+            CreateMap<SkillAndExpertise, SkillAndExpertiseDto>().ReverseMap();
         }
     }
 }

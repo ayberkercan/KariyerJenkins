@@ -10,6 +10,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class MillitaryStatus : BaseEntity
     {
-        public string Name { get; set; }
+        public string MillitaryStatusName { get; set; }
     }
 }

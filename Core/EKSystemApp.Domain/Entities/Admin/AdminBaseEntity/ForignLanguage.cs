@@ -4,6 +4,6 @@ namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
     public class ForignLanguage : BaseEntity
     {
-        public string Name { get; set; }
+        public string ForignLanguageName { get; set; }
     }
 }

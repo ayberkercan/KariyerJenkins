@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.Mappings.ForignLanguagesMap
     {
         public ForignLanguagesProfile()
         {
-            this.CreateMap<AdvertForignLanguages, ForignLanguageDto>().ReverseMap();
+            this.CreateMap<ForignLanguage, ForignLanguageDto>().ReverseMap();
         }
     }
 }
