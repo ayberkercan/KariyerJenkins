@@ -58,8 +58,14 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 ExperiencePeriodName = request.ExperiencePeriodName,
                 MillitaryStatusName = request.MillitaryStatusName,
                 JobCategoryName = request.JobCategoryName,
-                AdStatusName = request.AdStatusName,
-                AdPublisherName = request.AdPublisherName,
+                AddStatusName = request.AddStatusName,
+                AddPublisherName = request.AddPublisherName,
+                AddQuestions = request.AddQuestions,
+                ForeignLanguages = request.ForeignLanguages,
+                SkillAndExpertises = request.SkillAndExpertises,
+                Brand = request.Brand,
+                OpenClosed = request.OpenClosed,
+                WorkCategory = request.WorkCategory,
 
             });
 

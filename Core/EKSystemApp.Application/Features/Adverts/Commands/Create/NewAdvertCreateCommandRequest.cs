@@ -8,6 +8,7 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
     {
         public string WorkDefination { get; set; }
         public string PublicQuality { get; set; }
+        public string Brand { get; set; }
         public string PositionName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -33,5 +34,7 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public List<object> SkillAndExpertises { get; set; }
         public List<object> ForeignLanguages { get; set; }
         public List<object> AdQuestions { get; set; }
+        public string? OpenClosed { get; set; }
+        public string? WorkCategory { get; set; }
     }
 }

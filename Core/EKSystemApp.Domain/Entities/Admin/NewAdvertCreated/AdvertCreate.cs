@@ -7,6 +7,8 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
     public class AdvertCreate : BaseEntity
     {
         public string WorkDefination { get; set; }
+
+        public string Brand { get; set; }
         public string PublicQuality { get; set; }
         public string PositionName { get; set; }
         public DateTime StartDate { get; set; }
@@ -20,7 +22,8 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public string GroupName { get; set; }
         public string DepartmentName { get; set; }
         public string UnitName { get; set; }
-        public string WorkTypeName { get; set; }
+        public string WorkTypeName { get; set; }                                          
+
         public string PositionTypeName { get; set; }
         public string WorkModelName { get; set; }
         public string LocationName { get; set; }
@@ -33,5 +36,8 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public ICollection<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
         public ICollection<AdvertForignLanguages> ForeignLanguages { get; set; }
         public ICollection<AdvertAdQuestions> AdQuestions { get; set; }
+        public string? OpenClosed { get; set; }
+        public string? WorkCategory { get; set; }
+        public string? ExperiencePeriod { get; set; }
     }
 }
