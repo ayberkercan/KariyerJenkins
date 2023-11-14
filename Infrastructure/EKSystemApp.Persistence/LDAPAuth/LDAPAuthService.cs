@@ -15,6 +15,10 @@ namespace EKSystemApp.Persistence.LDAPAuth
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Kullanıcı doğrulama metodu
+        /// </summary>
+        /// <returns>AuthApiResponseDto</returns>
         public async Task<AuthApiResponseDto> ValidateUser(CheckUserValidatedQueryRequest request)
         {
             var client = new HttpClient();
