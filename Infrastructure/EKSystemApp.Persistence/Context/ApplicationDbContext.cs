@@ -64,9 +64,6 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<Location> Locations{ get; set; }
         public DbSet<Profession> Professions{ get; set; }
         public DbSet<EbaUnit> EbaUnits { get; set; }
-        public DbSet<AdQuestion> AdQuestions { get; set; }
-        public DbSet <ForignLanguage> ForignLanguages { get; set; }
-        public DbSet <SkillAndExpertise> SkillAndExpertises { get; set; }
 
         #endregion
 
