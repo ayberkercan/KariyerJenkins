@@ -16,7 +16,7 @@ namespace EKSystemApp.Persistence.LDAPAuth
         }
 
         /// <summary>
-        /// Kullanıcı doğrulama metodu
+        /// Kullanıcı doğrulama metodudur
         /// </summary>
         /// <returns>AuthApiResponseDto</returns>
         public async Task<AuthApiResponseDto> ValidateUser(CheckUserValidatedQueryRequest request)
