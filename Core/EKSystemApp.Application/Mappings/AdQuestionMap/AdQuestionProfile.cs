@@ -12,3 +12,4 @@ namespace EKSystemApp.Application.Mappings.AdQuestionMap
         }
     }
 }
+//lkşsajdikasda
