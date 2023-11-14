@@ -28,16 +28,13 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Update
         public async Task<UpdateUserDto> Handle(UpdateUserCommandRequest request, CancellationToken cancellationToken)
         {
             var getUser = await this.repository.GetByIdAsync(request.Id);
+            var getUserMenus = await this.appUserMenuRepository.GetByFilterAsync(p=>p.AppUserId == request.Id);
             foreach (var item in request.Menus)
             {
-                var menus = await this.menuRepository.GetByFilterAsync(p => p.Name == item.ToString());
-                if (menus.Id != Guid.Empty)
+                if(getUserMenus.MenuId != Guid.Empty)
                 {
-                    var menuUsers = await this.appUserMenuRepository.GetByIdAsync(menus.Id);
-                    menuUsers!.AppUserId = request.Id;
-                    menuUsers.MenuId = menus.Id;
+                    //getUserMenus.MenuId = item; 
                 }
-
             }
             if (getUser != null)
             {
