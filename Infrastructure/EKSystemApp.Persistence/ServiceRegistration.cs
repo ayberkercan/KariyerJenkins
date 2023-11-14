@@ -1,6 +1,5 @@
-﻿using System.Text;
-using System.Text.Json;
-using EKSystemApp.Application.Interfaces;
+﻿using EKSystemApp.Application.Interfaces;
+using EKSystemApp.Application.Interfaces.ILDAPAuthService;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Application.Tools;
 using EKSystemApp.Domain.Entities;
@@ -8,6 +7,7 @@ using EKSystemApp.Domain.PermissonList;
 using EKSystemApp.Persistence.Context;
 using EKSystemApp.Persistence.DbInitializerService;
 using EKSystemApp.Persistence.DbInitiliazers;
+using EKSystemApp.Persistence.LDAPAuth;
 using EKSystemApp.Persistence.Repositories;
 using EKSystemApp.Persistence.Repositories.Eba;
 using EKSystemApp.Persistence.Repositories.User;
@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Text.Json;
 
 namespace EKSystemApp.Persistence
 {
@@ -88,6 +90,7 @@ namespace EKSystemApp.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDbInitiliazerContext, DBInitiliazerContext>();
             services.AddScoped<IEbaRepository, EbaRepository>();
+            services.AddScoped<ILDAPAuthService, LDAPAuthService>();
             #endregion
 
             //#region CORS 

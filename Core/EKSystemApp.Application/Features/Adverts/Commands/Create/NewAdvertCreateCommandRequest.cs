@@ -31,9 +31,9 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public string? JobCategoryName { get; set; }
         public string? AdStatusName { get; set; }
         public string? AdPublisherName { get; set; }
-        public List<object> SkillAndExpertises { get; set; }
-        public List<object> ForeignLanguages { get; set; }
-        public List<object> AdQuestions { get; set; }
+        public List<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
+        public List<AdvertForignLanguages> ForeignLanguages { get; set; }
+        public List<AdvertAdQuestions> AdQuestions { get; set; }
         public string? OpenClosed { get; set; }
         public string? WorkCategory { get; set; }
     }
