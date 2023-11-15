@@ -1,22 +1,15 @@
-﻿using EKSystemApp.Application.DTO.Member.Cities;
-using EKSystemApp.Application.DTO.Member.CountriesTree;
-using EKSystemApp.Application.DTO.Member.Provinces;
+﻿using EKSystemApp.Application.DTO.Eba.TMP;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.Members.Cities.Queries
 {
-    public class GetEbaCityQueryRequest : IRequest<ICollection<ST_CitiesDto>>
+    public class GetEbaCityQueryRequest : IRequest<ICollection<EbaStrKvpDto>>
     {
-        public int upKey { get; set; }
+        public int UpKey { get; set; }
 
-        public GetEbaCityQueryRequest(int key)
+        public GetEbaCityQueryRequest(int Upkey)
         {
-            upKey = key;
+            this.UpKey = Upkey;
         }
     }
 }

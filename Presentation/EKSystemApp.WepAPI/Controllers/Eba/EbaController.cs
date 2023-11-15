@@ -89,6 +89,16 @@ namespace EKSystemApp.WepAPI.Controllers.Eba
         }
 
         /// <summary>
+        /// Parametrik personel sicil bilgisi ile kişinin onaycısı olduğu organizasyon anahtarlarını döndüren endpoint
+        /// </summary>
+        /// <example>8172</example>
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAllEbaAvailableOrgKeys(CheckEbaOrgKeyQueryRequest request)
+        {
+            return Ok(await _mediator.Send(new GetEbaOrgKeyQueryRequest(request)));
+        }
+
+        /// <summary>
         /// Parametrik personel bilgileri ile eBA görev combobox içeriğini döndüren endpoint
         /// </summary>
         /// <example>

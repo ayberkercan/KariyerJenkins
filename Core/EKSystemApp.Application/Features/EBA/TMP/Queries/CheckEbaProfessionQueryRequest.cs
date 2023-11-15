@@ -9,5 +9,12 @@ namespace EKSystemApp.Application.Features.EBA.TMP.Queries
         public string? GroupId { get; set; }
         public string? DepartmentId { get; set; }
         public string? UnitId { get; set; }
+        public CheckEbaProfessionQueryRequest(string OrgId, string? GroupId, string? DepartmentId, string? UnitId)
+        {
+            this.OrgId = OrgId;
+            this.GroupId = GroupId;
+            this.DepartmentId = DepartmentId;
+            this.UnitId = UnitId;
+        }
     }
 }

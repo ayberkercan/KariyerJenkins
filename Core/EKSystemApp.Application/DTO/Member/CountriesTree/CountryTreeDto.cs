@@ -8,7 +8,7 @@ namespace EKSystemApp.Application.DTO.Member.CountriesTree
 {
     public class CountryTreeDto
     {
-        public int Key { get; set; }
+        public string Key { get; set; }
         public string Value { get; set; }
         public ICollection<ProvinceTreeDto> Provinces { get; set; }
     }

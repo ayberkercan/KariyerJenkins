@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Domain.Entities.Member.Cities
 {
-    [Table("Portal_ST_Ilce")]
+    [Table("IseAlim_Ilceler")]
     public class ST_Cities
     {
         [Key]
         public int ID { get; set; }
-        public int UpKey { get; set; }
-        public int Key { get; set; }
-        public string Value { get; set; }
+        public string ISIM { get; set; }
+        public int IL_ID { get; set; }
     }
 }

@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Domain.Entities.Member.Provinces
 {
-    [Table("Portal_ST_Il")]
+    [Table("IseAlim_Iller")]
     public class ST_Provinces
     {
         [Key]
-        public int ID { get; set; }
-        public int UpKey { get; set; }
-        public int Key { get; set; }
-        public string Value { get; set; }
+        public int PLAKA { get; set; }
+        public string ISIM { get; set; }
     }
 }

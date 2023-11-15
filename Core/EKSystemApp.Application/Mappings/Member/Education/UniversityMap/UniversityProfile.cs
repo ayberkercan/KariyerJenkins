@@ -1,15 +1,7 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Member.CountriesTree;
-using EKSystemApp.Application.DTO.Member.Education.Universities;
+using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Member.Education.UniversitiesTree;
-using EKSystemApp.Application.DTO.Member.Provinces;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
-using EKSystemApp.Domain.Entities.Member.Provinces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Mappings.Member.Education.UniversityMap
 {
@@ -17,11 +9,13 @@ namespace EKSystemApp.Application.Mappings.Member.Education.UniversityMap
     {
         public UniversityProfile()
         {
-            CreateMap<ST_Universities, ST_UniversitiesDto>().ReverseMap();
+            CreateMap<ST_Universities, EbaStrKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.TANIM.Split('-', StringSplitOptions.None)[0].Trim()))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM.Split('-', StringSplitOptions.None)[1].Trim()));
 
             CreateMap<ST_Universities, UniversityTreeDto>()
-                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.Key))
-                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value));
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.TANIM.Split('-', StringSplitOptions.None)[0].Trim()))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM.Split('-', StringSplitOptions.None)[1].Trim()));
         }
     }
 }

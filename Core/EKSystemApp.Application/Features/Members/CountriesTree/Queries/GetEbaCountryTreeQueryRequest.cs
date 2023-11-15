@@ -10,9 +10,9 @@ namespace EKSystemApp.Application.Features.Members.CountriesTree.Queries
 {
     public class GetEbaCountryTreeQueryRequest : IRequest<ICollection<CountryTreeDto>>
     {
-        public int Key { get; set; }
+        public string Key { get; set; }
 
-        public GetEbaCountryTreeQueryRequest(int key)
+        public GetEbaCountryTreeQueryRequest(string key)
         {
             Key = key;
         }

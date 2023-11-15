@@ -75,13 +75,15 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.Entity<IseAlimForeignLanguagesDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_Form_dtyYabanciDil");
 
 
-            modelBuilder.Entity<ST_Countries>().ToTable("Portal_ST_Ulke");
-            modelBuilder.Entity<ST_Provinces>().ToTable("Portal_ST_Il");
-            modelBuilder.Entity<ST_Cities>().ToTable("Portal_ST_Ilce");
+            modelBuilder.Entity<ST_Countries>().ToTable("IseAlim_Ulke");
+            modelBuilder.Entity<ST_Provinces>().ToTable("IseAlim_Iller");
+            modelBuilder.Entity<ST_Cities>().ToTable("IseAlim_Ilceler");
 
 
-            modelBuilder.Entity<ST_Universities>().ToTable("Portal_ST_Universite");
-            modelBuilder.Entity<ST_Departments>().ToTable("Portal_ST_Universite_Bolum");
+            modelBuilder.Entity<ST_Universities>().ToTable("IseAlim_Okul");
+            modelBuilder.Entity<M_EducationDepartments>().ToTable("E_mrs_IseAlimTurkuvaz_M_BolumTanimlama");
+            modelBuilder.Entity<P_EducationDepartments>().ToTable("E_mrs_IseAlimTurkuvaz_P_BolumTanimlama");
+            modelBuilder.Entity<P_EducationDepartmentsDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_P_BolumTanimlama_dtyBolum");
 
             base.OnModelCreating(modelBuilder);
         }
@@ -128,7 +130,9 @@ namespace EKSystemApp.Persistence.Context
 
 
         public DbSet<ST_Universities> ST_Universities { get; set; }
-        public DbSet<ST_Departments> ST_Departments { get; set; }
+        public DbSet<M_EducationDepartments> M_EducationDepartments { get; set; }
+        public DbSet<P_EducationDepartments> P_EducationDepartments { get; set; }
+        public DbSet<P_EducationDepartmentsDataGrid> P_EducationDepartmentsDataGrid { get; set; }
         #endregion
     }
 }

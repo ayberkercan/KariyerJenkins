@@ -12,6 +12,7 @@ using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
 using EKSystemApp.Domain.Entities.Member.Countries;
+using EKSystemApp.Domain.Entities.Member.Education.Departments;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Persistence.Context;
 
@@ -149,8 +150,6 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                                          select lan).ToList();
 
                 var mappedFormDetails = _mapper.Map<IseAlimForm, EbaIseAlimTurkuvazFormDto>(formDetails);
-                //var mappedSkills = _mapper.Map<ICollection<IseAlimGeneralSkillsDataGrid>, ICollection<GeneralSkillsDto>>(selectedSkills);
-                //var mappedLanguages = _mapper.Map<ICollection<IseAlimForeignLanguagesDataGrid>, ICollection<ForeignLanguagesDto>>(selectedLanguages);
 
                 if (selectedSkills != null && selectedSkills.Any())
                 {
@@ -210,24 +209,24 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             return mappedOrganizationList;
         }
 
-        public async Task<ICollection<CountryTreeDto>> GetCountryTreeById(int key)
+        public async Task<ICollection<CountryTreeDto>> GetCountryTreeById(string key)
         {
             var countryList = _context.ST_Countries.ToList();
 
-            var filteredCountryList = countryList.Where(x => x.Key == key).OrderBy(x => x.Value).ToList();
+            var filteredCountryList = countryList.Where(x => x.TANIM.Split("-")[0] == key).OrderBy(x => x.TANIM.Split("-")[0]).ToList();
 
             var mappedCountryList = _mapper.Map<ICollection<ST_Countries>, ICollection<CountryTreeDto>>(filteredCountryList);
 
             foreach (var country in mappedCountryList)
             {
-                var provinceList = _context.ST_Provinces.Where(x => x.UpKey == key).ToList();
+                var provinceList = _context.ST_Provinces.Where(x=> key == "TR").OrderBy(x=>x.PLAKA).ToList();
                 var mappedProvinceList = _mapper.Map<ICollection<ProvinceTreeDto>>(provinceList);
 
                 country.Provinces = mappedProvinceList;
 
                 foreach (var province in country.Provinces)
                 {
-                    var cityList = _context.ST_Cities.Where(x => x.UpKey == province.Key).ToList();
+                    var cityList = _context.ST_Cities.Where(x => x.IL_ID == province.Key).OrderBy(x=>x.ISIM).ToList();
                     var mappedCityList = _mapper.Map<ICollection<CityTreeDto>>(cityList);
 
                     province.Cities = mappedCityList;
@@ -241,19 +240,32 @@ namespace EKSystemApp.Persistence.Repositories.Eba
         {
             var universityList = _context.ST_Universities.ToList();
 
-            var filteredUniversityList = universityList.Where(x => x.Key == key).OrderBy(x => x.Value).ToList();
+            var filteredUniversityList = universityList.Where(x => Convert.ToInt32(x.TANIM.Split("-", StringSplitOptions.None)[0]) == key).OrderBy(x => Convert.ToInt32(x.TANIM.Split("-", StringSplitOptions.None)[0])).ToList();
 
             var mappedUniversityList = _mapper.Map<ICollection<ST_Universities>, ICollection<UniversityTreeDto>>(filteredUniversityList);
 
             foreach (var university in mappedUniversityList)
             {
-                var departmentList = _context.ST_Departments.Where(x => x.UpKey == university.Key).ToList();
+                var departmentList = GetEbaEducationDepartments().Result;
                 var mappedDepartmentList = _mapper.Map<ICollection<EducationDepartmentTreeDto>>(departmentList);
 
                 university.Departments = mappedDepartmentList;
             }
 
             return mappedUniversityList;
+        }
+
+        public async Task<ICollection<EbaStrKvpDto>> GetEbaEducationDepartments()
+        {
+            var query = (from p in _context.P_EducationDepartments
+                         join d in _context.P_EducationDepartmentsDataGrid on p.ID equals d.FORMID
+                         join m in _context.M_EducationDepartments on d.DOCUMENTID equals m.ID
+                         where m.ChkAktif == 1
+                         select m).OrderBy(x=>x.DepartmentName).ToList();
+
+            var result = _mapper.Map<ICollection<M_EducationDepartments>, ICollection<EbaStrKvpDto>>(query);
+
+            return result;
         }
     }
 }

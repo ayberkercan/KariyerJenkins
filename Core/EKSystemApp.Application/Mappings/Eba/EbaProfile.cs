@@ -92,7 +92,7 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
 
-            CreateMap<TmpZhrCalisanPersWs, EbaStrKvpDto>()
+            CreateMap<TmpZhrCalisanPersWs, EbaOrgKeyStrKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ORGKEY))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ORGKEY));
 

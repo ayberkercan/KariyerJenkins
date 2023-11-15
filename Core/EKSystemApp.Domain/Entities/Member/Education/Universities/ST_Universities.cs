@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Domain.Entities.Member.Education.Universities
 {
-    [Table("Portal_ST_Universite")]
+    [Table("IseAlim_Okul")]
     public class ST_Universities
     {
         [Key]
         public int ID { get; set; }
-        public int UpKey { get; set; }
-        public int Key { get; set; }
-        public string Value { get; set; }
+        public string TANIM { get; set; }
     }
 }

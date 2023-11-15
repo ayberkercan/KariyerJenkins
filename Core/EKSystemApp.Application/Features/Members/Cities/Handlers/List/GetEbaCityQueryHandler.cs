@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EKSystemApp.Application.DTO.Member.Cities;
+using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.Features.Members.Cities.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Member.Cities;
@@ -7,7 +7,7 @@ using MediatR;
 
 namespace EKSystemApp.Application.Features.Members.Cities.Handlers.List
 {
-    public class GetEbaCityQueryHandler : IRequestHandler<GetEbaCityQueryRequest, ICollection<ST_CitiesDto>>
+    public class GetEbaCityQueryHandler : IRequestHandler<GetEbaCityQueryRequest, ICollection<EbaStrKvpDto>>
     {
         private readonly IEbaGenericRepository<ST_Cities> _genericRepository;
         private readonly IMapper _mapper;
@@ -18,11 +18,11 @@ namespace EKSystemApp.Application.Features.Members.Cities.Handlers.List
             _mapper = mapper;
         }
 
-        public async Task<ICollection<ST_CitiesDto>> Handle(GetEbaCityQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ICollection<EbaStrKvpDto>> Handle(GetEbaCityQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = (await _genericRepository.GetAllAsync()).Where(x => x.UpKey == request.upKey).OrderBy(x => x.Value);
+            var data = (await _genericRepository.GetAllAsync()).Where(x => x.IL_ID == request.UpKey).OrderBy(x => x.ISIM);
 
-            return _mapper.Map<IEnumerable<ST_Cities>, ICollection<ST_CitiesDto>>(data);
+            return _mapper.Map<IEnumerable<ST_Cities>, ICollection<EbaStrKvpDto>>(data);
         }
     }
 }

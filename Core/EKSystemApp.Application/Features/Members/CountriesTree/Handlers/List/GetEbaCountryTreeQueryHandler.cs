@@ -24,7 +24,7 @@ namespace EKSystemApp.Application.Features.Members.CountriesTree.Handlers.List
 
         public async Task<ICollection<CountryTreeDto>> Handle(GetEbaCountryTreeQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await _ebaRepository.GetCountryTreeById(request.Key);
+            var data = await _ebaRepository.GetCountryTreeById((request.Key).ToUpper());
 
             return data;
         }

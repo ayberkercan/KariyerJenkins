@@ -25,7 +25,7 @@ namespace EKSystemApp.WepAPI.Controllers.Member
         /// Parametrik ülke kodu bilgisi ile ülke-il-ilçe ağaç yapısı içeriğini döndüren endpoint
         /// </summary>
         [HttpGet("[action]/{key?}")]
-        public async Task<IActionResult> GetCountriesTreeById([FromRoute] int key = 220)
+        public async Task<IActionResult> GetCountriesTreeById([FromRoute] string key = "TR")
         {
             var result = await _mediator.Send(new GetEbaCountryTreeQueryRequest(key));
             return Ok(result);
@@ -45,8 +45,8 @@ namespace EKSystemApp.WepAPI.Controllers.Member
         /// Bütün illerin listelendiği endpoint, parametre verilirse ona bağlı illeri döndürür.
         /// Sadece Türkiye illeri listeleniyor, Parametrik upKey değeri ileriye dönük olarak eklenmiştir.
         /// </summary>
-        [HttpGet("[action]/{key?}")]
-        public async Task<IActionResult> GetAllProvinces([FromRoute] int upKey = 220)
+        [HttpGet("[action]/{upKey?}")]
+        public async Task<IActionResult> GetAllProvinces([FromRoute] string upKey = "TR")
         {
             var result = await _mediator.Send(new GetEbaProvinceQueryRequest(upKey));
             return Ok(result);
@@ -83,12 +83,12 @@ namespace EKSystemApp.WepAPI.Controllers.Member
         }
         
         /// <summary>
-        /// Parametrik upKey bilgisi verilen üniversite bölümlerinin listelendiği endpoint
+        /// Bütün bölümlerinin listelendiği endpoint
         /// </summary>
-        [HttpGet("[action]/{upKey?}")]
-        public async Task<IActionResult> GetAllDepartments([FromRoute] int upKey)
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllDepartments()
         {
-            var result = await _mediator.Send(new GetEbaEducationDeparmentQueryRequest(upKey));
+            var result = await _mediator.Send(new GetEbaEducationDeparmentQueryRequest());
             return Ok(result);
         }
     }

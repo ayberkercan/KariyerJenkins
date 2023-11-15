@@ -6,5 +6,9 @@ namespace EKSystemApp.Application.Features.EBA.TMP.Queries
     public class CheckEbaDepartmentQueryRequest : IRequest<ICollection<EbaKvpDto>>
     {
         public int UpKey { get; set; }
+        public CheckEbaDepartmentQueryRequest(int UpKey)
+        {
+            this.UpKey = UpKey;
+        }
     }
 }
