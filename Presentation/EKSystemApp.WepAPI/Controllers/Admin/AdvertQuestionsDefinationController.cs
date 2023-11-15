@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using EKSystemApp.Application.Features.AdQuestions.Command.Create;
+﻿using EKSystemApp.Application.Features.AdQuestions.Command.Create;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +21,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         //    var data = await _mediator.Send(new GetCompanyQueryRequest());
         //    return Ok(data);
         //}
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<IActionResult> Create(AdvertQuestionsDefinationRequest request)
         {
             await _mediator.Send(request);
