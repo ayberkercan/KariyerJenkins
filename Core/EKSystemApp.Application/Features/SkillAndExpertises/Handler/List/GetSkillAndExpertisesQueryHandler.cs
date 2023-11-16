@@ -16,9 +16,9 @@ namespace EKSystemApp.Application.Features.SkillAndExpertises.Handler.List
     public class GetSkillAndExpertisesQueryHandler : IRequestHandler<GetSkillAndExpertisesQueryRequest, ICollection<SkillAndExpertiseDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<SkillAndExpertise> genericRepository;
-
-        public GetSkillAndExpertisesQueryHandler(IMapper mapper, IGenericRepository<SkillAndExpertise> genericRepository)
+        private IGenericRepository<AdvertSkillAndExpertises> genericRepository;
+        
+        public GetSkillAndExpertisesQueryHandler(IMapper mapper, IGenericRepository<AdvertSkillAndExpertises> genericRepository)
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;
@@ -27,7 +27,7 @@ namespace EKSystemApp.Application.Features.SkillAndExpertises.Handler.List
         public async Task<ICollection<SkillAndExpertiseDto>> Handle(GetSkillAndExpertisesQueryRequest request, CancellationToken cancellationToken)
         {
             var data = await genericRepository.GetAllAsync();
-            return mapper.Map<ICollection<SkillAndExpertiseDto>>(data);
+            return this.mapper.Map<ICollection<SkillAndExpertiseDto>>(data);
         }
     }
 }

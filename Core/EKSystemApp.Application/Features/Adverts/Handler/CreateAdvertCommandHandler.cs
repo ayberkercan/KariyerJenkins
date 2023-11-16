@@ -40,7 +40,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 PublicQuality = request.PublicQuality,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
-                AdwertNumberId = request.AdwertNumberId,
+                AdvertNumberId = request.AdvertNumberId,
                 PeriotNumberId = request.PeriotNumberId,
                 PositionName = request.PositionName,
                 Logo = request.Logo,
@@ -55,27 +55,22 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 WorkModelName = request.WorkModelName,
                 LocationName = request.LocationName,
                 EducationLevelName = request.EducationLevelName,
-                ExperiencePeriodName = request.ExperiencePeriodName,
+                ExperiencePeriod = request.ExperiencePeriodName,
                 MillitaryStatusName = request.MillitaryStatusName,
-                JobCategoryName = request.JobCategoryName,
-                AdvertStatusName = request.AdStatusName,
-                AdPublisherName = request.AdPublisherName,
-                AdvertAdQuestions = request.AdQuestions,
-                AdvertForignLanguages = request.ForeignLanguages,
-                AdvertSkillAndExpertises= request.SkillAndExpertises,
+                AdvertStatusName = request.AdvertStatusName,
+                AdvertPublisherName = request.AdvertPublisherName,
                 Brand = request.Brand,
-                OpenClosed = request.OpenClosed,
                 WorkCategory = request.WorkCategory,
+           
 
             });
 
             var ForignLanguage = new AdvertForignLanguages();
-            foreach (var item in request.ForeignLanguages)
-            {
+
                 ForignLanguage.AdvertCreateId = data.Id;
                 ForignLanguage.Id = Guid.NewGuid();
-                ForignLanguage.ForeignLanguageName = item.ToString();
-            };
+                ForignLanguage.ForeignLanguageName = request.ForeignLanguages.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", ""); ;
+
             await ForignLanguageRepository.CreateAsync(ForignLanguage);
 
             var skillAndexpertise = new AdvertSkillAndExpertises();
@@ -84,8 +79,9 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 skillAndexpertise.AdvertCreateId = data.Id;
                 skillAndexpertise.Id = Guid.NewGuid();
                 skillAndexpertise.SkillAndExpertiseName = item.ToString();
+                await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
             };
-            await SkillAndExpertiseRepository.CreateAsync(skillAndexpertise);
+
 
             var adQuestions = new AdvertAdQuestions();
             foreach (var item in request.AdQuestions)
@@ -93,8 +89,9 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 adQuestions.AdvertCreateId = data.Id;
                 adQuestions.Id = Guid.NewGuid();
                 adQuestions.AdQuestionName = item.ToString();
+                await AdQuestionRepository.CreateAsync(adQuestions);
             };
-            await AdQuestionRepository.CreateAsync(adQuestions);
+
             return this.mapper.Map<CreateAdvertDto>(data);
         }
     }

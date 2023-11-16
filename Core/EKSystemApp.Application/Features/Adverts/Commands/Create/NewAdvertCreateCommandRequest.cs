@@ -14,7 +14,7 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public DateTime EndDate { get; set; }
         public string? Logo { get; set; } = null;
         public int PeriotNumberId { get; set; }
-        public int AdwertNumberId { get; set; }
+        public int AdvertNumberId { get; set; }
         public string? TaskTypeName { get; set; }
         public string? CompanyName { get; set; }
         public string OrganizationName { get; set; }
@@ -28,13 +28,11 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public string EducationLevelName { get; set; }
         public string? ExperiencePeriodName { get; set; }
         public string MillitaryStatusName { get; set; }
-        public string? JobCategoryName { get; set; }
-        public string? AdStatusName { get; set; }
-        public string? AdPublisherName { get; set; }
-        public List<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
-        public List<AdvertForignLanguages> ForeignLanguages { get; set; }
-        public List<AdvertAdQuestions> AdQuestions { get; set; }
-        public string? OpenClosed { get; set; }
+        public string? AdvertStatusName { get; set; }
+        public string? AdvertPublisherName { get; set; }
+        public List<object> SkillAndExpertises { get; set; }
+        public string ForeignLanguages { get; set; }
+        public List<object> AdQuestions { get; set; }
         public string? WorkCategory { get; set; }
     }
 }

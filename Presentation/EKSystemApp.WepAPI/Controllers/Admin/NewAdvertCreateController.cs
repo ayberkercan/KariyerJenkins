@@ -9,6 +9,7 @@ using EKSystemApp.Application.Features.EBA.EbaLocations.Queries;
 using EKSystemApp.Application.Features.EBA.EbaOrganization.Queries;
 using EKSystemApp.Application.Features.EBA.EbaPositions.Queries;
 using EKSystemApp.Application.Features.EBA.EbaUnits.Queries;
+using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Application.Features.EducationLevels.Queries;
 using EKSystemApp.Application.Features.ExperiencePeriods.Queries;
 using EKSystemApp.Application.Features.ForignLanguages.Queries;
@@ -21,6 +22,8 @@ using EKSystemApp.Application.Features.WorkModels.Queries;
 using EKSystemApp.Application.Features.WorkTypes.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using GetEbaOrganizationQueryRequest = EKSystemApp.Application.Features.EBA.EbaOrganization.Queries.GetEbaOrganizationQueryRequest;
+using GetEbaPositionQueryRequest = EKSystemApp.Application.Features.EBA.EbaPositions.Queries.GetEbaPositionQueryRequest;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
 {
@@ -118,6 +121,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetForignLanguagesQueryRequest()));
         }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllForignLanguageLevel()
+        {
+            return Ok(await this.mediator.Send(new GetEbaForeignLanguageLevelsQueryRequest()));
+        }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetallJobCategory()
@@ -140,7 +148,22 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllSkillAndExpertise()
         {
-            return Ok(await this.mediator.Send(new GetSkillAndExpertisesQueryRequest()));
+            var Localdata = await this.mediator.Send(new GetSkillAndExpertisesQueryRequest());
+            var EbaData = await this.mediator.Send(new GetEbaGeneralSkillsQueryRequest());
+
+            var data = new List<KeyValuePair<string, string>>();
+
+            foreach (var item in Localdata.Distinct())
+            {
+                data.Add(new KeyValuePair<string, string>(item.SkillAndExpertiseName, item.SkillAndExpertiseName));
+            }
+
+            foreach (var item in EbaData)
+            {
+                data.Add(new KeyValuePair<string, string>(item.Value, item.Value));
+            }
+
+            return Ok(data);
         }
 
         [HttpGet("[action]")]
