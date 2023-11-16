@@ -1,6 +1,5 @@
 ﻿using EKSystemApp.Application.Features.AdQuestions.Command.Create;
 using EKSystemApp.Application.Features.AdQuestions.Questions;
-using EKSystemApp.Application.Features.Categories.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
