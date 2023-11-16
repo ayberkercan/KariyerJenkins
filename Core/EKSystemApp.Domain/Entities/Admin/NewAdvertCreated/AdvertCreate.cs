@@ -23,7 +23,6 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public string DepartmentName { get; set; }
         public string UnitName { get; set; }
         public string WorkTypeName { get; set; }                                          
-
         public string PositionTypeName { get; set; }
         public string WorkModelName { get; set; }
         public string LocationName { get; set; }
@@ -31,11 +30,11 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public string? ExperiencePeriodName { get; set; }
         public string MillitaryStatusName { get; set; }
         public string? JobCategoryName { get; set; }
-        public string? AddStatusName { get; set; }
-        public string? AddPublisherName { get; set; }
-        public ICollection<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
-        public ICollection<AdvertForignLanguages> ForeignLanguages { get; set; }
-        public ICollection<AdvertAdQuestions> AddQuestions { get; set; }
+        public string? AdvertStatusName { get; set; }
+        public string? AdPublisherName { get; set; }
+        public ICollection<AdvertSkillAndExpertises> AdvertSkillAndExpertises { get; set; }
+        public ICollection<AdvertForignLanguages> AdvertForignLanguages { get; set; }
+        public ICollection<AdvertAdQuestions> AdvertAdQuestions { get; set; }
         public string? OpenClosed { get; set; }
         public string? WorkCategory { get; set; }
         public string? ExperiencePeriod { get; set; }

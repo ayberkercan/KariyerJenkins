@@ -16,12 +16,14 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
     public class AdvertQuestionsDefinationCommandHandler : IRequestHandler<AdvertQuestionsDefinationRequest, AdQuestionsDto>
     {
         private readonly IGenericRepository<AdvertAdQuestions> repository;
+        private readonly IGenericRepository<AdvertAdQuestionAnswerContent> answerRepository;
         private readonly IMapper mapper;
 
-        public AdvertQuestionsDefinationCommandHandler(IGenericRepository<AdvertAdQuestions> repository, IMapper mapper)
+        public AdvertQuestionsDefinationCommandHandler(IGenericRepository<AdvertAdQuestions> repository, IMapper mapper, IGenericRepository<AdvertAdQuestionAnswerContent> answerRepository)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.answerRepository = answerRepository;
         }
         public async Task<AdQuestionsDto> Handle(AdvertQuestionsDefinationRequest request, CancellationToken cancellationToken)
         {
@@ -29,10 +31,18 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
             {
                 AdQuestionName = request.AdQuestionName,
                 AdvertCreateId = request.AdvertCreateId,
-                AnswerContent = request.AnswerContent,
-                AnswerType = request.AnswerType,
             };
             var result = await this.repository.CreateAsync(questions);
+
+            foreach (var item in request.AnswerContent!)
+            {
+                var content = new AdvertAdQuestionAnswerContent
+                {
+                    AdvertAdQuestionsId = questions.Id,
+                    Name = item.Name,
+                };
+                await this.answerRepository.CreateAsync(content);
+            }
             return this.mapper.Map<AdQuestionsDto>(result);
         }
     }
