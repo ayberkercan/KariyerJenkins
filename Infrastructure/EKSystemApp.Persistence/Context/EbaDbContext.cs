@@ -2,11 +2,16 @@
 using EKSystemApp.Domain.Entities.eBA.EntitiesOfSystemTables;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
+using EKSystemApp.Domain.Entities.Member.ApplicationSource;
+using EKSystemApp.Domain.Entities.Member.AreaCodes;
 using EKSystemApp.Domain.Entities.Member.Cities;
 using EKSystemApp.Domain.Entities.Member.Countries;
+using EKSystemApp.Domain.Entities.Member.Currency;
 using EKSystemApp.Domain.Entities.Member.Education.Departments;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Domain.Entities.Member.Provinces;
+using EKSystemApp.Domain.Entities.Member.SalaryType;
+using EKSystemApp.Domain.Entities.Member.TurkuvazCompanies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -85,6 +90,18 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.Entity<P_EducationDepartments>().ToTable("E_mrs_IseAlimTurkuvaz_P_BolumTanimlama");
             modelBuilder.Entity<P_EducationDepartmentsDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_P_BolumTanimlama_dtyBolum");
 
+            modelBuilder.Entity<M_TurkuvazCompanies>().ToTable("E_mrs_IseAlimTurkuvaz_M_CalisilacakSirketTanimlama");
+            modelBuilder.Entity<P_TurkuvazCompanies>().ToTable("E_mrs_IseAlimTurkuvaz_P_CalisilacakSirketTanimlama");
+            modelBuilder.Entity<P_TurkuvazCompaniesDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_P_CalisilacakSirketTanimlama_dtyCalisilacakSirket");
+            
+            modelBuilder.Entity<M_ApplicationSources>().ToTable("E_mrs_IseAlimTurkuvaz_M_BasvuruKaynagiTanimlama");
+            modelBuilder.Entity<P_ApplicationSources>().ToTable("E_mrs_IseAlimTurkuvaz_P_BasvuruKaynagiTanimlama");
+            modelBuilder.Entity<P_ApplicationSourcesDataGrid>().ToTable("E_mrs_IseAlimTurkuvaz_P_BasvuruKaynagiTanimlama_dtyBasvuruKaynak");
+            
+            
+            modelBuilder.Entity<CountryAreaCodes>().ToTable("TBL_ULKE");
+            modelBuilder.Entity<SalaryTypes>().ToTable("IseAlim_UcretTuru");
+            modelBuilder.Entity<Currencies>().ToTable("IseAlim_ParaBirimi");
             base.OnModelCreating(modelBuilder);
         }
 
@@ -133,6 +150,20 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<M_EducationDepartments> M_EducationDepartments { get; set; }
         public DbSet<P_EducationDepartments> P_EducationDepartments { get; set; }
         public DbSet<P_EducationDepartmentsDataGrid> P_EducationDepartmentsDataGrid { get; set; }
+
+
+        public DbSet<M_TurkuvazCompanies> M_TurkuvazCompanies { get; set; }
+        public DbSet<P_TurkuvazCompanies> P_TurkuvazCompanies { get; set; }
+        public DbSet<P_TurkuvazCompaniesDataGrid> P_TurkuvazCompaniesDataGrid { get; set; }
+        
+        public DbSet<M_ApplicationSources> M_ApplicationSources { get; set; }
+        public DbSet<P_ApplicationSources> P_ApplicationSources { get; set; }
+        public DbSet<P_ApplicationSourcesDataGrid> P_ApplicationSourcesDataGrid { get; set; }
+        
+
+        public DbSet<CountryAreaCodes> CountryAreaCodes { get; set; }
+        public DbSet<SalaryTypes> SalaryTypes { get; set; }
+        public DbSet<Currencies> Currencies { get; set; }
         #endregion
     }
 }

@@ -21,5 +21,7 @@ namespace EKSystemApp.Application.Interfaces.IUser
         Task<ICollection<CountryTreeDto>> GetCountryTreeById(string key);
         Task<ICollection<UniversityTreeDto>> GetUniversityTreeById(int key);
         Task<ICollection<EbaStrKvpDto>> GetEbaEducationDepartments();
+        Task<ICollection<EbaStrKvpDto>> GetEbaSelectableCompanies();
+        Task<ICollection<EbaStrKvpDto>> GetEbaApplicationSources();
     }
 }

@@ -1,10 +1,15 @@
-﻿using EKSystemApp.Application.Features.Members.Cities.Queries;
+﻿using EKSystemApp.Application.Features.Members.ApplicationSources.Queries;
+using EKSystemApp.Application.Features.Members.AreaCodes.Queries;
+using EKSystemApp.Application.Features.Members.Cities.Queries;
+using EKSystemApp.Application.Features.Members.Companies.Queries;
 using EKSystemApp.Application.Features.Members.Countries.Queries;
 using EKSystemApp.Application.Features.Members.CountriesTree.Queries;
+using EKSystemApp.Application.Features.Members.Currency.Queries;
 using EKSystemApp.Application.Features.Members.Education.Departments.Queries;
 using EKSystemApp.Application.Features.Members.Education.Universities.Queries;
 using EKSystemApp.Application.Features.Members.Education.UniversitiesTree.Queries;
 using EKSystemApp.Application.Features.Members.Provinces.Queries;
+using EKSystemApp.Application.Features.Members.SalaryType.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -89,6 +94,56 @@ namespace EKSystemApp.WepAPI.Controllers.Member
         public async Task<IActionResult> GetAllDepartments()
         {
             var result = await _mediator.Send(new GetEbaEducationDeparmentQueryRequest());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Bütün "Çalışmayı Tercih Ettiğiniz Sektör ve Markalarımız" bilgisinin listelendiği endpoint
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllSelectableCompanies()
+        {
+            var result = await _mediator.Send(new GetEbaSelectableCompaniesQueryRequest());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Bütün "Alan Kodu" bilgisinin listelendiği endpoint
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllCountryAreaCodes()
+        {
+            var result = await _mediator.Send(new GetEbaCountryAreaCodeQueryRequest());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Bütün "Ücret Türü" bilgisinin listelendiği endpoint
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllSalaryTypes()
+        {
+            var result = await _mediator.Send(new GetEbaSalaryTypeQueryRequest());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Bütün "Para Birimi" bilgisinin listelendiği endpoint
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllCurrencies()
+        {
+            var result = await _mediator.Send(new GetEbaCurrencyQueryRequest());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Bütün "Başvuru Kaynağı" bilgisinin listelendiği endpoint
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllApplicationSources()
+        {
+            var result = await _mediator.Send(new GetEbaApplicationSourceQueryRequest());
             return Ok(result);
         }
     }

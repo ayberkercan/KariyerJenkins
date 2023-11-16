@@ -11,9 +11,11 @@ using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
+using EKSystemApp.Domain.Entities.Member.ApplicationSource;
 using EKSystemApp.Domain.Entities.Member.Countries;
 using EKSystemApp.Domain.Entities.Member.Education.Departments;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
+using EKSystemApp.Domain.Entities.Member.TurkuvazCompanies;
 using EKSystemApp.Persistence.Context;
 
 namespace EKSystemApp.Persistence.Repositories.Eba
@@ -264,6 +266,32 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                          select m).OrderBy(x=>x.DepartmentName).ToList();
 
             var result = _mapper.Map<ICollection<M_EducationDepartments>, ICollection<EbaStrKvpDto>>(query);
+
+            return result;
+        }
+
+        public async Task<ICollection<EbaStrKvpDto>> GetEbaSelectableCompanies()
+        {
+            var query = (from p in _context.P_TurkuvazCompanies
+                         join d in _context.P_TurkuvazCompaniesDataGrid on p.ID equals d.FORMID
+                         join m in _context.M_TurkuvazCompanies on d.DOCUMENTID equals m.ID
+                         where m.ChkAktif == 1
+                         select m).ToList();
+
+            var result = _mapper.Map<ICollection<M_TurkuvazCompanies>, ICollection<EbaStrKvpDto>>(query);
+
+            return result;
+        }
+
+        public async Task<ICollection<EbaStrKvpDto>> GetEbaApplicationSources()
+        {
+            var query = (from p in _context.P_ApplicationSources
+                         join d in _context.P_ApplicationSourcesDataGrid on p.ID equals d.FORMID
+                         join m in _context.M_ApplicationSources on d.DOCUMENTID equals m.ID
+                         where m.ChkAktif == 1
+                         select m).ToList();
+
+            var result = _mapper.Map<ICollection<M_ApplicationSources>, ICollection<EbaStrKvpDto>>(query);
 
             return result;
         }

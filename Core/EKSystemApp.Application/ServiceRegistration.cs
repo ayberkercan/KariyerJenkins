@@ -20,11 +20,16 @@ using EKSystemApp.Application.Mappings.EducationLevelMap;
 using EKSystemApp.Application.Mappings.ExperiencePeriodMap;
 using EKSystemApp.Application.Mappings.ForignLanguagesMap;
 using EKSystemApp.Application.Mappings.JobCategoriesMap;
+using EKSystemApp.Application.Mappings.Member.ApplicationSourceMap;
 using EKSystemApp.Application.Mappings.Member.CityMap;
+using EKSystemApp.Application.Mappings.Member.CompanyMap;
+using EKSystemApp.Application.Mappings.Member.CountryAreaCodeMap;
 using EKSystemApp.Application.Mappings.Member.CountryMap;
+using EKSystemApp.Application.Mappings.Member.CurrencyMap;
 using EKSystemApp.Application.Mappings.Member.Education.DepartmentMap;
 using EKSystemApp.Application.Mappings.Member.Education.UniversityMap;
 using EKSystemApp.Application.Mappings.Member.ProvinceMap;
+using EKSystemApp.Application.Mappings.Member.SalaryTypeMap;
 using EKSystemApp.Application.Mappings.MenuMap;
 using EKSystemApp.Application.Mappings.MillitaryStatusesMap;
 using EKSystemApp.Application.Mappings.PositionsTypes;
@@ -90,6 +95,11 @@ namespace EKSystemApp.Application
                     new AdQuestionProfile(),
                     new ForignLanguagesProfile(),
                     new SkillAndExpertisesProfile(),
+                    new TurkuvazCompanyProfile(),
+                    new CountryAreaCodeProfile(),
+                    new SalaryTypeProfile(),
+                    new CurrencyProfile(),
+                    new ApplicationSourceProfile()
                 });
             });
         }
