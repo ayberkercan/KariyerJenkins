@@ -15,7 +15,7 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public DateTime EndDate { get; set; }
         public string? Logo { get; set; } = null;
         public int PeriotNumberId { get; set; }
-        public int AdwertNumberId { get; set; }
+        public int AdvertNumberId { get; set; }
         public string? TaskTypeName { get; set; }
         public string? CompanyName { get; set; }
         public string OrganizationName { get; set; }
@@ -23,20 +23,17 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public string DepartmentName { get; set; }
         public string UnitName { get; set; }
         public string WorkTypeName { get; set; }                                          
-
         public string PositionTypeName { get; set; }
         public string WorkModelName { get; set; }
         public string LocationName { get; set; }
         public string EducationLevelName { get; set; }
-        public string? ExperiencePeriodName { get; set; }
         public string MillitaryStatusName { get; set; }
         public string? JobCategoryName { get; set; }
-        public string? AddStatusName { get; set; }
-        public string? AddPublisherName { get; set; }
-        public ICollection<AdvertSkillAndExpertises> SkillAndExpertises { get; set; }
-        public ICollection<AdvertForignLanguages> ForeignLanguages { get; set; }
-        public ICollection<AdvertAdQuestions> AddQuestions { get; set; }
-        public string? OpenClosed { get; set; }
+        public string? AdvertStatusName { get; set; }
+        public string? AdvertPublisherName { get; set; }
+        public ICollection<AdvertSkillAndExpertises> AdvertSkillAndExpertises { get; set; }
+        public ICollection<AdvertForignLanguages> AdvertForignLanguages { get; set; }
+        public ICollection<AdvertAdQuestions> AdvertAdQuestions { get; set; }
         public string? WorkCategory { get; set; }
         public string? ExperiencePeriod { get; set; }
     }

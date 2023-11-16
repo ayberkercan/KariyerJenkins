@@ -1,4 +1,5 @@
 ﻿using EKSystemApp.Application.Interfaces;
+using EKSystemApp.Application.Interfaces.Adwerts;
 using EKSystemApp.Application.Interfaces.ILDAPAuthService;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Application.Tools;
@@ -9,6 +10,7 @@ using EKSystemApp.Persistence.DbInitializerService;
 using EKSystemApp.Persistence.DbInitiliazers;
 using EKSystemApp.Persistence.LDAPAuth;
 using EKSystemApp.Persistence.Repositories;
+using EKSystemApp.Persistence.Repositories.Adverts;
 using EKSystemApp.Persistence.Repositories.Eba;
 using EKSystemApp.Persistence.Repositories.User;
 using Microsoft.AspNetCore.Authentication.Certificate;
@@ -91,6 +93,7 @@ namespace EKSystemApp.Persistence
             services.AddScoped<IDbInitiliazerContext, DBInitiliazerContext>();
             services.AddScoped<IEbaRepository, EbaRepository>();
             services.AddScoped<ILDAPAuthService, LDAPAuthService>();
+            services.AddScoped<IAdvertQuestionsAndContent, AdvertQuestionsAndContentRepository>();
             #endregion
 
             //#region CORS 

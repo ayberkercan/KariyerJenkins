@@ -77,7 +77,6 @@ namespace EKSystemApp.Application
                     new JobCategoriesProfile(),
                     new MillitaryStatusesProfile(),
                     new PositionTypeProfile(),
-                    new SkillAndExpertisesProfile(),
                     new TaskTypeProfile(),
                     new WorkModelProfile(),
                     new WorkTypeProfile(),

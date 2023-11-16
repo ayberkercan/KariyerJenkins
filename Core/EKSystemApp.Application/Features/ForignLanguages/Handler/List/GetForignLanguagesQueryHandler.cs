@@ -16,8 +16,8 @@ namespace EKSystemApp.Application.Features.ForignLanguages.Handler.List
     public class GetForignLanguagesQueryHandler : IRequestHandler<GetForignLanguagesQueryRequest, ICollection<ForignLanguageDto>>
     {
         private readonly IMapper mapper;
-        private IGenericRepository<ForignLanguage> genericRepository;
-        public GetForignLanguagesQueryHandler(IMapper mapper, IGenericRepository<ForignLanguage> genericRepository) 
+        private IGenericRepository<AdvertForignLanguages> genericRepository;
+        public GetForignLanguagesQueryHandler(IMapper mapper, IGenericRepository<AdvertForignLanguages> genericRepository) 
         {
             this.mapper = mapper;
             this.genericRepository = genericRepository;

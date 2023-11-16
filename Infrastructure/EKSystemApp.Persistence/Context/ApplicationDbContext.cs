@@ -35,6 +35,7 @@ namespace EKSystemApp.Persistence.Context
         #region DBSET
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AdvertAdQuestions> AdvertAdQuestions { get; set; }
+        public DbSet<AdvertAdQuestionAnswerContent> AdvertAdQuestionAnswerContent { get; set; }
         public DbSet<AdvertForignLanguages> AdvertForignLanguages { get; set; }
         public DbSet <AdvertSkillAndExpertises> AdvertSkillAndExpertises { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
