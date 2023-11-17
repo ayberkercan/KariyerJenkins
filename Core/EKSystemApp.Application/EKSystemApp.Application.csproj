@@ -40,7 +40,6 @@
     <Folder Include="Features\Menus\Handlers\Update\" />
     <Folder Include="Features\Menus\Handlers\Delete\" />
     <Folder Include="Features\Menus\Handlers\Create\" />
-    <Folder Include="Features\Adverts\Queries\" />
     <Folder Include="Features\PositionsTypes\Commands\Remove\" />
     <Folder Include="Features\PositionsTypes\Commands\Update\" />
     <Folder Include="Features\PositionsTypes\Commands\Create\" />
