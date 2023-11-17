@@ -1,11 +1,16 @@
+using System.Net;
 using EKSystemApp.Application;
 using EKSystemApp.Domain.Entities;
+using EKSystemApp.Domain.Entities.ErrorDetails;
 using EKSystemApp.Persistence;
 using EKSystemApp.Persistence.Context;
 using EKSystemApp.Persistence.DbInitializerService;
 using EKSystemApp.Persistence.DbInitiliazers;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using Nest;
+
 string MyAllowOrigins = "_myAllowOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -74,6 +79,27 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/V1/swagger.json", "KARÝYER WEB API");
+    });
+}
+else
+{
+    app.UseExceptionHandler(appError =>
+    {
+        appError.Run(async context =>
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.ContentType = "application/json";
+            var exceptions = context.Features.Get<IExceptionHandlerFeature>();
+            if (exceptions != null)
+            {
+                await context.Response.WriteAsync(new ErrorDetails()
+                {
+                    StatusCode = context.Response.StatusCode,
+                    Message = exceptions.Error.Message
+                }.ToString());
+            }
+        });
+
     });
 }
 #region DbInitiliazer

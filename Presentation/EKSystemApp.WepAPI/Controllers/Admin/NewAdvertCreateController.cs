@@ -6,8 +6,6 @@ using EKSystemApp.Application.Features.Companies.Queries;
 using EKSystemApp.Application.Features.EBA.EbaDepartments.Queries;
 using EKSystemApp.Application.Features.EBA.EbaGroups.Queries;
 using EKSystemApp.Application.Features.EBA.EbaLocations.Queries;
-using EKSystemApp.Application.Features.EBA.EbaOrganization.Queries;
-using EKSystemApp.Application.Features.EBA.EbaPositions.Queries;
 using EKSystemApp.Application.Features.EBA.EbaUnits.Queries;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Application.Features.EducationLevels.Queries;
@@ -22,8 +20,6 @@ using EKSystemApp.Application.Features.WorkModels.Queries;
 using EKSystemApp.Application.Features.WorkTypes.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using GetEbaOrganizationQueryRequest = EKSystemApp.Application.Features.EBA.EbaOrganization.Queries.GetEbaOrganizationQueryRequest;
-using GetEbaPositionQueryRequest = EKSystemApp.Application.Features.EBA.EbaPositions.Queries.GetEbaPositionQueryRequest;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
 {

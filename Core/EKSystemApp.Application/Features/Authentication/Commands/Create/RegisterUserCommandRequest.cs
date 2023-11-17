@@ -5,6 +5,7 @@ namespace EKSystemApp.Application.Features.Authentication.Commands.Register
 {
     public class RegisterUserCommandRequest : IRequest<CreatedUserDto>
     {
+        
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string Registry { get; set; } = null!;
