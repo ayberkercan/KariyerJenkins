@@ -61,15 +61,16 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 AdvertPublisherName = request.AdvertPublisherName,
                 Brand = request.Brand,
                 WorkCategory = request.WorkCategory,
-           
+
 
             });
 
             var ForignLanguage = new AdvertForignLanguages();
 
-                ForignLanguage.AdvertCreateId = data.Id;
-                ForignLanguage.Id = Guid.NewGuid();
-                ForignLanguage.ForeignLanguageName = request.ForeignLanguages.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", ""); ;
+            ForignLanguage.AdvertCreateId = data.Id;
+            ForignLanguage.ForeignLanguageName = request.ForeignLanguageLevels;
+            ForignLanguage.Id = Guid.NewGuid();
+            ForignLanguage.ForeignLanguageName = request.ForeignLanguages.ToString()!.Replace("\"[", "[").Replace("]\"", "]").Replace("\\", ""); ;
 
             await ForignLanguageRepository.CreateAsync(ForignLanguage);
 

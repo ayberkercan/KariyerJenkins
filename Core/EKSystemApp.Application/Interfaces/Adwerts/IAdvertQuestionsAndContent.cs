@@ -6,6 +6,6 @@ namespace EKSystemApp.Application.Interfaces.Adwerts
 {
     public interface IAdvertQuestionsAndContent
     {
-        Task<ICollection<AdvertAdQuestions>> GetAdwertQuestionAndContent();
+        Task<List<AdvertAdQuestions>> GetAdwertQuestionAndContent();
     }
 }

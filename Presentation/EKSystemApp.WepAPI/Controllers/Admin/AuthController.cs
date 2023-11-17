@@ -24,9 +24,9 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             return Ok(result);
         }
         [HttpGet("[action]/{role}/{organization}")]
-        public async Task<IActionResult> GetUsersById(string role,string organization)
+        public async Task<IActionResult> GetUsersById(string role, string organization)
         {
-            var result = await _mediator.Send(new GetAllUsersInTableViewQueryRequest(role,organization));
+            var result = await _mediator.Send(new GetAllUsersInTableViewQueryRequest(role, organization));
             return Ok(result);
         }
         [HttpGet("[action]")]
@@ -57,6 +57,10 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpPost("[action]")]
         public async Task<IActionResult> Register(RegisterUserCommandRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var result = await _mediator.Send(request);
             return Created("", result);
         }
@@ -71,6 +75,6 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await _mediator.Send(new RemoveUserCommandRequest(id)));
         }
-        
+
     }
 }

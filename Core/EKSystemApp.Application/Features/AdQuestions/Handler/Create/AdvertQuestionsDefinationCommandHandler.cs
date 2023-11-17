@@ -39,7 +39,7 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
                 var content = new AdvertAdQuestionAnswerContent
                 {
                     AdvertAdQuestionsId = questions.Id,
-                    Name = item.Name,
+                    AnswerContentName = item.AnswerContentName,
                 };
                 await this.answerRepository.CreateAsync(content);
             }

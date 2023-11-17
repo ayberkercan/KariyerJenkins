@@ -30,9 +30,10 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public string MillitaryStatusName { get; set; }
         public string? AdvertStatusName { get; set; }
         public string? AdvertPublisherName { get; set; }
-        public List<object> SkillAndExpertises { get; set; }
-        public string ForeignLanguages { get; set; }
-        public List<object> AdQuestions { get; set; }
+        public List<object>? SkillAndExpertises { get; set; }
+        public string? ForeignLanguages { get; set; }
+        public string? ForeignLanguageLevels { get; set; }
+        public List<object>? AdQuestions { get; set; }
         public string? WorkCategory { get; set; }
     }
 }
