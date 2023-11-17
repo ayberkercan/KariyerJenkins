@@ -7,9 +7,11 @@ using AutoMapper;
 using EKSystemApp.Application.DTO.AdQuestion;
 using EKSystemApp.Application.DTO.AdvertQuestionsDefinations.Create;
 using EKSystemApp.Application.Features.AdQuestions.Command.Create;
+using EKSystemApp.Application.Features.Authentication.Handlers.RemoveHandlers;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using MediatR;
+using Nest;
 
 namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
 {
@@ -30,17 +32,21 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
             var questions = new AdvertAdQuestions
             {
                 AdQuestionName = request.AdQuestionName,
+                AnswerType = request.AnswerType,
+                AnswerContentDefination = request.AnswerContentDefination
             };
             var result = await this.repository.CreateAsync(questions);
-
-            foreach (var item in request.AnswerContent!)
+            if(request.AnswerContent != null)
             {
-                var content = new AdvertAdQuestionAnswerContent
+                foreach (var item in request.AnswerContent)
                 {
-                    AdvertAdQuestionsId = questions.Id,
-                    AnswerContentName = item.AnswerContentName,
-                };
-                await this.answerRepository.CreateAsync(content);
+                    var content = new AdvertAdQuestionAnswerContent
+                    {
+                        AdvertAdQuestionsId = questions.Id,
+                        AnswerContentName = item.AnswerContentName,
+                    };
+                    await this.answerRepository.CreateAsync(content);
+                }
             }
             return this.mapper.Map<AdQuestionsDto>(result);
         }

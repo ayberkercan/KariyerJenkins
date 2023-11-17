@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Application.Interfaces.Adwerts;
+﻿using EKSystemApp.Application.DTO.AdvertQuestionsDefinations.List;
+using EKSystemApp.Application.Interfaces.Adwerts;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Persistence.Context;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -14,10 +15,23 @@ namespace EKSystemApp.Persistence.Repositories.Adverts
         {
             _context = context;
         }
-        public async Task<List<AdvertAdQuestions>> GetAdwertQuestionAndContent()
+        public async Task<List<GetAdvertQuestionListDto>> GetAdwertQuestionAndContent()
         {
-            var data = await _context.AdvertAdQuestions.Include(p => p.AnswerContent).ToListAsync();
-            return data;
+            var data = await _context.AdvertAdQuestionAnswerContent.Include(p => p.AdvertAdQuestions).Select(p => new { p.Id, p.AnswerContentName, p.AdvertAdQuestions.AdQuestionName, p.AdvertAdQuestions.AnswerContentDefination, p.AdvertAdQuestions.AnswerType }).ToListAsync();
+
+            List<GetAdvertQuestionListDto> list = new List<GetAdvertQuestionListDto>();
+            foreach (var item in data) {
+                var result = new GetAdvertQuestionListDto
+                {
+                    AdQuestionName = item.AdQuestionName,
+                    AnswerContentDefination = item.AnswerContentDefination,
+                    AnswerContentName = item.AnswerContentName,
+                    Id = item.Id,
+                    AnswerContentType = item.AnswerType
+                };
+                list.Add(result);
+            }
+            return list;
         }
     }
 }

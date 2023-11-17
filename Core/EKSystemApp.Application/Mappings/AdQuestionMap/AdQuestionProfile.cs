@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EKSystemApp.Application.DTO.AdQuestion;
+using EKSystemApp.Application.DTO.AdvertQuestionsDefinations.List;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 
 namespace EKSystemApp.Application.Mappings.AdQuestionMap
@@ -9,6 +10,7 @@ namespace EKSystemApp.Application.Mappings.AdQuestionMap
         public AdQuestionProfile()
         {
             this.CreateMap<AdvertAdQuestions , AdQuestionsDto>().ReverseMap();
+            this.CreateMap<AdQuestionsDto, GetAdvertQuestionListDto>().ReverseMap();
         }
     }
 }

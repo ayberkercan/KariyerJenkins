@@ -1,4 +1,5 @@
 ﻿using EKSystemApp.Application.DTO.AdQuestion;
+using EKSystemApp.Application.DTO.AdvertQuestionsDefinations.List;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.AdQuestions.Questions
 {
-    public class GetAdQuestionsQueryRequest:IRequest<ICollection<AdQuestionsDto>>
+    public class GetAdQuestionsQueryRequest:IRequest<ICollection<GetAdvertQuestionListDto>>
     {
     }
 }
