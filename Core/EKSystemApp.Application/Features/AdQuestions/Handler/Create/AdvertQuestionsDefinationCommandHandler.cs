@@ -30,7 +30,6 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
             var questions = new AdvertAdQuestions
             {
                 AdQuestionName = request.AdQuestionName,
-                AdvertCreateId = request.AdvertCreateId,
             };
             var result = await this.repository.CreateAsync(questions);
 
