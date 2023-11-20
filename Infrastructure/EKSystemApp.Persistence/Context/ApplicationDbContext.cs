@@ -2,6 +2,7 @@
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Domain.Entities.Admin.Eba;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
+using EKSystemApp.Domain.Entities.Admin.SavedFilters;
 using EKSystemApp.Persistence.Configurations.AdminPages;
 using EKSystemApp.Persistence.Configurations.AppMenus;
 using EKSystemApp.Persistence.Configurations.AppUserCompanies;
@@ -65,6 +66,7 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<Location> Locations{ get; set; }
         public DbSet<Profession> Professions{ get; set; }
         public DbSet<EbaUnit> EbaUnits { get; set; }
+        public DbSet<SavedFiltersOfApprovedCandidateList> SavedFiltersOfApprovedCandidateList { get; set; }
 
         #endregion
 
