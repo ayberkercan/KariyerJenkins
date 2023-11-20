@@ -8,5 +8,7 @@ namespace EKSystemApp.Application.DTO.AdQuestion
         public string AdQuestionName { get; set; }
         public List<AdvertAdQuestionAnswerContent>? AnswerContent { get; set; }
         public Guid? AdvertCreateId { get; set; }
+        public string? AnswerContentDefination { get; set; }
+
     }
 }
