@@ -33,5 +33,14 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetAllFilteredAdvertsQueryRequest(request)));
         }
+
+        /// <summary>
+        /// Oluşturulan ilanların filtreleme nesneleri içeriklerini listeleyen endpoint.
+        /// </summary>
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllAvailableFilterProperties()
+        {
+            return Ok(await this.mediator.Send(new GetAllAvailableFilterPropertiesQueryRequest()));
+        }
     }
 }
