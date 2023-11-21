@@ -1,14 +1,14 @@
-﻿using EKSystemApp.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EKSystemApp.Domain.Entities.Admin.SavedFilters
+namespace EKSystemApp.Application.DTO.UI.SavedFilters.List
 {
-    public class SavedFiltersOfApprovedCandidateList : BaseEntity
+    public class SavedFiltersOfApprovedCandidateListDto
     {
+        public Guid Id { get; set; }
         public string Owner { get; set; }
         public string Caption { get; set; }
         public DateTime CreatedDate { get; set; }

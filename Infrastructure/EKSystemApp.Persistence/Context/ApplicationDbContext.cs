@@ -2,7 +2,7 @@
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Domain.Entities.Admin.Eba;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
-using EKSystemApp.Domain.Entities.Admin.SavedFilters;
+using EKSystemApp.Domain.Entities.UI.SavedFilters;
 using EKSystemApp.Persistence.Configurations.AdminPages;
 using EKSystemApp.Persistence.Configurations.AppMenus;
 using EKSystemApp.Persistence.Configurations.AppUserCompanies;

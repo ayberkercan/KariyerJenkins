@@ -36,6 +36,7 @@ using EKSystemApp.Application.Mappings.PositionsTypes;
 using EKSystemApp.Application.Mappings.Products;
 using EKSystemApp.Application.Mappings.SkillAndExpertisesMap;
 using EKSystemApp.Application.Mappings.TasksTypes;
+using EKSystemApp.Application.Mappings.UIMap;
 using EKSystemApp.Application.Mappings.WorkModelMap;
 using EKSystemApp.Application.Mappings.WorkTypeMap;
 using MediatR;
@@ -98,7 +99,8 @@ namespace EKSystemApp.Application
                     new CountryAreaCodeProfile(),
                     new SalaryTypeProfile(),
                     new CurrencyProfile(),
-                    new ApplicationSourceProfile()
+                    new ApplicationSourceProfile(),
+                    new SavedFilterProfile()
                 });
             });
         }

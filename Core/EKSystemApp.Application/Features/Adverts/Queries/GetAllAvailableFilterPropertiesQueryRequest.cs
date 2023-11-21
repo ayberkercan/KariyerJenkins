@@ -10,8 +10,5 @@ namespace EKSystemApp.Application.Features.Adverts.Queries
 {
     public class GetAllAvailableFilterPropertiesQueryRequest : IRequest<FilterPropertiesTreeDto>
     {
-        public GetAllAvailableFilterPropertiesQueryRequest()
-        {
-        }
     }
 }
