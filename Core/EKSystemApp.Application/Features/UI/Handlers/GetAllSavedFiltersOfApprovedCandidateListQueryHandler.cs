@@ -28,7 +28,7 @@ namespace EKSystemApp.Application.Features.UI.Handlers
 
         public async Task<ICollection<SavedFiltersOfApprovedCandidateListDto>> Handle(GetAllSavedFiltersOfApprovedCandidateListQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = (await repository.GetAllAsync()).ToList();
+            var data = (await repository.GetAllAsync()).Where(x=>x.Owner == request.Request.Owner).ToList();
             return mapper.Map<ICollection<SavedFiltersOfApprovedCandidateListDto>>(data);
         }
     }

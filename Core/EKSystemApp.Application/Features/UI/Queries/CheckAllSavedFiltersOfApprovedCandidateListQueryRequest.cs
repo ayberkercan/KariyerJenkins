@@ -9,11 +9,11 @@ namespace EKSystemApp.Application.Features.UI.Queries
 {
     public class CheckAllSavedFiltersOfApprovedCandidateListQueryRequest
     {
-        public string UserId { get; set; }
+        public string Owner { get; set; }
 
-        public CheckAllSavedFiltersOfApprovedCandidateListQueryRequest(string userId)
+        public CheckAllSavedFiltersOfApprovedCandidateListQueryRequest(string owner)
         {
-            UserId = userId;
+            Owner = owner;
         }
     }
 }

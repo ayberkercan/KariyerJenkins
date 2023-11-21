@@ -1,6 +1,7 @@
 ﻿using EKSystemApp.Application.Features.Adverts.Commands.Create;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.UI.Commands.Create;
+using EKSystemApp.Application.Features.UI.Commands.Delete;
 using EKSystemApp.Application.Features.UI.Commands.Update;
 using EKSystemApp.Application.Features.UI.Queries;
 using MediatR;
@@ -34,6 +35,16 @@ namespace EKSystemApp.WepAPI.Controllers.UI
         /// </summary>
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateSavedFilterOfApprovedCandidate(UpdateSavedFilterOfApprovedCandidateCommandRequest request)
+        {
+            return Ok(await this.mediator.Send(request));
+        }
+
+        /// <summary>
+        /// Kayıtlı aramalarım içerisindeki bir kaydı silen endpoint.
+        /// model içindeki id, owner bilgisi verilmesi yeterli ve ~~zorunludur~~.
+        /// </summary>
+        [HttpDelete("[action]")]
+        public async Task<IActionResult> DeleteSavedFilterOfApprovedCandidate(DeleteSavedFilterOfApprovedCandidateCommandRequest request)
         {
             return Ok(await this.mediator.Send(request));
         }

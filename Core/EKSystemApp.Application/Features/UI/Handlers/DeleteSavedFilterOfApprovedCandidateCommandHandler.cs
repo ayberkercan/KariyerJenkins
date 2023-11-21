@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EKSystemApp.Application.DTO.UI.SavedFilters.List;
 using EKSystemApp.Application.Features.UI.Commands.Create;
+using EKSystemApp.Application.Features.UI.Commands.Delete;
 using EKSystemApp.Application.Features.UI.Commands.Update;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.UI.SavedFilters;
@@ -13,28 +14,26 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.UI.Handlers
 {
-    public class UpdateSavedFilterOfApprovedCandidateCommandHandler : IRequestHandler<UpdateSavedFilterOfApprovedCandidateCommandRequest, SavedFiltersOfApprovedCandidateListDto>
+    public class DeleteSavedFilterOfApprovedCandidateCommandHandler : IRequestHandler<DeleteSavedFilterOfApprovedCandidateCommandRequest, SavedFiltersOfApprovedCandidateListDto>
     {
         private readonly IGenericRepository<SavedFiltersOfApprovedCandidateList> repository;
         private readonly IMapper mapper;
 
-        public UpdateSavedFilterOfApprovedCandidateCommandHandler(IGenericRepository<SavedFiltersOfApprovedCandidateList> repository, IMapper mapper)
+        public DeleteSavedFilterOfApprovedCandidateCommandHandler(IGenericRepository<SavedFiltersOfApprovedCandidateList> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
         }
 
-        public async Task<SavedFiltersOfApprovedCandidateListDto> Handle(UpdateSavedFilterOfApprovedCandidateCommandRequest request, CancellationToken cancellationToken)
+        public async Task<SavedFiltersOfApprovedCandidateListDto> Handle(DeleteSavedFilterOfApprovedCandidateCommandRequest request, CancellationToken cancellationToken)
         {
             var data = repository.GetByIdAsync(request.Request.Id).Result;
-            
-            if (data != null && (request.Request.Owner == data.Owner))
-            {
-                data.BackedUpCaption = data.Caption;
-                data.Caption = request.Request.Caption;
-                data.UpdatedDate = DateTime.Now;
 
-                await repository.UpdateAsync(data);
+            if (data != null && request.Request.Owner == data.Owner)
+            {
+                await repository.Remove(data);
+                
+                data = new SavedFiltersOfApprovedCandidateList();
             }
 
             return mapper.Map<SavedFiltersOfApprovedCandidateList, SavedFiltersOfApprovedCandidateListDto>(data);

@@ -1,4 +1,5 @@
 ﻿using EKSystemApp.Application.DTO.UI.SavedFilters.List;
+using EKSystemApp.Application.DTO.UI.SavedFilters.Update;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace EKSystemApp.Application.Features.UI.Commands.Update
 {
     public class UpdateSavedFilterOfApprovedCandidateCommandRequest : IRequest<SavedFiltersOfApprovedCandidateListDto>
     {
-        public SavedFiltersOfApprovedCandidateListDto Request { get; set; }
+        public UpdateSavedFiltersDto Request { get; set; }
 
-        public UpdateSavedFilterOfApprovedCandidateCommandRequest(SavedFiltersOfApprovedCandidateListDto request)
+        public UpdateSavedFilterOfApprovedCandidateCommandRequest(UpdateSavedFiltersDto request)
         {
             Request = request;
         }
