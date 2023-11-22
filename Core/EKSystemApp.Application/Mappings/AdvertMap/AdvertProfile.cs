@@ -9,8 +9,9 @@ namespace EKSystemApp.Application.Mappings.AdvertMap
     {
         public AdvertProfile()
         {
-            CreateMap<AdvertCreate, CreateAdvertDto>().ReverseMap();
-            CreateMap<AdvertCreate, AdvertListDto>().ReverseMap();
+            this.CreateMap<AdvertCreate, CreateAdvertDto>().ReverseMap();
+
+            this.CreateMap<AdvertCreate, AdvertListDto>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using EKSystemApp.Application.Interfaces;
+﻿using EKSystemApp.Application.ElasticSearcServiceAndMapping.Services;
+using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.Adwerts;
+using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Application.Interfaces.ILDAPAuthService;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Application.Tools;
@@ -94,6 +96,7 @@ namespace EKSystemApp.Persistence
             services.AddScoped<IEbaRepository, EbaRepository>();
             services.AddScoped<ILDAPAuthService, LDAPAuthService>();
             services.AddScoped<IAdvertQuestionsAndContent, AdvertQuestionsAndContentRepository>();
+            services.AddScoped(typeof(IElasticSearchService<>), typeof(ElasticSearchService<>));
             #endregion
 
             //#region CORS 

@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EKSystemApp.Application.Features.Adverts.Handler
 {
@@ -35,7 +36,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 {
                     PositionName = advertList.Select(x => x.PositionName).Distinct().ToList(),
                     PositionTypeName = advertList.Select(x => x.PositionTypeName).Distinct().ToList(),
-                    AdvertPublisherName = advertList.Select(x => x.AdvertPublisherName).Distinct().ToList(),
+                    AdvertPublisherName = advertList.Select(x => x.AdvertPublisherName!).Distinct().ToList(),
                     WorkTypeName = advertList.Select(x => x.WorkTypeName).Distinct().ToList(),
                     EducationLevelName = advertList.Select(x => x.EducationLevelName).Distinct().ToList(),
                     AdvertNumberId = advertList.Select(x => x.AdvertNumberId).Distinct().ToList(),
@@ -43,8 +44,9 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             }
             else
             {
-                return new FilterPropertiesTreeDto();
+                return this.mapper.Map<FilterPropertiesTreeDto>(advertList);
             }
+          
         }
     }
 }

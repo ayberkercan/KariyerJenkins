@@ -18,31 +18,44 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             this.mediator = mediator;
         }
 
-        /// <summary>
-        /// Bütün ilanları listeleyen endpoint.
-        /// </summary>
+        #region Bütün ilanları listeleyen endpoint.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAdverts()
         {
             return Ok(await this.mediator.Send(new GetAllAdvertsQueryRequest()));
         }
 
-        /// <summary>
-        /// Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
-        /// </summary>
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GetAllFilteredAdverts(CheckAllFilteredAdvertsQueryRequest request)
-        {
-            return Ok(await this.mediator.Send(new GetAllFilteredAdvertsQueryRequest(request)));
-        }
+        #endregion
 
-        /// <summary>
-        /// Oluşturulan ilanların filtreleme nesneleri içeriklerini listeleyen endpoint.
-        /// </summary>
+        #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllFilteredAdverts(DateTime? startDate,
+            DateTime? endDate,
+            string? positionName,
+            string? positionTypeName,
+            string? advertPublisherName,
+            string? workTypeName,
+            string? educationLewelName,
+            int? advertNumberId)
+        {
+            return Ok(await this.mediator.Send(new GetAllFilteredAdvertsQueryRequest(startDate,
+                                                                                        endDate,
+                                                                                        positionName,
+                                                                                        positionTypeName,
+                                                                                        advertPublisherName,
+                                                                                        workTypeName,
+                                                                                        educationLewelName,
+                                                                                        advertNumberId)));
+        }
+        #endregion
+
+        #region Oluşturulan ilanların filtreleme nesneleri içeriklerini listeleyen endpoint.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAvailableFilterProperties()
         {
             return Ok(await this.mediator.Send(new GetAllAvailableFilterPropertiesQueryRequest()));
         }
+        #endregion
+
     }
 }

@@ -1,20 +1,38 @@
 ﻿using EKSystemApp.Application.DTO.Advert.List;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.Adverts.Queries
 {
-    public class GetAllFilteredAdvertsQueryRequest : IRequest<ICollection<AdvertListDto>>
+    public class GetAllFilteredAdvertsQueryRequest : IRequest<AdvertListDto>
     {
-        public CheckAllFilteredAdvertsQueryRequest Request { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string? PositionName { get; set; }
+        public string? PositionTypeName { get; set; }
+        public string? AdvertPublisherName { get; set; }
+        public string? WorkTypeName { get; set; }
+        public string? EducationLevelName { get; set; }
+        public int? AdvertNumberId { get; set; }
 
-        public GetAllFilteredAdvertsQueryRequest(CheckAllFilteredAdvertsQueryRequest request)
-        { 
-            this.Request = request;
+        public GetAllFilteredAdvertsQueryRequest(
+            DateTime? startDate, 
+            DateTime? endDate, 
+            string? positionName,
+            string? positionTypeName,
+            string? advertPublisherName, 
+            string? workTypeName, 
+            string? educationLewelName, 
+            int? advertNumberId)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+            PositionName = positionName;
+            PositionTypeName = positionTypeName;
+            WorkTypeName = workTypeName;
+            AdvertPublisherName = educationLewelName;
+            WorkTypeName = workTypeName;
+            EducationLevelName = educationLewelName;
+            AdvertNumberId = advertNumberId;
         }
     }
 }

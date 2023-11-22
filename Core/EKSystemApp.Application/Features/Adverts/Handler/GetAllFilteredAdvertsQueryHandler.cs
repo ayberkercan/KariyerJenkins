@@ -4,17 +4,10 @@ using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using MediatR;
-using Nest;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.Adverts.Handler
 {
-    public class GetAllFilteredAdvertsQueryHandler : IRequestHandler<GetAllFilteredAdvertsQueryRequest, ICollection<AdvertListDto>>
+    public class GetAllFilteredAdvertsQueryHandler : IRequestHandler<GetAllFilteredAdvertsQueryRequest, AdvertListDto>
     {
         private readonly IGenericRepository<AdvertCreate> advertRepository;
         private readonly IMapper mapper;
@@ -25,20 +18,20 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             this.mapper = mapper;
         }
 
-        public async Task<ICollection<AdvertListDto>> Handle(GetAllFilteredAdvertsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<AdvertListDto> Handle(GetAllFilteredAdvertsQueryRequest request, CancellationToken cancellationToken)
         {
             var data = (await this.advertRepository.GetAllAsync()).ToList();
 
-            if (request.Request.Dto != null)
+            if (request != null)
             {
-                var dto = request.Request.Dto;
+                var dto = request;
 
                 data = FilterByDateRange(data, dto.StartDate, dto.EndDate);
-                data = FilterByString(data, dto.PositionName, x => x.PositionName);
-                data = FilterByString(data, dto.PositionTypeName, x => x.PositionTypeName);
-                data = FilterByString(data, dto.AdvertPublisherName, x => x.AdvertPublisherName);
-                data = FilterByString(data, dto.WorkTypeName, x => x.WorkTypeName);
-                data = FilterByString(data, dto.EducationLevelName, x => x.EducationLevelName);
+                data = FilterByString(data, dto.PositionName!, x => x.PositionName);
+                data = FilterByString(data, dto.PositionTypeName!, x => x.PositionTypeName);
+                data = FilterByString(data, dto.AdvertPublisherName!, x => x.AdvertPublisherName!);
+                data = FilterByString(data, dto.WorkTypeName!, x => x.WorkTypeName);
+                data = FilterByString(data, dto.EducationLevelName!, x => x.EducationLevelName);
 
                 if (dto.AdvertNumberId != null && dto.AdvertNumberId != 0)
                 {
@@ -46,7 +39,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 }
             }
 
-            return this.mapper.Map<ICollection<AdvertListDto>>(data);
+            return this.mapper.Map<AdvertListDto>(data);
         }
 
         private static List<AdvertCreate> FilterByDateRange(List<AdvertCreate> data, DateTime? startDate, DateTime? endDate)

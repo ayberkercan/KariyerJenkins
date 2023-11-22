@@ -1,21 +1,23 @@
 ﻿using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.DTO.Company.List;
 using EKSystemApp.Application.DTO.Menus.List;
+using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Application.Interfaces.IUser;
-using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using Nest;
 
 namespace EKSystemApp.Persistence.Repositories.User
 {
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
-        public UserRepository(ApplicationDbContext context)
+        private IElasticSearchService<UsersDetailsDto> userDetailelasticSearch;
+        private IElasticSearchService<MenuListDto> menuToListElasticSearch;
+        public UserRepository(ApplicationDbContext context, IElasticSearchService<UsersDetailsDto> userDetailelasticSearch, IElasticSearchService<MenuListDto> menuToListElasticSearch)
         {
             _context = context;
+            this.userDetailelasticSearch = userDetailelasticSearch;
+            this.menuToListElasticSearch = menuToListElasticSearch;
         }
         public async Task<ICollection<UsersDetailsDto>> GetUserRoleAndMenuListById(string role, string organization)
         {
@@ -118,6 +120,7 @@ namespace EKSystemApp.Persistence.Repositories.User
                             }
                         }
                     }
+                   
                     return userDetail;
 
                 case "HumanResources":
@@ -175,6 +178,7 @@ namespace EKSystemApp.Persistence.Repositories.User
         }
         public async Task<ICollection<UsersDetailsDto>> GetUserRoleAndMenuList()
         {
+            await this.menuToListElasticSearch.ChekIndex("Users");
             var data = await _context.AppUsers
               .Include(p => p.AppRoles)
               .Include(p => p.AppUserCompanies)
@@ -218,11 +222,12 @@ namespace EKSystemApp.Persistence.Repositories.User
                 };
                 userDetail.Add(users);
             }
+            await this.userDetailelasticSearch.InsertBulkDocuments("Users", userDetail);
             return userDetail;
         }
-
         public async Task<ICollection<MenuListDto>> GetUserToMenu(Guid id)
         {
+            await this.menuToListElasticSearch.ChekIndex("MenuList");
             var userMenu = await _context.AppUserMenus
                                         .Include(p => p.Menu)
                                         .Where(p => p.AppUserId == id)
@@ -238,9 +243,9 @@ namespace EKSystemApp.Persistence.Repositories.User
                 };
                 menuToUser.Add(dto);
             }
+            await this.menuToListElasticSearch.InsertBulkDocuments("MenuList", menuToUser);
             return menuToUser;
         }
-
         public async Task<ICollection<CompaniesListDto>> GetUserToCompaniesList(Guid id)
         {
             var organization = await _context
