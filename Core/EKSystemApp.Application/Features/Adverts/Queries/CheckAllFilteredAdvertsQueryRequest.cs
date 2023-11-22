@@ -10,11 +10,11 @@ namespace EKSystemApp.Application.Features.Adverts.Queries
 {
     public class CheckAllFilteredAdvertsQueryRequest
     {
-        public AdvertFilterPropertiesDto Dto {  get; set; }
+        public AdvertFilterPropertiesDto Request {  get; set; }
 
-        public CheckAllFilteredAdvertsQueryRequest(AdvertFilterPropertiesDto dto)
+        public CheckAllFilteredAdvertsQueryRequest(AdvertFilterPropertiesDto request)
         {
-            this.Dto = dto;
+            this.Request = request;
         }
     }
 }
