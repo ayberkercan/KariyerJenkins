@@ -32,8 +32,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpPost("[action]")]
         public async Task<IActionResult> GetAllFilteredAdverts(GetAllFilteredAdvertsQueryRequest request)
         {
-            await mediator.Send(request);
-            return Ok(request);
+            return Ok(await mediator.Send(request));
         }
         #endregion
 

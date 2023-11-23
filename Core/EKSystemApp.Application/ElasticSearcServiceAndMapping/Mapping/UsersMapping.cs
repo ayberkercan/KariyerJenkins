@@ -23,7 +23,7 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping
         public static CreateIndexDescriptor AdvertCreateElasticMapping(this CreateIndexDescriptor descriptor)
         {
             return descriptor.Map<AdvertListDto>(m => m.Properties(p => p
-                .Keyword(k => k.Name(n => n.Id))
+                .Keyword(k => k.Name(n => n.EbaProcessId))
                 .Text(t => t.Name(n => n.EducationLevelName))
                 .Text(t => t.Name(n => n.AdvertPublisherName))
                 .Text(t => t.Name(n => n.CompanyName))

@@ -36,6 +36,6 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public ICollection<AdvertAdQuestions> AdvertAdQuestions { get; set; }
         public string? WorkCategory { get; set; }
         public string? ExperiencePeriod { get; set; }
-        public int? EbaProcessId { get; set; }
+        public string? EbaProcessId { get; set; }
     }
 }

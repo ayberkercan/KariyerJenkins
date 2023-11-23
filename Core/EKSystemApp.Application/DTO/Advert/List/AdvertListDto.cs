@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.Advert.List
 {
-    public class AdvertListDto:BaseEntity
+    public class AdvertListDto
     {
         public string? WorkDefination { get; set; }
         public string? Brand { get; set; }
@@ -36,6 +36,6 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public string? AdvertPublisherName { get; set; }
         public string? WorkCategory { get; set; }
         public string? ExperiencePeriod { get; set; }
-        public int EbaProcessId { get; set; }
+        public string? EbaProcessId { get; set; }
     }
 } 

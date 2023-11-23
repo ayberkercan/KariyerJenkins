@@ -146,18 +146,18 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.txtIsTanim));
             
             CreateMap<IseAlimForm, AdvertListDto>()
-                .ForMember(dest => dest.WorkDefination, opt => opt.MapFrom(src => src.txtIsTanim))
-                .ForMember(dest => dest.PositionName, opt => opt.MapFrom(src => src.cmbUnvan_TEXT))
-                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.cmbSirket_TEXT))
-                .ForMember(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.cmbOrganizasyon_TEXT))
-                .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.cmbGrup_TEXT))
-                .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.cmbBolum_TEXT))
-                .ForMember(dest => dest.UnitName, opt => opt.MapFrom(src => src.cmbBirim_TEXT))
-                .ForMember(dest => dest.WorkTypeName, opt => opt.MapFrom(src => src.cmbCalismaSekli_TEXT))
-                .ForMember(dest => dest.LocationName, opt => opt.MapFrom(src => src.cmbLokasyon_TEXT))
-                .ForMember(dest => dest.EducationLevelName, opt => opt.MapFrom(src => src.cmbEgitimDurum_TEXT))
-                .ForMember(dest => dest.MillitaryStatusName, opt => opt.MapFrom(src => src.cmbAskerlikDurumu_TEXT))
-                .ForMember(dest => dest.EbaProcessId, opt => opt.MapFrom(src => src.txteBASurecNo));
+                .ForPath(dest => dest.WorkDefination, opt => opt.MapFrom(src => src.txtIsTanim))
+                .ForPath(dest => dest.PositionName, opt => opt.MapFrom(src => src.cmbUnvan_TEXT))
+                .ForPath(dest => dest.CompanyName, opt => opt.MapFrom(src => src.cmbSirket_TEXT))
+                .ForPath(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.cmbOrganizasyon_TEXT))
+                .ForPath(dest => dest.GroupName, opt => opt.MapFrom(src => src.cmbGrup_TEXT))
+                .ForPath(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.cmbBolum_TEXT))
+                .ForPath(dest => dest.UnitName, opt => opt.MapFrom(src => src.cmbBirim_TEXT))
+                .ForPath(dest => dest.WorkTypeName, opt => opt.MapFrom(src => src.cmbCalismaSekli_TEXT))
+                .ForPath(dest => dest.LocationName, opt => opt.MapFrom(src => src.cmbLokasyon_TEXT))
+                .ForPath(dest => dest.EducationLevelName, opt => opt.MapFrom(src => src.cmbEgitimDurum_TEXT))
+                .ForPath(dest => dest.MillitaryStatusName, opt => opt.MapFrom(src => src.cmbAskerlikDurumu_TEXT))
+                .ForPath(dest => dest.EbaProcessId, opt => opt.MapFrom(src => src.txteBASurecNo));
 
             CreateMap<IseAlimForeignLanguagesDataGrid, ForeignLanguagesDto>()
                 .ForPath(dest => dest.Language.Key, opt => opt.MapFrom(src => src.cmbYabanciDil_dtyYabanciDil))

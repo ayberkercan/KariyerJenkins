@@ -31,7 +31,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 .Where(advert => ebaForms.Any(ebaForm => ebaForm.EbaProcessId == advert.EbaProcessId))
                 .ToList();
 
-            return mapper.Map<ICollection<AdvertListDto>>(intersectedAdverts);
+            return mapper.Map<ICollection<AdvertListDto>>(portalAdverts);
         }
 
     }
