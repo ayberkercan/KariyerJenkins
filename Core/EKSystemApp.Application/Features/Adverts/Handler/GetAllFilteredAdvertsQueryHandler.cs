@@ -5,13 +5,6 @@ using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using MediatR;
-using Nest;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.Features.Adverts.Handler
 {

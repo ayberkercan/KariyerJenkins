@@ -44,7 +44,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
         {
             var advertList = advertRepository.GetAllAsync().Result.ToList();
             var positionTypeList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.PositionTypeName).Distinct().ToList()).OrderBy(x => x.Key).ToList();
-            var advertPublisherList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.AdvertPublisherName).Distinct().ToList()).OrderBy(x => x.Key).ToList();
+            var advertPublisherList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.AdvertPublisherName!).Distinct().ToList()).OrderBy(x => x.Key).ToList();
             var educationLevelList = this.mapper.Map<List<EbaStrKvpDto>>((await educationLevelRepository.GetAllAsync())
                         .Select(item =>
                         {
@@ -85,7 +85,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 {
                     PositionName = advertList.Select(x => x.PositionName).Distinct().ToList(),
                     PositionTypeName = advertList.Select(x => x.PositionTypeName).Distinct().ToList(),
-                    AdvertPublisherName = advertList.Select(x => x.AdvertPublisherName).Distinct().ToList(),
+                    AdvertPublisherName = advertList.Select(x => x.AdvertPublisherName!).Distinct().ToList(),
                     WorkTypeName = advertList.Select(x => x.WorkTypeName).Distinct().ToList(),
                     EducationLevelName = advertList.Select(x => x.EducationLevelName).Distinct().ToList(),
                     AdvertNumberId = advertList.Select(x => x.AdvertNumberId).Distinct().ToList(),
@@ -93,7 +93,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             }
             else
             {
-                return new FilterPropertiesTreeDto();
+                return this.mapper.Map<FilterPropertiesTreeDto>(advertList);
             }
         }*/
     }

@@ -2,7 +2,9 @@
 using EKSystemApp.Application.Features.Authentication.Commands.Remove;
 using EKSystemApp.Application.Features.Authentication.Commands.Update;
 using EKSystemApp.Application.Features.Authentication.Queries;
+using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Application.Tools;
+using EKSystemApp.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +15,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AuthController(IMediator mediator)
+        private readonly IElasticSearchService<AppUser> elasticSearchService;
+        public AuthController(IMediator mediator, IElasticSearchService<AppUser> elasticSearchService)
         {
             _mediator = mediator;
+            this.elasticSearchService = elasticSearchService;
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUsers()

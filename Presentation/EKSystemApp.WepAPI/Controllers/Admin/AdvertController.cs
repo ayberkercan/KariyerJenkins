@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Application.Features.Adverts.Commands.Create;
+﻿using Azure.Core;
+using EKSystemApp.Application.Features.Adverts.Commands.Create;
 using EKSystemApp.Application.Features.Adverts.Handler;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.Companies.Queries;
@@ -18,31 +19,31 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
             this.mediator = mediator;
         }
 
-        /// <summary>
-        /// Bütün ilanları listeleyen endpoint.
-        /// </summary>
+        #region Bütün ilanları listeleyen endpoint.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAdverts()
         {
             return Ok(await this.mediator.Send(new GetAllAdvertsQueryRequest()));
         }
 
-        /// <summary>
-        /// Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
-        /// </summary>
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GetAllFilteredAdverts(CheckAllFilteredAdvertsQueryRequest request)
-        {
-            return Ok(await this.mediator.Send(new GetAllFilteredAdvertsQueryRequest(request)));
-        }
+        #endregion
 
-        /// <summary>
-        /// Oluşturulan ilanların filtreleme nesneleri içeriklerini listeleyen endpoint.
-        /// </summary>
+        #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAllFilteredAdverts(GetAllFilteredAdvertsQueryRequest request)
+        {
+            await mediator.Send(request);
+            return Ok(request);
+        }
+        #endregion
+
+        #region Oluşturulan ilanların filtreleme nesneleri içeriklerini listeleyen endpoint.
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAvailableFilterProperties()
         {
             return Ok(await this.mediator.Send(new GetAllAvailableFilterPropertiesQueryRequest()));
         }
+        #endregion
+
     }
 }

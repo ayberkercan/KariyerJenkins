@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping;
 using EKSystemApp.Application.Mappings.AdPublisherMap;
 using EKSystemApp.Application.Mappings.AdQuestionMap;
 using EKSystemApp.Application.Mappings.AdStatusMap;

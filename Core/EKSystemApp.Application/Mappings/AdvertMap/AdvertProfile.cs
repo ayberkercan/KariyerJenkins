@@ -10,18 +10,18 @@ namespace EKSystemApp.Application.Mappings.AdvertMap
     {
         public AdvertProfile()
         {
-            CreateMap<AdvertCreate, CreateAdvertDto>().ReverseMap();
-            CreateMap<AdvertCreate, AdvertListDto>().ReverseMap();
-            CreateMap<string, EbaStrKvpDto>()
+            this.CreateMap<AdvertCreate, CreateAdvertDto>().ReverseMap();
+            this.CreateMap<AdvertCreate, AdvertListDto>().ReverseMap();
+            this.CreateMap<string, EbaStrKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
-            CreateMap<int, EbaStrKvpDto>()
+            this.CreateMap<int, EbaStrKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ToString()))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.ToString()));
-            CreateMap<string, EbaKvpDto>()
+            this.CreateMap<string, EbaKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
-            CreateMap<int, EbaIntKvpDto>()
+            this.CreateMap<int, EbaIntKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
         }

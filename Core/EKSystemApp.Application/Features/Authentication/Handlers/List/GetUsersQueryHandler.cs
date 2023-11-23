@@ -2,6 +2,7 @@
 using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.Features.Authentication.Queries;
 using EKSystemApp.Application.Interfaces;
+using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Application.Interfaces.IUser;
 using MediatR;
 
@@ -11,7 +12,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
     {
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;
-
+       
         public GetUsersQueryHandler(IUserRepository userRepository, IMapper mapper)
         {
             this.userRepository = userRepository;

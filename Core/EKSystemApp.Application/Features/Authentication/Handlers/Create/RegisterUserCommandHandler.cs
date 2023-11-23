@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.DTO.Authorization.User.Create;
 using EKSystemApp.Application.Features.Authentication.Commands.Register;
 using EKSystemApp.Application.Interfaces;
+using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +15,8 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
         private readonly IGenericRepository<AppUser> repository;
         private readonly IGenericRepository<AppUserCompany> companyRepository;
         private readonly IGenericRepository<AppUserMenu> companyMenuRepository;
+        private IElasticSearchService<AppUser> elasticSearch;
+
 
         private readonly IMapper mapper;
         private readonly UserManager<AppUser> userManager;
@@ -20,16 +24,18 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
             IGenericRepository<AppUser> repository,
             IMapper mapper, UserManager<AppUser> userManager,
             IGenericRepository<AppUserCompany> companyRepository,
-            IGenericRepository<AppUserMenu> companyMenuRepository)
+            IGenericRepository<AppUserMenu> companyMenuRepository, IElasticSearchService<AppUser> elasticSearch)
         {
             this.repository = repository;
             this.mapper = mapper;
             this.userManager = userManager;
             this.companyRepository = companyRepository;
             this.companyMenuRepository = companyMenuRepository;
+            this.elasticSearch = elasticSearch;
         }
         public async Task<CreatedUserDto> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
+            await this.elasticSearch.ChekIndex("AppUser");
             var data = new AppUser
             {
                 UserName = request.UserName,
@@ -63,6 +69,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
                 };
                 await companyMenuRepository.CreateAsync(menus);
             }
+            await this.elasticSearch.InsertDocument("AppUser", data);
             return mapper.Map<CreatedUserDto>(data);
         }
     }

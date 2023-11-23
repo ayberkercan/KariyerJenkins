@@ -9,7 +9,6 @@ using EKSystemApp.Persistence.DbInitiliazers;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using Nest;
 
 string MyAllowOrigins = "_myAllowOrigins";
 
@@ -73,6 +72,7 @@ builder.Services.AddCors(options => {
 
 var app = builder.Build();
 
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -81,6 +81,7 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/V1/swagger.json", "KARÝYER WEB API");
     });
 }
+
 else
 {
     app.UseExceptionHandler(appError =>
@@ -102,6 +103,7 @@ else
 
     });
 }
+
 #region DbInitiliazer
 
 using (var scope = app.Services.CreateScope())
