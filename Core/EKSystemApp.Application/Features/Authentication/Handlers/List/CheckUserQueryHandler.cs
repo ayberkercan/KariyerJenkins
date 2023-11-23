@@ -25,7 +25,6 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
             this.roleRepository = roleRepository;
             this.signInManager = signInManager;
             this.userMenu = userMenu;
-
         }
 
         public async Task<CheckUserResponseDto> Handle(CheckUserQueryRequest request, CancellationToken cancellationToken)
@@ -48,8 +47,6 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
                 dto.Menus = menus;
                 dto.Companies = company;
             }
-       
-
             return dto;
         }
     }

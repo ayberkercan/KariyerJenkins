@@ -1,6 +1,7 @@
 ﻿using EKSystemApp.Application.DTO.Advert.Create;
 using EKSystemApp.Application.DTO.Advert.List;
 using EKSystemApp.Application.DTO.Authorization.User;
+using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Domain.Entities;
 using Nest;
 
@@ -30,6 +31,15 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping
                 .Text(t => t.Name(n => n.UnitName))
                 .Text(t => t.Name(n => n.DepartmentName))
                 .Text(t => t.Name(n => n.GroupName))
+            ));
+        }
+        public static CreateIndexDescriptor MenuLisDtoElasticMapping(this CreateIndexDescriptor descriptor)
+        {
+            return descriptor.Map<MenuListDto>(m => m.Properties(p => p
+                .Keyword(k => k.Name(n => n.Id))
+                .Text(t => t.Name(n => n.Name))
+                .Text(t => t.Name(n => n.RouterIcon))
+                .Text(t => t.Name(n => n.RouterLink))
             ));
         }
     }

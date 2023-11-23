@@ -33,6 +33,7 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Services
             var response = await _client.Indices.CreateAsync(indexName,
                 ci => ci
                     .Index(indexName)
+                    .MenuLisDtoElasticMapping()
                     .Settings(s => s.NumberOfShards(3).NumberOfReplicas(1))
                     );
             return;
@@ -127,24 +128,29 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Services
             #endregion
 
             #region AnalyzeWildcard like sorgusu mantıgında çalışmakta
+            //var response = await _client.SearchAsync<T>(s => s
+            //                      .Index(indexName)
+            //                            .Query(q => q));
+            #endregion         
+
             var response = await _client.SearchAsync<T>(s => s
                                   .Index(indexName)
                                         .Query(q => q));
-            #endregion         
             return response.Documents.ToList();
         }
         public async Task InsertBulkDocuments(string indexName, List<T> entity)
         {
-            var k = await _client.IndexManyAsync(entity, index: indexName);
-            Console.Write(k);
+            await _client.IndexManyAsync(entity, index: indexName);
         }
         public async Task InsertDocument(string indexName, T entity)
         {
-            var response = await _client.CreateAsync(entity, q => q.Index(indexName));
-            if (response.ApiCall?.HttpStatusCode == 409)
+            var response = await _client.IndexAsync(entity, x => x.Index(indexName));
+            if(response == null)
             {
-                await _client.UpdateAsync<T>(entity, a => a.Index(indexName).Doc(entity));
+                return;
             }
+            if (response.ApiCall?.HttpStatusCode == 409)
+                await _client.UpdateAsync<T>(entity, a => a.Index(indexName).Doc(entity));
         }
     }
 }

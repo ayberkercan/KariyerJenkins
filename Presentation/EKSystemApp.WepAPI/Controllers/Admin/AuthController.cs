@@ -7,6 +7,7 @@ using EKSystemApp.Application.Tools;
 using EKSystemApp.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using static EKSystemApp.Domain.PermissonList.Permissions;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
 {
@@ -24,7 +25,8 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUsers()
         {
-            var result = await _mediator.Send(new GetUsersQueryRequest());
+            //var result = await _mediator.Send(new GetUsersQueryRequest());
+            var result = await this.elasticSearchService.GetDocuments("users");
             return Ok(result);
         }
         [HttpGet("[action]/{role}/{organization}")]
