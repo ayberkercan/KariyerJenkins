@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Application.Features.Adverts.Commands.Create;
+﻿using Azure.Core;
+using EKSystemApp.Application.Features.Adverts.Commands.Create;
 using EKSystemApp.Application.Features.Adverts.Handler;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.Companies.Queries;
@@ -28,25 +29,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         #endregion
 
         #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllFilteredAdverts(DateTime startDate,
-            DateTime endDate,
-            string? positionName,
-            string? positionTypeName,
-            string? advertPublisherName,
-            string? workTypeName,
-            string? educationLewelName,
-            int advertNumberId)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAllFilteredAdverts(GetAllFilteredAdvertsQueryRequest request)
         {
-            var result = await mediator.Send(new GetAllFilteredAdvertsQueryRequest(startDate,
-                                                                                        endDate,
-                                                                                        positionName,
-                                                                                        positionTypeName,
-                                                                                        advertPublisherName,
-                                                                                        workTypeName,
-                                                                                        educationLewelName,
-                                                                                        advertNumberId));
-            return Ok(result);
+            await mediator.Send(request);
+            return Ok(request);
         }
         #endregion
 

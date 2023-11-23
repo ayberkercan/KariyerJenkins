@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
+﻿using EKSystemApp.Domain.Common;
+using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.Advert.List
 {
-    public class AdvertListDto
+    public class AdvertListDto:BaseEntity
     {
         public string? WorkDefination { get; set; }
         public string? Brand { get; set; }

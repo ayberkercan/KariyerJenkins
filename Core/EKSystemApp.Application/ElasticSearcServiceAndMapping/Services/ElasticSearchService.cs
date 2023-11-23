@@ -33,7 +33,6 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Services
             var response = await _client.Indices.CreateAsync(indexName,
                 ci => ci
                     .Index(indexName)
-                    .UserElasticMapping()
                     .Settings(s => s.NumberOfShards(3).NumberOfReplicas(1))
                     );
             return;
