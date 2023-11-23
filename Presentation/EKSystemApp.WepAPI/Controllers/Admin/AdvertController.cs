@@ -29,23 +29,24 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
 
         #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllFilteredAdverts(DateTime? startDate,
-            DateTime? endDate,
+        public async Task<IActionResult> GetAllFilteredAdverts(DateTime startDate,
+            DateTime endDate,
             string? positionName,
             string? positionTypeName,
             string? advertPublisherName,
             string? workTypeName,
             string? educationLewelName,
-            int? advertNumberId)
+            int advertNumberId)
         {
-            return Ok(await this.mediator.Send(new GetAllFilteredAdvertsQueryRequest(startDate,
+            var result = await mediator.Send(new GetAllFilteredAdvertsQueryRequest(startDate,
                                                                                         endDate,
                                                                                         positionName,
                                                                                         positionTypeName,
                                                                                         advertPublisherName,
                                                                                         workTypeName,
                                                                                         educationLewelName,
-                                                                                        advertNumberId)));
+                                                                                        advertNumberId));
+            return Ok(result);
         }
         #endregion
 
