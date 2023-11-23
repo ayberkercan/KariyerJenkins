@@ -61,6 +61,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 AdvertPublisherName = request.AdvertPublisherName,
                 Brand = request.Brand,
                 WorkCategory = request.WorkCategory,
+                EbaProcessId = request.EbaProcessId
 
 
             });

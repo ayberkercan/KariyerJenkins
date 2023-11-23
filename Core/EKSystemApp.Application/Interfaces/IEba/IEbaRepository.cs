@@ -1,9 +1,11 @@
-﻿using EKSystemApp.Application.DTO.Authorization.User;
+﻿using EKSystemApp.Application.DTO.Advert.List;
+using EKSystemApp.Application.DTO.Authorization.User;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
 using EKSystemApp.Application.DTO.Member.CountriesTree;
 using EKSystemApp.Application.DTO.Member.Education.UniversitiesTree;
 using EKSystemApp.Application.DTO.Menus.List;
+using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Domain.Entities;
 
@@ -23,5 +25,6 @@ namespace EKSystemApp.Application.Interfaces.IUser
         Task<ICollection<EbaStrKvpDto>> GetEbaEducationDepartments();
         Task<ICollection<EbaStrKvpDto>> GetEbaSelectableCompanies();
         Task<ICollection<EbaStrKvpDto>> GetEbaApplicationSources();
+        Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(GetAllFilteredAdvertsQueryRequest request = null);
     }
 }

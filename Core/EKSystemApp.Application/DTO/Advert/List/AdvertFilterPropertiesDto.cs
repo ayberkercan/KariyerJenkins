@@ -15,6 +15,6 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public string? AdvertPublisherName { get; set; }
         public string? WorkTypeName { get; set; }
         public string? EducationLevelName { get; set; }
-        public int? AdvertNumberId { get; set; }
+        public string? AdvertNumberId { get; set; }
     }
 }

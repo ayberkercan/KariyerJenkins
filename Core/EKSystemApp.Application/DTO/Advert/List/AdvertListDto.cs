@@ -33,5 +33,6 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public string AdvertPublisherName { get; set; }
         public string Brand { get; set; }
         public string WorkCategory { get; set; }
+        public int EbaProcessId { get; set; }
     }
 } 

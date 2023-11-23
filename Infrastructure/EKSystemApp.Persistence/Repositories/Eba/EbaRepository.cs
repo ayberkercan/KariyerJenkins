@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
 using Azure.Core;
+using EKSystemApp.Application.DTO.Advert.List;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
 using EKSystemApp.Application.DTO.Member.CountriesTree;
 using EKSystemApp.Application.DTO.Member.Education.UniversitiesTree;
 using EKSystemApp.Application.DTO.Menus.List;
+using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.eBA;
+using EKSystemApp.Domain.Entities.eBA.EntitiesOfSystemTables;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
 using EKSystemApp.Domain.Entities.eBA.GeneralSkills;
 using EKSystemApp.Domain.Entities.Member.ApplicationSource;
@@ -17,6 +20,7 @@ using EKSystemApp.Domain.Entities.Member.Education.Departments;
 using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Domain.Entities.Member.TurkuvazCompanies;
 using EKSystemApp.Persistence.Context;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EKSystemApp.Persistence.Repositories.Eba
 {
@@ -294,6 +298,38 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             var result = _mapper.Map<ICollection<M_ApplicationSources>, ICollection<EbaStrKvpDto>>(query);
 
             return result;
+        }
+
+        public async Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(GetAllFilteredAdvertsQueryRequest request = null)
+        {
+
+            var formDetails = (from frm in _context.IseAlimForm
+                               join fd in _context.FlowDocuments on frm.ID equals fd.FILEPROFILEID
+                               join lf in _context.LiveFlows on fd.PROCESSID equals lf.ID
+                               where lf.DELETED == 0
+                               select frm); //ebadaki işe alım formları listelenir
+
+            if (request != null)
+            {
+                var dto = request.Request.Request; //filtreleme propertyleri tanımlanır
+
+                //uygun kayıtlar için filtreleme başlangıç.
+                if (!String.IsNullOrEmpty(dto.PositionName))
+                {
+                    formDetails = formDetails.Where(x => x.cmbUnvan == dto.PositionName);
+                }
+                if (!String.IsNullOrEmpty(dto.WorkTypeName))
+                {
+                    formDetails = formDetails.Where(x => x.cmbCalismaSekli == dto.WorkTypeName);
+                }
+                if (!String.IsNullOrEmpty(dto.EducationLevelName))
+                {
+                    formDetails = formDetails.Where(x => x.cmbEgitimDurum == dto.EducationLevelName);
+                }
+                //uygun kayıtlar için filtreleme bitiş
+            }
+
+            return _mapper.Map<ICollection<AdvertListDto>>(formDetails); //sonucu çevirip uygun kayıtları döndürür.
         }
     }
 }

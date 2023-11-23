@@ -35,5 +35,6 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
         public string? ForeignLanguageLevels { get; set; }
         public List<object>? AdQuestions { get; set; }
         public string? WorkCategory { get; set; }
+        public int? EbaProcessId { get; set; }
     }
 }

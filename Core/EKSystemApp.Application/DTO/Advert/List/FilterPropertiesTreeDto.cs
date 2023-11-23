@@ -10,11 +10,11 @@ namespace EKSystemApp.Application.DTO.Advert.List
 {
     public class FilterPropertiesTreeDto
     {
-        public ICollection<string> PositionName { get; set; }
-        public ICollection<string> PositionTypeName { get; set; }
-        public ICollection<string> AdvertPublisherName { get; set; }
-        public ICollection<string> WorkTypeName { get; set; }
-        public ICollection<string> EducationLevelName { get; set; }
-        public ICollection<int> AdvertNumberId { get; set; }
+        public ICollection<EbaStrKvpDto> PositionName { get; set; }
+        public ICollection<EbaStrKvpDto> PositionTypeName { get; set; }
+        public ICollection<EbaStrKvpDto> AdvertPublisherName { get; set; }
+        public ICollection<EbaStrKvpDto> WorkTypeName { get; set; }
+        public ICollection<EbaStrKvpDto> EducationLevelName { get; set; }
+        public ICollection<EbaStrKvpDto> AdvertNumberId { get; set; }
     }
 }

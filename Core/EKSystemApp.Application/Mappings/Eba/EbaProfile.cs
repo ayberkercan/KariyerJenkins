@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EKSystemApp.Application.DTO.Advert.List;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.DTO.Eba.TMP.OrganizationTree;
 using EKSystemApp.Domain.Entities.eBA;
@@ -47,6 +48,9 @@ namespace EKSystemApp.Application.Mappings.Eba
             CreateMap<Titles, EbaKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
+            CreateMap<Titles, EbaStrKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID.ToString()))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
 
             CreateMap<Locations, EbaKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID))
@@ -59,9 +63,16 @@ namespace EKSystemApp.Application.Mappings.Eba
             CreateMap<WorkingType, EbaKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
+            CreateMap<WorkingType, EbaStrKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID.ToString()))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
 
             CreateMap<EducationStatus, EbaKvpDto>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
+            
+            CreateMap<EducationStatus, EbaStrKvpDto>()
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.ID.ToString()))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.TANIM));
 
             CreateMap<ShiftStatus, EbaStrKvpDto>()
@@ -133,6 +144,20 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForPath(dest => dest.Gender.Key, opt => opt.MapFrom(src => src.cmbCinsiyet))
                 .ForPath(dest => dest.Gender.Value, opt => opt.MapFrom(src => src.cmbCinsiyet_TEXT))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.txtIsTanim));
+            
+            CreateMap<IseAlimForm, AdvertListDto>()
+                .ForMember(dest => dest.WorkDefination, opt => opt.MapFrom(src => src.txtIsTanim))
+                .ForMember(dest => dest.PositionName, opt => opt.MapFrom(src => src.cmbUnvan_TEXT))
+                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.cmbSirket_TEXT))
+                .ForMember(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.cmbOrganizasyon_TEXT))
+                .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.cmbGrup_TEXT))
+                .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.cmbBolum_TEXT))
+                .ForMember(dest => dest.UnitName, opt => opt.MapFrom(src => src.cmbBirim_TEXT))
+                .ForMember(dest => dest.WorkTypeName, opt => opt.MapFrom(src => src.cmbCalismaSekli_TEXT))
+                .ForMember(dest => dest.LocationName, opt => opt.MapFrom(src => src.cmbLokasyon_TEXT))
+                .ForMember(dest => dest.EducationLevelName, opt => opt.MapFrom(src => src.cmbEgitimDurum_TEXT))
+                .ForMember(dest => dest.MillitaryStatusName, opt => opt.MapFrom(src => src.cmbAskerlikDurumu_TEXT))
+                .ForMember(dest => dest.EbaProcessId, opt => opt.MapFrom(src => src.txteBASurecNo));
 
             CreateMap<IseAlimForeignLanguagesDataGrid, ForeignLanguagesDto>()
                 .ForPath(dest => dest.Language.Key, opt => opt.MapFrom(src => src.cmbYabanciDil_dtyYabanciDil))

@@ -12,6 +12,12 @@
         public string? Value { get; set; }
     }
 
+    public class EbaIntKvpDto
+    {
+        public int? Key { get; set; }
+        public int? Value { get; set; }
+    }
+
     public class EbaOrgKeyStrKvpDto
     {
         public string? Key { get; set; }
