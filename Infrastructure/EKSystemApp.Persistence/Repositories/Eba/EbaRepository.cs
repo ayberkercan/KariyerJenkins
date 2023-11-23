@@ -311,7 +311,7 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
             if (request != null)
             {
-                var dto = request.Request.Request; //filtreleme propertyleri tanımlanır
+                var dto = request; //filtreleme propertyleri tanımlanır
 
                 //uygun kayıtlar için filtreleme başlangıç.
                 if (!String.IsNullOrEmpty(dto.PositionName))

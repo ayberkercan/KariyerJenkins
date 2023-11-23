@@ -3,7 +3,7 @@ using MediatR;
 
 namespace EKSystemApp.Application.Features.Adverts.Queries
 {
-    public class GetAllFilteredAdvertsQueryRequest : IRequest<AdvertListDto>
+    public class GetAllFilteredAdvertsQueryRequest : IRequest<ICollection<AdvertListDto>>
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

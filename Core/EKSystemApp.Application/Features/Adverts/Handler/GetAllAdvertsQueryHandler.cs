@@ -19,31 +19,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             this.advertRepository = advertRepository;
             this.ebaRepository = ebaRepository;
             this.mapper = mapper;
-            this.elasticSearch = elasticSearch;
         }
-
-        /*public async Task<ICollection<AdvertListDto>> Handle(GetAllAdvertsQueryRequest request, CancellationToken cancellationToken)
-        {
-            var data = (await this.advertRepository.GetAllAsync()).ToList(); //portalda kayıtlı ilanlar
-
-            var ebaData = await ebaRepository.GetEbaEmployeeRequestForms(); //eBA'da oluşturulan formlar
-
-            var intersectedDataList = new List<AdvertCreate>(); //birleşik kayıtları atacağımız yeni liste tanımlanır
-
-            foreach (var advert in data) //eBA ile eşleşen processId bilgisine ait portaldaki kayıtları dönerek kontrol ediyoruz.
-            {
-                foreach (var ebaForm in ebaData)
-                {
-                    if (ebaForm.EbaProcessId == advert.EbaProcessId)
-                    {
-                        intersectedDataList.Add(advert);
-                    }
-                }
-            }
-
-            return this.mapper.Map<ICollection<AdvertListDto>>(intersectedDataList);
-        }*/
-
 
         public async Task<ICollection<AdvertListDto>> Handle(GetAllAdvertsQueryRequest request, CancellationToken cancellationToken)
         {

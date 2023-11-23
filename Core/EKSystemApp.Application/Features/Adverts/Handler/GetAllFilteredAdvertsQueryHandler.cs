@@ -27,7 +27,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
 
             var ebaForms = await ebaRepository.GetEbaEmployeeRequestForms(request); //eBA'da oluşturulan formlar
             
-            var filterDto = request.Request.Request; //filtre içeriği tanımlanır.
+            var filterDto = request; //filtre içeriği tanımlanır.
 
             var intersectedAdverts = portalAdverts //processId bilgisi eşleşen veriler bir liste değişkenine eklenir.
                 .Where(advert => ebaForms.Any(ebaForm => ebaForm.EbaProcessId == advert.EbaProcessId))
