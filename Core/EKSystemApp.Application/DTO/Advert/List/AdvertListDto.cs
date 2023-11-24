@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.Advert.List
 {
-    public class AdvertListDto
+    public class AdvertListDto : BaseEntity
     {
         public string? WorkDefination { get; set; }
         public string? Brand { get; set; }

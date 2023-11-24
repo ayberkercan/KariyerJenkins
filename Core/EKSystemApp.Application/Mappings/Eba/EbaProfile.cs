@@ -146,6 +146,7 @@ namespace EKSystemApp.Application.Mappings.Eba
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.txtIsTanim));
             
             CreateMap<IseAlimForm, AdvertListDto>()
+                .ForPath(dest => dest.Id, opt => opt.MapFrom(src => new Guid()))
                 .ForPath(dest => dest.WorkDefination, opt => opt.MapFrom(src => src.txtIsTanim))
                 .ForPath(dest => dest.PositionName, opt => opt.MapFrom(src => src.cmbUnvan_TEXT))
                 .ForPath(dest => dest.CompanyName, opt => opt.MapFrom(src => src.cmbSirket_TEXT))
