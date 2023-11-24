@@ -35,7 +35,6 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
         }
         public async Task<CreatedUserDto> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
-            await this.elasticSearch.ChekIndex("AppUser");
             var data = new AppUser
             {
                 UserName = request.UserName,
@@ -69,7 +68,7 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
                 };
                 await companyMenuRepository.CreateAsync(menus);
             }
-            await this.elasticSearch.InsertDocument("AppUser", data);
+            await this.elasticSearch.InsertDocument("appuser", data);
             return mapper.Map<CreatedUserDto>(data);
         }
     }
