@@ -16,7 +16,7 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Remove
             this.questionContentRepository = questionContentRepository;
         }
 
-        public async Task<Unit> Handle(RemoveAdvertQuestionDefinationRequest request, CancellationToken cancellationToken)
+        public async Task<MediatR.Unit> Handle(RemoveAdvertQuestionDefinationRequest request, CancellationToken cancellationToken)
         {
             var deletedContent = await this.questionContentRepository.GetByIdAsync(request.Id);
          
@@ -30,7 +30,7 @@ namespace EKSystemApp.Application.Features.AdQuestions.Handler.Remove
             {
                 await this.advertRepository.Remove(deletedAdvert);
             }
-            return Unit.Value;
+            return MediatR.Unit.Value;
         }
     }
 }

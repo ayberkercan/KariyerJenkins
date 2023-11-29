@@ -3,10 +3,10 @@ using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 
 namespace EKSystemApp.Domain.Entities.Admin.AdminBaseEntity
 {
-    public class MillitaryStatus : BaseEntity
+    public class Group : BaseEntity
     {
-        public string? MillitaryStatusKey { get; set; }
-        public string MillitaryStatusName { get; set; }
+        public string? GroupKey { get; set; }
+        public string GroupName { get; set; }
         public Guid AdvertCreateId { get; set; }
         public AdvertCreate AdvertCreate { get; set; }
     }

@@ -3,18 +3,9 @@ using EKSystemApp.Application.DTO.Advert.List;
 using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Interfaces;
-using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using EKSystemApp.Domain.Entities.eBA;
 using MediatR;
-using Nest;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EKSystemApp.Application.Features.Adverts.Handler
 {
@@ -43,7 +34,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
         public async Task<FilterPropertiesTreeDto> Handle(GetAllAvailableFilterPropertiesQueryRequest request, CancellationToken cancellationToken)
         {
             var advertList = advertRepository.GetAllAsync().Result.ToList();
-            var positionTypeList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.PositionTypeName).Distinct().ToList()).OrderBy(x => x.Key).ToList();
+            var positionTypeList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.Positions).Distinct().ToList()).OrderBy(x => x.Key).ToList();
             var advertPublisherList = this.mapper.Map<List<EbaStrKvpDto>>(advertList.Select(x => x.AdvertPublisherName!).Distinct().ToList()).OrderBy(x => x.Key).ToList();
             var educationLevelList = this.mapper.Map<List<EbaStrKvpDto>>((await educationLevelRepository.GetAllAsync())
                         .Select(item =>

@@ -36,7 +36,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             if (filterDto != null) //eBA'dan uygun kayıtlar döndükten sonra eBA'da olmayan, portaldaki bilgiler için ikinci kez filtrelenir
             {
                 intersectedAdverts = FilterByDateRange(intersectedAdverts, filterDto.StartDate, filterDto.EndDate);
-                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionTypeName, x => x.PositionTypeName);
+                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionTypeName, x => x.Positions.Select(p=>p.PositionName).ToString());
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertPublisherName, x => x.AdvertPublisherName);
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertNumberId.ToString(), x => x.AdvertNumberId.ToString());
             }
@@ -54,7 +54,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 endDate = endDate.Value.Date.AddDays(1).AddTicks(-1);
 
                 filteredData = data
-                    .Where(result => result.StartDate <= endDate && result.EndDate.Date >= startDate)
+                    .Where(result => result.StartDate <= endDate && result.EndDate >= startDate)
                     .ToList();
             }
 

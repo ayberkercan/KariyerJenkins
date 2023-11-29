@@ -1,5 +1,4 @@
 ﻿using EKSystemApp.Domain.Common;
-using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 
 namespace EKSystemApp.Domain.Entities
 {
@@ -7,7 +6,8 @@ namespace EKSystemApp.Domain.Entities
     {
         public string CompanyName { get; set; }
         public ICollection<AppUserCompany> AppUserCompanies { get; set; }
-    
+        public ICollection<CompanyKey> CompanyKeys { get; set; }
+
 
     }
 }

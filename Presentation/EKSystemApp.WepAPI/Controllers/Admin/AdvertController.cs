@@ -1,8 +1,4 @@
-﻿using Azure.Core;
-using EKSystemApp.Application.Features.Adverts.Commands.Create;
-using EKSystemApp.Application.Features.Adverts.Handler;
-using EKSystemApp.Application.Features.Adverts.Queries;
-using EKSystemApp.Application.Features.Companies.Queries;
+﻿using EKSystemApp.Application.Features.Adverts.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

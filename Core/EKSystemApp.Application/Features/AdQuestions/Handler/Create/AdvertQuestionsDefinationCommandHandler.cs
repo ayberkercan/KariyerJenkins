@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using EKSystemApp.Application.DTO.AdQuestion;
-using EKSystemApp.Application.DTO.AdvertQuestionsDefinations.Create;
 using EKSystemApp.Application.Features.AdQuestions.Command.Create;
-using EKSystemApp.Application.Features.Authentication.Handlers.RemoveHandlers;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using MediatR;
-using Nest;
 
 namespace EKSystemApp.Application.Features.AdQuestions.Handler.Create
 {

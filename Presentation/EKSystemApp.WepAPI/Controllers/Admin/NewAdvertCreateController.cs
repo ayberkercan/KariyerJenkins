@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Application.Features.AdPublishers;
+﻿using System.Net.Http.Headers;
+using EKSystemApp.Application.Features.AdPublishers;
 using EKSystemApp.Application.Features.AdQuestions.Questions;
 using EKSystemApp.Application.Features.AdStatuses.Queries;
 using EKSystemApp.Application.Features.Adverts.Commands.Create;
@@ -29,10 +30,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     {
 
         private readonly IMediator mediator;
-
-        public NewAdvertCreateController(IMediator mediator)
+        private readonly IWebHostEnvironment hostingEnvironment;
+        public NewAdvertCreateController(IMediator mediator, IWebHostEnvironment hostingEnvironment)
         {
             this.mediator = mediator;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost("[action]")]
@@ -179,6 +181,5 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetWorkTypesQueryRequest()));
         }
-        
     }
 }
