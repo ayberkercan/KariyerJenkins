@@ -8,11 +8,12 @@ namespace EKSystemApp.Persistence.Configurations.AdminPages
     {
         public void Configure(EntityTypeBuilder<AdvertCreate> builder)
         {
+            #region Advert Create
             builder
-               .HasMany(p => p.MillitaryStatuses)
-               .WithOne(p => p.AdvertCreate)
-               .HasForeignKey(p => p.AdvertCreateId)
-               .OnDelete(DeleteBehavior.NoAction);
+          .HasMany(p => p.MillitaryStatuses)
+          .WithOne(p => p.AdvertCreate)
+          .HasForeignKey(p => p.AdvertCreateId)
+          .OnDelete(DeleteBehavior.NoAction);
             builder
                .HasMany(p => p.MillitaryStatuses)
                .WithOne(p => p.AdvertCreate)
@@ -73,11 +74,11 @@ namespace EKSystemApp.Persistence.Configurations.AdminPages
                 .WithOne(p => p.AdvertCreate)
                 .HasForeignKey(p => p.AdvertCreateId)
                 .OnDelete(DeleteBehavior.NoAction);
-             builder
-                .HasMany(p => p.AdvertStatuses)
-                .WithOne(p => p.AdvertCreate)
-                .HasForeignKey(p => p.AdvertCreateId)
-                .OnDelete(DeleteBehavior.NoAction);
+            builder
+               .HasMany(p => p.AdvertStatuses)
+               .WithOne(p => p.AdvertCreate)
+               .HasForeignKey(p => p.AdvertCreateId)
+               .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasMany(p => p.WorkCategories)
                 .WithOne(p => p.AdvertCreate)
@@ -109,6 +110,12 @@ namespace EKSystemApp.Persistence.Configurations.AdminPages
                 .WithOne(p => p.AdvertCreate)
                 .HasForeignKey(p => p.AdvertCreateId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            #endregion
+
+            #region User - Advert
+            builder.HasOne(p=>p.AppUser).WithMany(p=>p.AdvertCreates).HasForeignKey(p=>p.AppUserId).OnDelete(DeleteBehavior.NoAction);
+            #endregion
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
+using Microsoft.AspNetCore.Identity;
 
 namespace EKSystemApp.Domain.Entities
 {
@@ -11,5 +12,6 @@ namespace EKSystemApp.Domain.Entities
         public AppRole AppRoles { get; set; }
         public ICollection<AppUserCompany> AppUserCompanies { get; set; }
         public ICollection<AppUserMenu> AppUserMenus { get; set; }
+        public ICollection<AdvertCreate> AdvertCreates { get; set; }
     }
 }

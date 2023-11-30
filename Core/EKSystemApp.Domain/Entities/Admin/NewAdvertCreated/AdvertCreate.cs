@@ -4,6 +4,8 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
 {
     public class AdvertCreate : BaseEntity
     {
+        public Guid AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         public string? WorkDefination { get; set; }
         public ICollection<Brand> Brands { get; set; }
         public string? PublicQuality { get; set; }
@@ -32,5 +34,6 @@ namespace EKSystemApp.Domain.Entities.Admin.NewAdvertCreated
         public ICollection<ExperiencePeriod>? ExperiencePeriods { get; set; }
         public string? EbaProcessId { get; set; }
         public string? ProcessNumber { get; set; }
+       
     }
 }

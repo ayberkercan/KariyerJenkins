@@ -98,7 +98,6 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             #endregion
 
         }
-
         public async Task<CreateAdvertDto> Handle(NewAdvertCreateCommandRequest request, CancellationToken cancellationToken)
         {
             #region Create Advert
@@ -106,6 +105,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
              .CreateAsync(
              new AdvertCreate
              {
+                 AppUserId = request.AppUserId,
                  WorkDefination = request.WorkDefination,
                  PublicQuality = request.PublicQuality,
                  StartDate = request.StartDate,
@@ -119,6 +119,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             #endregion
 
             #region List Added
+
             var newBrand = await this.BrandRepository
                 .CreateAsync(
                 new Brand
@@ -262,6 +263,6 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             #endregion
             return this.mapper.Map<CreateAdvertDto>(newAdvert);
         }
-    
+
     }
 }

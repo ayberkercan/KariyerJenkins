@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using EKSystemApp.Application.Features.AdPublishers;
+﻿using EKSystemApp.Application.Features.AdPublishers;
 using EKSystemApp.Application.Features.AdQuestions.Questions;
 using EKSystemApp.Application.Features.AdStatuses.Queries;
 using EKSystemApp.Application.Features.Adverts.Commands.Create;
@@ -115,12 +114,12 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllForignLanguage()
+        public async Task<IActionResult> GetAllForeignLanguage()
         {
             return Ok(await this.mediator.Send(new GetForignLanguagesQueryRequest()));
         }
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllForignLanguageLevel()
+        public async Task<IActionResult> GetAllForeignLanguageLevel()
         {
             return Ok(await this.mediator.Send(new GetEbaForeignLanguageLevelsQueryRequest()));
         }

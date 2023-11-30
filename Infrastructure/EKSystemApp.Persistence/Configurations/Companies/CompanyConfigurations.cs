@@ -10,27 +10,26 @@ namespace EKSystemApp.Persistence.Configurations.Companies
         {
 
             builder.HasData(
+               new Company
+               {
+                   Id = Guid.NewGuid(),
+                   CompanyName = "Holding",
+               },
+               new Company
+               {
+                   Id = Guid.NewGuid(),
+                   CompanyName = "D&R"
+               },
                 new Company
                 {
                     Id = Guid.NewGuid(),
-                    CompanyName = "Holding",
-                },
-                new Company
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyName = "D&R"
-                },
-                 new Company
-                 {
-                     Id = Guid.NewGuid(),
-                     CompanyName = "D&R Market"
-                 }
-                );
-
+                    CompanyName = "D&R Market"
+                }
+               );
             builder
-                .HasMany(p => p.CompanyKeys)
+                .HasMany(p => p.CompaniesKeys)
                 .WithOne(p => p.Company)
-                .HasForeignKey(p => p.Id)
+                .HasForeignKey(p => p.CompanyId)
                 .OnDelete(DeleteBehavior.NoAction);
 
         }

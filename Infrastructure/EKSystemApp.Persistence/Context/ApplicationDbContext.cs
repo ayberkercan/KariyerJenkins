@@ -40,6 +40,7 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyKey> CompanyKeys{ get; set; }
         public DbSet<AppUserCompany> AppUserCompany { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<AppUserMenu> AppUserMenus { get; set; }

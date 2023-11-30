@@ -7,6 +7,7 @@ namespace EKSystemApp.Application.Features.Adverts.Commands.Create
 {
     public class NewAdvertCreateCommandRequest : IRequest<CreateAdvertDto>
     {
+        public Guid AppUserId { get; set; }
         public string? WorkDefination { get; set; }
         public string Brands { get; set; }
         public string? PublicQuality { get; set; }
