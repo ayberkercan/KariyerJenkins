@@ -10,6 +10,7 @@ using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.IUser;
+using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using EKSystemApp.Domain.Entities.eBA;
 using EKSystemApp.Domain.Entities.eBA.EntitiesOfSystemTables;
 using EKSystemApp.Domain.Entities.eBA.ForeignLanguages;
@@ -300,7 +301,7 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             return result;
         }
 
-        public async Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(GetAllFilteredAdvertsQueryRequest request = null)
+        public async Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(ICollection<AdvertListDto> request)
         {
 
             var formDetails = (from frm in _context.IseAlimForm
@@ -312,20 +313,35 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             if (request != null)
             {
                 var dto = request; //filtreleme propertyleri tanımlanır
+                foreach (var item in request)
+                {
+                    foreach (var positionName in item.PositionName)
+                    {
+                        if (!String.IsNullOrEmpty(positionName.ToString()))
+                        {
+                            formDetails = formDetails.Where(x => x.cmbUnvan == positionName.ToString());
+                        }
+                    }
+                    foreach (var workTypes in item.WorkTypeName)
+                    {
+                        if (!String.IsNullOrEmpty(workTypes.ToString()))
+                        {
+                            formDetails = formDetails.Where(x => x.cmbCalismaSekli ==  workTypes.ToString());
+                        }
+                    }
 
+                    foreach (var educationLevel in item.EducationLevelName)
+                    {
+                        if (!String.IsNullOrEmpty(educationLevel.ToString()))
+                        {
+                            formDetails = formDetails.Where(x => x.cmbEgitimDurum == educationLevel.ToString());
+                        }
+                    }
+                }
                 //uygun kayıtlar için filtreleme başlangıç.
-                if (!String.IsNullOrEmpty(dto.PositionName))
-                {
-                    formDetails = formDetails.Where(x => x.cmbUnvan == dto.PositionName);
-                }
-                if (!String.IsNullOrEmpty(dto.WorkTypeName))
-                {
-                    formDetails = formDetails.Where(x => x.cmbCalismaSekli == dto.WorkTypeName);
-                }
-                if (!String.IsNullOrEmpty(dto.EducationLevelName))
-                {
-                    formDetails = formDetails.Where(x => x.cmbEgitimDurum == dto.EducationLevelName);
-                }
+               
+              
+
                 //uygun kayıtlar için filtreleme bitiş
             }
 

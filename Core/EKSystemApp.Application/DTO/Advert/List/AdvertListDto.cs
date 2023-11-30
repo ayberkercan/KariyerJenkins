@@ -1,4 +1,6 @@
-﻿using EKSystemApp.Domain.Common;
+﻿using EKSystemApp.Application.DTO.Eba.EbaPosition;
+using EKSystemApp.Application.DTO.Eba.TMP;
+using EKSystemApp.Domain.Common;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using System;
 using System.Collections.Generic;
@@ -17,8 +19,8 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string? Logo { get; set; } = null;
-        public int PeriotNumberId { get; set; }
-        public int AdvertNumberId { get; set; }
+        public string PeriotNumberId { get; set; }
+        public string AdvertNumberId { get; set; }
         public string? TaskTypeName { get; set; }
         public string? CompanyName { get; set; }
         public string? OrganizationName { get; set; }

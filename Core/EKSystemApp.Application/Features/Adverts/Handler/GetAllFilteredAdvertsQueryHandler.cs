@@ -25,7 +25,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
         {
             var portalAdverts = (await this.advertRepository.GetAllAsync()).ToList(); //portalda kayıtlı ilanlar
 
-            var ebaForms = await ebaRepository.GetEbaEmployeeRequestForms(request); //eBA'da oluşturulan formlar
+            var ebaForms = await ebaRepository.GetEbaEmployeeRequestForms((ICollection<AdvertListDto>)request); //eBA'da oluşturulan formlar
             
             var filterDto = request; //filtre içeriği tanımlanır.
 

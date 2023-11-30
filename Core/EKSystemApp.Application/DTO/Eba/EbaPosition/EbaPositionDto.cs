@@ -4,6 +4,7 @@ namespace EKSystemApp.Application.DTO.Eba.EbaPosition
 {
     public class EbaPositionDto:BaseEntity
     {
-        public string PositionName { get; set; }
+        public int key { get; set; }
+        public string value { get; set; }
     }
 }
