@@ -21,6 +21,7 @@ using EKSystemApp.Application.Mappings.EducationLevelMap;
 using EKSystemApp.Application.Mappings.ExperiencePeriodMap;
 using EKSystemApp.Application.Mappings.ForignLanguagesMap;
 using EKSystemApp.Application.Mappings.JobCategoriesMap;
+using EKSystemApp.Application.Mappings.MailMessageMap;
 using EKSystemApp.Application.Mappings.Member.ApplicationSourceMap;
 using EKSystemApp.Application.Mappings.Member.CityMap;
 using EKSystemApp.Application.Mappings.Member.CompanyMap;
@@ -101,7 +102,8 @@ namespace EKSystemApp.Application
                     new SalaryTypeProfile(),
                     new CurrencyProfile(),
                     new ApplicationSourceProfile(),
-                    new SavedFilterProfile()
+                    new SavedFilterProfile(),
+                    new MailMessageProfile()
                 });
             });
         }

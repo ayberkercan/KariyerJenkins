@@ -31,12 +31,14 @@ namespace EKSystemApp.Application.Tools
                 claims.Add(new Claim("Organizations", organizations.CompanyName));
             }
             claims.Add(new Claim("Role", dto.Role!));
+
             if (dto.Role == "HumanResources")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
                 claims.Add(new Claim("Permission", Permissions.Category.Read));
                 claims.Add(new Claim("Permission", Permissions.AuthDefination.Read));
             };
+
             if (dto.Role == "Administrators")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
@@ -52,6 +54,7 @@ namespace EKSystemApp.Application.Tools
                 claims.Add(new Claim("Permission", Permissions.AuthDefination.Update));
 
             }
+
             if (dto.Role == "SystemAdministrators")
             {
                 claims.Add(new Claim("Permission", Permissions.Product.Read));
@@ -70,6 +73,7 @@ namespace EKSystemApp.Application.Tools
                 claims.Add(new Claim("Permission", Permissions.Category.Delete));
                 claims.Add(new Claim("Permission", Permissions.AuthDefination.Delete));
             }
+
             claims.Add(new Claim(ClaimTypes.NameIdentifier, dto.Id.ToString()));
 
             if (!string.IsNullOrWhiteSpace(dto.UserName))

@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.Design;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
 using EKSystemApp.Persistence.DbInitiliazers;
 using IdentityModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Nest;
 
 namespace EKSystemApp.Persistence.DbInitializerService
 {
@@ -532,8 +530,10 @@ namespace EKSystemApp.Persistence.DbInitializerService
             });
             #endregion
 
-            await context.SaveChangesAsync();
             #endregion
+
+            await context.SaveChangesAsync();
+
         }
     }
 }

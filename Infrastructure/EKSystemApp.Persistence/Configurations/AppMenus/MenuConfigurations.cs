@@ -23,7 +23,7 @@ namespace EKSystemApp.Persistence.Configurations.AppMenus
               {
                   Id = Guid.NewGuid(),
                   Name = "Yeni İlan Oluştur",
-                  RouterLink= "new-adwert-create",
+                  RouterLink= "new-advert-create",
                   RouterIcon = "la la-user-tie",
                   HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>"
               },
