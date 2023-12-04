@@ -13,5 +13,7 @@ namespace EKSystemApp.Domain.Entities
         public ICollection<AppUserCompany> AppUserCompanies { get; set; }
         public ICollection<AppUserMenu> AppUserMenus { get; set; }
         public ICollection<AdvertCreate> AdvertCreates { get; set; }
+        public ICollection<AppUserItem> AppUserItems { get; set; }
+
     }
 }

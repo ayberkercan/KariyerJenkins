@@ -27,7 +27,7 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.ApplyConfiguration(new AppUserConfigurations());
             modelBuilder.ApplyConfiguration(new ProductConfigurations());
             modelBuilder.ApplyConfiguration(new CompanyConfigurations());
-            modelBuilder.ApplyConfiguration(new MenuConfigurations());
+            modelBuilder.ApplyConfiguration(new MenuItemConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserCompanyConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserMenuConfigurations());
             modelBuilder.ApplyConfiguration(new AdvertConfigurations());
@@ -40,13 +40,15 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyKey> CompanyKeys{ get; set; }
+        public DbSet<CompanyKey> CompanyKeys { get; set; }
         public DbSet<AppUserCompany> AppUserCompany { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Items> Items { get; set; }
         public DbSet<AppUserMenu> AppUserMenus { get; set; }
+        public DbSet<AppUserItem> AppUserItems { get; set; }
 
         #endregion
-     
+
         #region New Advert Create
         public DbSet<AdvertCreate> AdvertCreates { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -69,7 +71,7 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<WorkCategory> WorkCategories { get; set; }
         public DbSet<ExperiencePeriod> ExperiencePeriods { get; set; }
         #endregion
-        public DbSet<Domain.Entities.Admin.Eba.Profession> Professions{ get; set; }
+        public DbSet<Domain.Entities.Admin.Eba.Profession> Professions { get; set; }
         public DbSet<SavedFiltersOfApprovedCandidateList> SavedFiltersOfApprovedCandidateList { get; set; }
         public DbSet<AdPublisher> AdPublishers { get; set; }
         public DbSet<AdvertAdQuestionAnswerContent> AdvertAdQuestionAnswerContent { get; set; }

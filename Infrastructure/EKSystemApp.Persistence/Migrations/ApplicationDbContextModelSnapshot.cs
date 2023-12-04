@@ -691,12 +691,27 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("AppUserCompany");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserItem", b =>
+                {
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AppUserId", "ItemId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("AppUserItems");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserMenu", b =>
                 {
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("MenuId")
+                    b.Property<Guid?>("MenuId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AppUserId", "MenuId");
@@ -737,17 +752,17 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d35c69dd-f9c2-469b-a6a7-331100689fde"),
+                            Id = new Guid("f2354726-fa2e-439d-89f9-671e33e680a7"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-                            Id = new Guid("55e1dcad-16ae-4912-aadd-699ba6801cf2"),
+                            Id = new Guid("e71d4bbb-4795-495d-96ea-8a50ddfa7ed3"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-                            Id = new Guid("97280340-537b-43ab-8d84-10cee9cedea1"),
+                            Id = new Guid("9f13f249-98b0-4cb3-95ad-ff52c75cd047"),
                             CompanyName = "D&R Market"
                         });
                 });
@@ -772,21 +787,57 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("CompanyKeys");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KeyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("MenuId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("RouterLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("queryParams")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("Items");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Menu", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("HtmlTag")
+                    b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("KeyId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("RouterIcon")
+                    b.Property<string>("Label")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -797,192 +848,6 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1f68bc56-5385-4f8d-975e-f4444aee9bc6"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>",
-                            Name = "Admin Kariyer | Giriş",
-                            RouterIcon = "la la-home",
-                            RouterLink = "dashboard"
-                        },
-                        new
-                        {
-                            Id = new Guid("64104901-efeb-4eb5-8814-c93d7688b52a"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>",
-                            Name = "Yeni İlan Oluştur",
-                            RouterIcon = "la la-user-tie",
-                            RouterLink = "new-advert-create"
-                        },
-                        new
-                        {
-                            Id = new Guid("5b27a31a-0127-40eb-9b85-bf2bad585f24"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>",
-                            Name = "İlanlar",
-                            RouterIcon = "la la-paper-plane",
-                            RouterLink = "adwerts"
-                        },
-                        new
-                        {
-                            Id = new Guid("ee922243-d743-41fd-b891-a8b182261b2a"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>",
-                            Name = "Öne Çıkan İlanlar",
-                            RouterIcon = "la la-briefcase",
-                            RouterLink = "on-front-adwert"
-                        },
-                        new
-                        {
-                            Id = new Guid("8f04029b-c8be-42ac-8b2d-6cc5c0d9456d"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>",
-                            Name = "Başvuran Aday Listeleri",
-                            RouterIcon = "la la-file-invoice",
-                            RouterLink = "application-candidate-lists"
-                        },
-                        new
-                        {
-                            Id = new Guid("048410f7-c5f0-45c2-a35b-90338df8669e"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>",
-                            Name = "Aday Soru | Cevap Listeleri",
-                            RouterIcon = "la la-bookmark-o",
-                            RouterLink = "candidate-question-and-answer-lists"
-                        },
-                        new
-                        {
-                            Id = new Guid("7b5979dc-582b-4bd9-ba45-4e1ca658eff8"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>",
-                            Name = "Aday Havuzu",
-                            RouterIcon = "la la-box",
-                            RouterLink = "candidate-pool"
-                        },
-                        new
-                        {
-                            Id = new Guid("89b38dcd-6a22-4c5a-ae51-c91f605e9576"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>",
-                            Name = "Mail | Mesaj Yönetimi",
-                            RouterIcon = "la la-comment-o",
-                            RouterLink = "mail-message-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("c6d3779c-e406-47ab-919d-46d873f69c57"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>",
-                            Name = "Aday Dosyaları",
-                            RouterIcon = "la la-bell",
-                            RouterLink = "candidate-files"
-                        },
-                        new
-                        {
-                            Id = new Guid("d17694b7-b2f5-4016-a482-6693f999dfe6"),
-                            HtmlTag = "",
-                            Name = "Tanımlamalar",
-                            RouterIcon = "la la-lock",
-                            RouterLink = "navlink dropdown-toggle"
-                        },
-                        new
-                        {
-                            Id = new Guid("e1a5b84d-1b75-4008-8d6b-c460d92c8a69"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>",
-                            Name = "Yetenek ve Uzmanlıklar",
-                            RouterIcon = "la la-user-alt",
-                            RouterLink = "skills-and-experties"
-                        },
-                        new
-                        {
-                            Id = new Guid("56db0495-c8e7-47cb-9e6c-090a040be6d6"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>",
-                            Name = "Mail | Mesaj Şablonu ",
-                            RouterIcon = "la la-sign-out",
-                            RouterLink = "mail-message-template "
-                        },
-                        new
-                        {
-                            Id = new Guid("64ea1606-af64-419d-8bf1-eb733f924389"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>",
-                            Name = "Logo Yükleme Ekranı",
-                            RouterIcon = "la la-cloud-upload-alt",
-                            RouterLink = "logo-import-screen"
-                        },
-                        new
-                        {
-                            Id = new Guid("bd680fa5-f761-43ea-a064-f628ee318ce1"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>",
-                            Name = "İlan Soru Tanımlama",
-                            RouterIcon = "la la-question",
-                            RouterLink = "adwert-question-defination"
-                        },
-                        new
-                        {
-                            Id = new Guid("e19b02aa-df90-4fa2-9401-87b148f01e2b"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>",
-                            Name = "Talep Edilen Pozisyon Adı Aktar",
-                            RouterIcon = "la la-exchange-alt",
-                            RouterLink = "transfer-requested-posination-name"
-                        },
-                        new
-                        {
-                            Id = new Guid("5632c407-6551-4089-bf38-8b1ea94693e8"),
-                            HtmlTag = "",
-                            Name = "Portal | Ana Sayfa İçerik Yönetimi",
-                            RouterIcon = "",
-                            RouterLink = ""
-                        },
-                        new
-                        {
-                            Id = new Guid("29b29c00-176f-42e5-8678-0efdea884919"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>",
-                            Name = "Blog Manşet Yönetimi",
-                            RouterIcon = "la la-newspaper",
-                            RouterLink = "blog-headline-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("471b7fc8-255c-4561-ab94-6aa08e343675"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>",
-                            Name = "İş Adımları Yönetimi",
-                            RouterIcon = "la la-list",
-                            RouterLink = "work-step-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("da5d6cd2-9ac1-47e6-8469-aa1b03f30ce9"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>",
-                            Name = "İş Kategorileri Yönetimi",
-                            RouterIcon = "la la-boxes",
-                            RouterLink = "work-category-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("286a3fe3-c8bb-4352-908c-2ba4d6083209"),
-                            HtmlTag = "",
-                            Name = "Raporlar",
-                            RouterIcon = "la la-file-alt",
-                            RouterLink = "report"
-                        },
-                        new
-                        {
-                            Id = new Guid("a7bbde48-53c6-4a29-8ba4-58f5aaf9da0e"),
-                            HtmlTag = "",
-                            Name = "Kullanıcı Ayarları",
-                            RouterIcon = " ",
-                            RouterLink = " "
-                        },
-                        new
-                        {
-                            Id = new Guid("ab93e230-5436-40a3-8305-b500588a84b6"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>",
-                            Name = "Yetki Tanımlama",
-                            RouterIcon = "la la-user-plus",
-                            RouterLink = "auth-defination"
-                        },
-                        new
-                        {
-                            Id = new Guid("9c459b00-a59f-4143-86b9-14e826304395"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>",
-                            Name = "Rol Tanımlama",
-                            RouterIcon = "la la-plus-circle",
-                            RouterLink = "role-defination"
-                        });
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Product", b =>
@@ -1449,18 +1314,35 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserItem", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany("AppUserItems")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EKSystemApp.Domain.Entities.Items", "Items")
+                        .WithMany("AppUserItems")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserMenu", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
                         .WithMany("AppUserMenus")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EKSystemApp.Domain.Entities.Menu", "Menu")
                         .WithMany("AppUserMenus")
                         .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -1477,6 +1359,15 @@ namespace EKSystemApp.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Menu", "Menu")
+                        .WithMany("Items")
+                        .HasForeignKey("MenuId");
+
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Product", b =>
@@ -1598,6 +1489,8 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.Navigation("AppUserCompanies");
 
+                    b.Navigation("AppUserItems");
+
                     b.Navigation("AppUserMenus");
                 });
 
@@ -1613,9 +1506,16 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("CompaniesKeys");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.Navigation("AppUserItems");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Menu", b =>
                 {
                     b.Navigation("AppUserMenus");
+
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

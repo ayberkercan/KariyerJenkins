@@ -16,16 +16,16 @@ namespace EKSystemApp.Application.Tools
             if (!string.IsNullOrWhiteSpace(dto.Role))
                 claims.Add(new Claim("Id", dto.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Role, dto.Role!));
-            foreach (var item in dto.Menus!)
-            {
-                var claimMenu = new[]
-               {
-                   new Claim("Menus",item.Name!),
-                   new Claim("MenuRouter",item.RouterLink!),
-                   new Claim("MenuIcon", item.RouterIcon!),
-                };
-                claims.AddRange(claimMenu);
-            }
+            //foreach (var item in dto.Menus!)
+            //{
+            //    var claimMenu = new[]
+            //   {
+            //       new Claim("Menus",item.Name!),
+            //       new Claim("MenuRouter",item.RouterLink!),
+            //       new Claim("MenuIcon", item.RouterIcon!),
+            //    };
+            //    claims.AddRange(claimMenu);
+            //}
             foreach (var organizations in dto.Companies)
             {
                 claims.Add(new Claim("Organizations", organizations.CompanyName));

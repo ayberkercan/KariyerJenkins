@@ -70,10 +70,10 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RouterLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RouterIcon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HtmlTag = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    KeyId = table.Column<int>(type: "int", nullable: false),
+                    Label = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RouterLink = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -222,6 +222,29 @@ namespace EKSystemApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Items",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    KeyId = table.Column<int>(type: "int", nullable: false),
+                    Label = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RouterLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    queryParams = table.Column<bool>(type: "bit", nullable: true),
+                    MenuId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Items", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Items_Menus_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menus",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AdvertCreates",
                 columns: table => new
                 {
@@ -285,14 +308,12 @@ namespace EKSystemApp.Persistence.Migrations
                         name: "FK_AppUserMenus_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AppUserMenus_Menus_MenuId",
                         column: x => x.MenuId,
                         principalTable: "Menus",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -376,6 +397,30 @@ namespace EKSystemApp.Persistence.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserItems",
+                columns: table => new
+                {
+                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserItems", x => new { x.AppUserId, x.ItemId });
+                    table.ForeignKey(
+                        name: "FK_AppUserItems_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AppUserItems_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -769,39 +814,9 @@ namespace EKSystemApp.Persistence.Migrations
                 columns: new[] { "Id", "CompanyName" },
                 values: new object[,]
                 {
-                    { new Guid("55e1dcad-16ae-4912-aadd-699ba6801cf2"), "D&R" },
-                    { new Guid("97280340-537b-43ab-8d84-10cee9cedea1"), "D&R Market" },
-                    { new Guid("d35c69dd-f9c2-469b-a6a7-331100689fde"), "Holding" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Menus",
-                columns: new[] { "Id", "HtmlTag", "Name", "RouterIcon", "RouterLink" },
-                values: new object[,]
-                {
-                    { new Guid("048410f7-c5f0-45c2-a35b-90338df8669e"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>", "Aday Soru | Cevap Listeleri", "la la-bookmark-o", "candidate-question-and-answer-lists" },
-                    { new Guid("1f68bc56-5385-4f8d-975e-f4444aee9bc6"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>", "Admin Kariyer | Giriş", "la la-home", "dashboard" },
-                    { new Guid("286a3fe3-c8bb-4352-908c-2ba4d6083209"), "", "Raporlar", "la la-file-alt", "report" },
-                    { new Guid("29b29c00-176f-42e5-8678-0efdea884919"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>", "Blog Manşet Yönetimi", "la la-newspaper", "blog-headline-manager" },
-                    { new Guid("471b7fc8-255c-4561-ab94-6aa08e343675"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>", "İş Adımları Yönetimi", "la la-list", "work-step-manager" },
-                    { new Guid("5632c407-6551-4089-bf38-8b1ea94693e8"), "", "Portal | Ana Sayfa İçerik Yönetimi", "", "" },
-                    { new Guid("56db0495-c8e7-47cb-9e6c-090a040be6d6"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>", "Mail | Mesaj Şablonu ", "la la-sign-out", "mail-message-template " },
-                    { new Guid("5b27a31a-0127-40eb-9b85-bf2bad585f24"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>", "İlanlar", "la la-paper-plane", "adwerts" },
-                    { new Guid("64104901-efeb-4eb5-8814-c93d7688b52a"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>", "Yeni İlan Oluştur", "la la-user-tie", "new-advert-create" },
-                    { new Guid("64ea1606-af64-419d-8bf1-eb733f924389"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>", "Logo Yükleme Ekranı", "la la-cloud-upload-alt", "logo-import-screen" },
-                    { new Guid("7b5979dc-582b-4bd9-ba45-4e1ca658eff8"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>", "Aday Havuzu", "la la-box", "candidate-pool" },
-                    { new Guid("89b38dcd-6a22-4c5a-ae51-c91f605e9576"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>", "Mail | Mesaj Yönetimi", "la la-comment-o", "mail-message-manager" },
-                    { new Guid("8f04029b-c8be-42ac-8b2d-6cc5c0d9456d"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>", "Başvuran Aday Listeleri", "la la-file-invoice", "application-candidate-lists" },
-                    { new Guid("9c459b00-a59f-4143-86b9-14e826304395"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>", "Rol Tanımlama", "la la-plus-circle", "role-defination" },
-                    { new Guid("a7bbde48-53c6-4a29-8ba4-58f5aaf9da0e"), "", "Kullanıcı Ayarları", " ", " " },
-                    { new Guid("ab93e230-5436-40a3-8305-b500588a84b6"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>", "Yetki Tanımlama", "la la-user-plus", "auth-defination" },
-                    { new Guid("bd680fa5-f761-43ea-a064-f628ee318ce1"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>", "İlan Soru Tanımlama", "la la-question", "adwert-question-defination" },
-                    { new Guid("c6d3779c-e406-47ab-919d-46d873f69c57"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>", "Aday Dosyaları", "la la-bell", "candidate-files" },
-                    { new Guid("d17694b7-b2f5-4016-a482-6693f999dfe6"), "", "Tanımlamalar", "la la-lock", "navlink dropdown-toggle" },
-                    { new Guid("da5d6cd2-9ac1-47e6-8469-aa1b03f30ce9"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>", "İş Kategorileri Yönetimi", "la la-boxes", "work-category-manager" },
-                    { new Guid("e19b02aa-df90-4fa2-9401-87b148f01e2b"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>", "Talep Edilen Pozisyon Adı Aktar", "la la-exchange-alt", "transfer-requested-posination-name" },
-                    { new Guid("e1a5b84d-1b75-4008-8d6b-c460d92c8a69"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>", "Yetenek ve Uzmanlıklar", "la la-user-alt", "skills-and-experties" },
-                    { new Guid("ee922243-d743-41fd-b891-a8b182261b2a"), "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>", "Öne Çıkan İlanlar", "la la-briefcase", "on-front-adwert" }
+                    { new Guid("9f13f249-98b0-4cb3-95ad-ff52c75cd047"), "D&R Market" },
+                    { new Guid("e71d4bbb-4795-495d-96ea-8a50ddfa7ed3"), "D&R" },
+                    { new Guid("f2354726-fa2e-439d-89f9-671e33e680a7"), "Holding" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -838,6 +853,11 @@ namespace EKSystemApp.Persistence.Migrations
                 name: "IX_AppUserCompany_CompanyId",
                 table: "AppUserCompany",
                 column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppUserItems_ItemId",
+                table: "AppUserItems",
+                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUserMenus_MenuId",
@@ -919,6 +939,11 @@ namespace EKSystemApp.Persistence.Migrations
                 column: "AdvertCreateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_MenuId",
+                table: "Items",
+                column: "MenuId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Locations_AdvertCreateId",
                 table: "Locations",
                 column: "AdvertCreateId");
@@ -994,6 +1019,9 @@ namespace EKSystemApp.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppUserCompany");
+
+            migrationBuilder.DropTable(
+                name: "AppUserItems");
 
             migrationBuilder.DropTable(
                 name: "AppUserMenus");
@@ -1074,7 +1102,7 @@ namespace EKSystemApp.Persistence.Migrations
                 name: "AdvertAdQuestions");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "Items");
 
             migrationBuilder.DropTable(
                 name: "Companies");
@@ -1084,6 +1112,9 @@ namespace EKSystemApp.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AdvertCreates");
+
+            migrationBuilder.DropTable(
+                name: "Menus");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

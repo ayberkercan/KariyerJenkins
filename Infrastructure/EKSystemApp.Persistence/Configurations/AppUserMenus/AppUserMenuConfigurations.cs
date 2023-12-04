@@ -13,18 +13,18 @@ namespace EKSystemApp.Persistence.Configurations.AppUserMenus
                 {
                     x.AppUserId,
                     x.MenuId,
-
                 });
             builder
                .HasOne(p => p.AppUser)
                 .WithMany(x => x.AppUserMenus)
-                .HasForeignKey(p => p.AppUserId);
-            
+                .HasForeignKey(p => p.AppUserId).OnDelete(DeleteBehavior.ClientSetNull);
+
             builder
                 .HasOne(p => p.Menu)
                 .WithMany(x => x.AppUserMenus)
-                .HasForeignKey(p => p.MenuId);
+                .HasForeignKey(p => p.MenuId).OnDelete(DeleteBehavior.ClientSetNull);
 
+          
         }
     }
 }
