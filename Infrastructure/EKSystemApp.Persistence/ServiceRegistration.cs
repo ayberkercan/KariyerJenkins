@@ -98,6 +98,7 @@ namespace EKSystemApp.Persistence
             services.AddScoped<IEbaRepository, EbaRepository>();
             services.AddScoped<ILDAPAuthService, LDAPAuthService>();
             services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IFileConverterService, FileConverterService>();
 
             services.AddScoped<IAdvertQuestionsAndContent, AdvertQuestionsAndContentRepository>();
             services.AddScoped(typeof(IElasticSearchService<>), typeof(ElasticSearchService<>));

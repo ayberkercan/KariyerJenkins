@@ -1,6 +1,7 @@
 ﻿using EKSystemApp.Domain.Entities;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
+using EKSystemApp.Domain.Entities.File;
 using EKSystemApp.Domain.Entities.UI.SavedFilters;
 using EKSystemApp.Persistence.Configurations.AdminPages;
 using EKSystemApp.Persistence.Configurations.AppMenus;
@@ -73,6 +74,7 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<SavedFiltersOfApprovedCandidateList> SavedFiltersOfApprovedCandidateList { get; set; }
         public DbSet<AdPublisher> AdPublishers { get; set; }
         public DbSet<AdvertAdQuestionAnswerContent> AdvertAdQuestionAnswerContent { get; set; }
+        public DbSet<FormFiles> FormFiles { get; set; }
         #endregion
     }
 }

@@ -19,6 +19,7 @@ using EKSystemApp.Application.Mappings.Eba.EbaPositionMap;
 using EKSystemApp.Application.Mappings.Eba.EbaUnitMap;
 using EKSystemApp.Application.Mappings.EducationLevelMap;
 using EKSystemApp.Application.Mappings.ExperiencePeriodMap;
+using EKSystemApp.Application.Mappings.FileMap;
 using EKSystemApp.Application.Mappings.ForignLanguagesMap;
 using EKSystemApp.Application.Mappings.JobCategoriesMap;
 using EKSystemApp.Application.Mappings.Member.ApplicationSourceMap;
@@ -75,7 +76,6 @@ namespace EKSystemApp.Application
                     new AdQuestionProfile(),
                     new AdStatusProfile(),
                     new EducationLevelProfile(),
-                    new ForignLanguagesProfile(),
                     new JobCategoriesProfile(),
                     new MillitaryStatusesProfile(),
                     new PositionTypeProfile(),
@@ -101,7 +101,8 @@ namespace EKSystemApp.Application
                     new SalaryTypeProfile(),
                     new CurrencyProfile(),
                     new ApplicationSourceProfile(),
-                    new SavedFilterProfile()
+                    new SavedFilterProfile(),
+                    new FileProfile()
                 });
             });
         }
