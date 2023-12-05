@@ -264,43 +264,54 @@ namespace EKSystemApp.Persistence.Repositories.User
         }
         public async Task<ICollection<MenuListDto>> GetUserToMenu(Guid id)
         {
-            var userMenu = await _context.AppUserMenus
-                                    .Include(p => p.Menu)
-                                    .Include(p => p.AppUser)
-                                    .ThenInclude(p => p.AppUserItems)
-                                    .ThenInclude(p => p.Items)
-                                    .Where(p => p.AppUserId == id)
-                                    .OrderByDescending(d => d)
-                                    .AsNoTracking()
-                                    .Distinct()
-                                    .ToListAsync();
+            var userMenus = await _context.AppUserMenus
+                                  .Include(p => p.Menu)
+                                  .Include(p => p.AppUser)
+                                  .ThenInclude(p => p.AppUserItems)
+                                  .ThenInclude(p => p.Items)
+                                  .Where(p => p.AppUserId == id)
+                                  .OrderByDescending(d => d)
+                                  .ToListAsync();
+            //var userMenu = await _context.AppUserMenus
+            //                        .Include(p => p.Menu)
+            //                        .Include(p => p.AppUser)
+            //                        .ThenInclude(p => p.AppUserItems)
+            //                        .ThenInclude(p => p.Items)
+            //                        .Where(p => p.AppUserId == id)
+            //                        .OrderByDescending(d => d)
+            //                        .AsNoTracking()
+            //                        .Distinct()
+            //                        .ToListAsync();
+
 
             List<MenuListDto> menuToUser = new List<MenuListDto>();
-            foreach (var item in userMenu)
+            foreach (var item in userMenus)
             {
                 var dto = new MenuListDto
                 {
+                    Id = item.Menu.Id,
                     KeyId = item.Menu.KeyId,
                     Label = item.Menu.Label,
                     RouterLink = item.Menu.RouterLink,
                     Icon = item.Menu.Icon,
+                    Items = item.Menu.Items
                 };
                 menuToUser.Add(dto);
             }
-            foreach (var item in userMenu)
-            {
-                foreach (var item2 in item.AppUser.AppUserItems)
-                {
-                    var dto = new MenuListDto
-                    {
-                        KeyId = item2.Items.KeyId,
-                        Label = item2.Items.Label,
-                        RouterLink = item2.Items.RouterLink,
-                        Icon = item2.Items.Icon
-                    };
-                    menuToUser.Add(dto);
-                }
-            }
+            //foreach (var item in userMenu)
+            //{
+            //    foreach (var item2 in item.AppUser.AppUserItems)
+            //    {
+            //        var dto = new MenuListDto
+            //        {
+            //            KeyId = item2.Items.KeyId,
+            //            Label = item2.Items.Label,
+            //            RouterLink = item2.Items.RouterLink,
+            //            Icon = item2.Items.Icon
+            //        };
+            //        menuToUser.Add(dto);
+            //    }
+            //}
             if (menuToUser.Count > 0)
                 await this.menuToListElasticSearch.InsertBulkDocuments("menulist", menuToUser);
 

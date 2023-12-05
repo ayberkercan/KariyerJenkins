@@ -9,6 +9,6 @@ namespace EKSystemApp.Domain.Entities
         public string Icon { get; set; }
         public string RouterLink { get; set; }
         public ICollection<AppUserMenu> AppUserMenus { get; set; }
-        public ICollection<Items>? Items { get; set; }
+        public ICollection<Items> Items { get; set; }
     }
 }
