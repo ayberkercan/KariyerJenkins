@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using EKSystemApp.Application.DTO.Advert.List;
-using EKSystemApp.Application.DTO.Eba.EbaPosition;
-using EKSystemApp.Application.DTO.Eba.TMP;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.IElasticSearchService;
@@ -9,7 +7,6 @@ using EKSystemApp.Application.Interfaces.IUser;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using EKSystemApp.Domain.Entities.eBA;
 using MediatR;
-using System.Text;
 
 namespace EKSystemApp.Application.Features.Adverts.Handler
 {

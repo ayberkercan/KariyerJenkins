@@ -22,6 +22,7 @@ using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Domain.Entities.Member.TurkuvazCompanies;
 using EKSystemApp.Persistence.Context;
 using Microsoft.IdentityModel.Tokens;
+using Nest;
 
 namespace EKSystemApp.Persistence.Repositories.Eba
 {
@@ -92,14 +93,14 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
             var filteredList = combinedResultList
             .Where(x => x.UP_OBJID == Convert.ToInt32(sorguId) || (sorguId != request.OrgId && (x.UP_OBJID == Convert.ToInt32(sorguId) || x.OBJID == Convert.ToInt32(sorguId))))
-            .Select(x=>x.POZISYON)
+            .Select(x => x.POZISYON)
             .ToList();
 
             string positions = string.Join(", ", filteredList);
 
             var gorevList = (from z in _context.GorevlerFullSap
                              where positions.Contains(z.ID)
-                             select z).OrderBy(x=>x.UNVAN_TANIM).ToList();
+                             select z).OrderBy(x => x.UNVAN_TANIM).ToList();
 
             var result = _mapper.Map<ICollection<GorevlerFullSap>, ICollection<EbaKvpDto>>(gorevList);
 
@@ -109,10 +110,10 @@ namespace EKSystemApp.Persistence.Repositories.Eba
         public async Task<ICollection<EbaStrKvpDto>> GetEbaForeignLanguages()
         {
             var query = (from p in _context.P_Languages
-                        join d in _context.P_LanguagesDataGrid on p.ID equals d.FORMID
-                        join m in _context.M_Languages on d.DOCUMENTID equals m.ID
-                        where m.ChkAktif == 1
-                        select m).ToList();
+                         join d in _context.P_LanguagesDataGrid on p.ID equals d.FORMID
+                         join m in _context.M_Languages on d.DOCUMENTID equals m.ID
+                         where m.ChkAktif == 1
+                         select m).ToList();
 
             var result = _mapper.Map<ICollection<M_Languages>, ICollection<EbaStrKvpDto>>(query);
 
@@ -163,7 +164,7 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                     var mappedSkills = _mapper.Map<ICollection<IseAlimGeneralSkillsDataGrid>, ICollection<GeneralSkillsDto>>(selectedSkills);
                     mappedFormDetails.GeneralSkills = mappedSkills.ToList();
                 }
-                
+
                 if (selectedLanguages != null && selectedLanguages.Any())
                 {
                     var mappedLanguages = _mapper.Map<ICollection<IseAlimForeignLanguagesDataGrid>, ICollection<ForeignLanguagesDto>>(selectedLanguages);
@@ -178,7 +179,7 @@ namespace EKSystemApp.Persistence.Repositories.Eba
             {
                 return new EbaIseAlimTurkuvazFormDto();
             }
-            
+
         }
 
         public async Task<ICollection<OrganizationTreeDto>> GetOrganizationTreeById(string key)
@@ -226,14 +227,14 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
             foreach (var country in mappedCountryList)
             {
-                var provinceList = _context.ST_Provinces.Where(x=> key == "TR").OrderBy(x=>x.PLAKA).ToList();
+                var provinceList = _context.ST_Provinces.Where(x => key == "TR").OrderBy(x => x.PLAKA).ToList();
                 var mappedProvinceList = _mapper.Map<ICollection<ProvinceTreeDto>>(provinceList);
 
                 country.Provinces = mappedProvinceList;
 
                 foreach (var province in country.Provinces)
                 {
-                    var cityList = _context.ST_Cities.Where(x => x.IL_ID == province.Key).OrderBy(x=>x.ISIM).ToList();
+                    var cityList = _context.ST_Cities.Where(x => x.IL_ID == province.Key).OrderBy(x => x.ISIM).ToList();
                     var mappedCityList = _mapper.Map<ICollection<CityTreeDto>>(cityList);
 
                     province.Cities = mappedCityList;
@@ -268,7 +269,7 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                          join d in _context.P_EducationDepartmentsDataGrid on p.ID equals d.FORMID
                          join m in _context.M_EducationDepartments on d.DOCUMENTID equals m.ID
                          where m.ChkAktif == 1
-                         select m).OrderBy(x=>x.DepartmentName).ToList();
+                         select m).OrderBy(x => x.DepartmentName).ToList();
 
             var result = _mapper.Map<ICollection<M_EducationDepartments>, ICollection<EbaStrKvpDto>>(query);
 
@@ -303,49 +304,33 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
         public async Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(ICollection<AdvertListDto> request)
         {
-
-            var formDetails = (from frm in _context.IseAlimForm
-                               join fd in _context.FlowDocuments on frm.ID equals fd.FILEPROFILEID
-                               join lf in _context.LiveFlows on fd.PROCESSID equals lf.ID
-                               where lf.DELETED == 0
-                               select frm); //ebadaki işe alım formları listelenir
-
-            if (request != null)
+            List<AdvertListDto> result = new List<AdvertListDto>();
+            foreach (var item in request)
             {
-                var dto = request; //filtreleme propertyleri tanımlanır
-                foreach (var item in request)
+                var formDetails = (from frm in _context.IseAlimForm
+                                   join fd in _context.FlowDocuments on frm.ID equals fd.FILEPROFILEID
+                                   join lf in _context.LiveFlows on fd.PROCESSID equals lf.ID
+                                   where lf.DELETED == 0
+                                   where frm.cmbCalismaSekli == item.WorkTypeName
+                                   where frm.cmbEgitimDurum == item.EducationLevelName
+                                   where fd.PROCESSID == Convert.ToInt32(item.EbaProcessId)
+                                   select new AdvertListDto
+                                   {
+                                       EbaProcessId = item.EbaProcessId,
+
+                                   }).ToList();
+                foreach (var itesm in formDetails)
                 {
-                    foreach (var positionName in item.PositionName)
+                    var k = new AdvertListDto
                     {
-                        if (!String.IsNullOrEmpty(positionName.ToString()))
-                        {
-                            formDetails = formDetails.Where(x => x.cmbUnvan == positionName.ToString());
-                        }
-                    }
-                    foreach (var workTypes in item.WorkTypeName)
-                    {
-                        if (!String.IsNullOrEmpty(workTypes.ToString()))
-                        {
-                            formDetails = formDetails.Where(x => x.cmbCalismaSekli ==  workTypes.ToString());
-                        }
-                    }
+                        EbaProcessId = itesm.EbaProcessId
+                    };
+                    result.Add(k);
 
-                    foreach (var educationLevel in item.EducationLevelName)
-                    {
-                        if (!String.IsNullOrEmpty(educationLevel.ToString()))
-                        {
-                            formDetails = formDetails.Where(x => x.cmbEgitimDurum == educationLevel.ToString());
-                        }
-                    }
                 }
-                //uygun kayıtlar için filtreleme başlangıç.
-               
-              
-
-                //uygun kayıtlar için filtreleme bitiş
             }
 
-            return _mapper.Map<ICollection<AdvertListDto>>(formDetails); //sonucu çevirip uygun kayıtları döndürür.
+            return _mapper.Map<ICollection<AdvertListDto>>(result); //sonucu çevirip uygun kayıtları döndürür.
         }
     }
 }

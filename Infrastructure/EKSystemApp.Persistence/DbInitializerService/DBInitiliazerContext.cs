@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.Design;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using EKSystemApp.Domain.Entities;
 using EKSystemApp.Persistence.Context;
 using EKSystemApp.Persistence.DbInitiliazers;
 using IdentityModel;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Nest;
 
 namespace EKSystemApp.Persistence.DbInitializerService
 {
@@ -532,8 +531,213 @@ namespace EKSystemApp.Persistence.DbInitializerService
             });
             #endregion
 
-            await context.SaveChangesAsync();
             #endregion
+
+            await context.Menus.AddAsync(new Menu
+            {
+                KeyId = 1,
+                Label = "Admin Kariyer | Giriş",
+                Icon = "la la-home",
+                RouterLink= "dashboard"
+            });
+
+            var newAdvert = new Menu
+            {
+                KeyId = 2,
+                Label = "Yeni İlan Oluştur",
+                Icon = "la la-user-tie",
+                RouterLink = "new-advert-create"
+            };
+            await context.Menus.AddAsync(newAdvert);
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 1,
+                MenuId = newAdvert.Id, 
+                Menu = newAdvert,
+                Label = "İlanlar",
+                Icon= "la la-paper-plane",
+                RouterLink = "adverts"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 2,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Öne Çıkan İlanlar",
+                Icon = "la la-briefcase",
+                RouterLink = "on-front-adwert"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 3,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Başvuran Aday Listeleri",
+                Icon = "la la-file-invoice",
+                RouterLink = "application-candidate-lists"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 4,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Aday Soru | Cevap Listeleri",
+                Icon = "la la-bookmark-o",
+                RouterLink = "candidate-question-and-answer-lists"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 5,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Aday Havuzu",
+                Icon = "la la-box",
+                RouterLink = "candidate-pool"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 6,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Mail | Mesaj Yönetimi",
+                Icon = "la la-comment-o",
+                RouterLink = "mail-message-manager"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 7,
+                MenuId = newAdvert.Id,
+                Menu = newAdvert,
+                Label = "Aday Dosyaları",
+                Icon = "la la-bell",
+                RouterLink = "candidate-files"
+            });
+            var defination = new Menu
+            {
+                KeyId = 3,
+                Label = "Tanımlamalar",
+                Icon = "la la-lock",
+                RouterLink = ""
+            };
+            await context.Menus.AddAsync(defination);
+           
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 1,
+                MenuId = defination.Id,
+                Menu = defination,
+                Label = "Yetenek ve Uzmanlıklar",
+                Icon = "la la-user-alt",
+                RouterLink = "skills-and-experties"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 2,
+                MenuId = defination.Id,
+                Menu = defination,
+                Label = "Mail | Mesaj Şablonu",
+                Icon = "la la-sign-out",
+                RouterLink = "mail-message-template"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 3,
+                MenuId = defination.Id,
+                Menu = defination,
+                Label = "Logo Yükleme Ekranı",
+                Icon = "la la-cloud-upload-alt",
+                RouterLink = "logo-import-screen"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 4,
+                MenuId = defination.Id,
+                Menu = defination,
+                Label = "İlan Soru Tanımlama",
+                Icon = "la la-question",
+                RouterLink = "advert-question-defination"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 5,
+                MenuId = defination.Id,
+                Menu = defination,
+                Label = "Talep Edilen Pozisyon Adı Aktar",
+                Icon = "la la-exchange-alt",
+                RouterLink = "transfer-requested-posination-name"
+            });
+
+            var positions = new Menu
+            {
+                KeyId = 4,
+                Label = "Portal | Ana Sayfa İçerik Yönetimi",
+                Icon = "",
+                RouterLink = ""
+            };
+            await context.Menus.AddAsync(positions);
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 1,
+                MenuId = positions.Id,
+                Menu = positions,
+                Label = "Blog Manşet Yönetimi",
+                Icon = "la la-newspaper",
+                RouterLink = "blog-headline-manager"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 2,
+                MenuId = positions.Id,
+                Menu = positions,
+                Label = "İş Adımları Yönetimi",
+                Icon = "la la-list",
+                RouterLink = "work-step-manager"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 3,
+                MenuId = positions.Id,
+                Menu = positions,
+                Label = "İş Kategorileri Yönetimi",
+                Icon = "la la-boxes",
+                RouterLink = "work-category-manager"
+            });
+            var reports = new Menu
+            {
+                KeyId = 5,
+                Label = "Raporlar",
+                Icon = "la la-file-alt",
+                RouterLink = "report"
+            };
+            await context.Menus.AddAsync(reports);
+            var userOptions = new Menu
+            {
+                KeyId = 6,
+                Label = "Kullanıcı Ayarları",
+                Icon = "",
+                RouterLink = ""
+            };
+            await context.Menus.AddAsync(userOptions);
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 1,
+                MenuId = userOptions.Id,
+                Menu = userOptions,
+                Label = "Yetki Tanımlama",
+                Icon = "la la-user-plus",
+                RouterLink = "auth-defination"
+            });
+            await context.Items.AddAsync(new Items
+            {
+                KeyId = 2,
+                MenuId = userOptions.Id,
+                Menu = userOptions,
+                Label = "Rol Tanımlama",
+                Icon = "la la-plus-circle",
+                RouterLink = "role-defination"
+            });
+            await context.SaveChangesAsync();
+
         }
     }
 }

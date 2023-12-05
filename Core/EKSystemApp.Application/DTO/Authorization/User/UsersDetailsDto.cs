@@ -11,6 +11,7 @@
         public string RoleName { get; set; }
         public IEnumerable<Object> Companies { get; set; }
         public IEnumerable<Object> Menus { get; set; }
+        public IEnumerable<Object> Items { get; set; }
         public string Email { get; set; }
     }
 }

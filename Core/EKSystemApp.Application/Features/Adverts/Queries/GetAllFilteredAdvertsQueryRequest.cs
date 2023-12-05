@@ -5,24 +5,24 @@ namespace EKSystemApp.Application.Features.Adverts.Queries
 {
     public class GetAllFilteredAdvertsQueryRequest : IRequest<ICollection<AdvertListDto>>
     {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string? PositionName { get; set; }
         public string? PositionTypeName { get; set; }
         public string? AdvertPublisherName { get; set; }
         public string? WorkTypeName { get; set; }
         public string? EducationLevelName { get; set; }
-        public int AdvertNumberId { get; set; }
+        public int? AdvertNumberId { get; set; }
 
         public GetAllFilteredAdvertsQueryRequest(
-            DateTime startDate, 
-            DateTime endDate, 
+            DateTime? startDate, 
+            DateTime? endDate, 
             string? positionName,
             string? positionTypeName,
             string? advertPublisherName, 
             string? workTypeName, 
             string? educationLewelName, 
-            int advertNumberId
+            int? advertNumberId
             )
         {
             StartDate = startDate;

@@ -1,8 +1,10 @@
 ﻿using EKSystemApp.Application.Features.Menus.Queries;
 using EKSystemApp.Application.Features.Products.Queries;
+using EKSystemApp.Persistence.Context;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EKSystemApp.WepAPI.Controllers.Admin
 {
@@ -11,10 +13,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     public class MenuesController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public MenuesController(IMediator mediator)
+        private readonly ApplicationDbContext context;
+        public MenuesController(IMediator mediator, ApplicationDbContext context)
         {
             _mediator = mediator;
+            this.context = context;
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllMenu()

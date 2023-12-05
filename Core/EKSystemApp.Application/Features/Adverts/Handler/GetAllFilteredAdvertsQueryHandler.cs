@@ -14,7 +14,11 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
         private readonly IEbaRepository ebaRepository;
         private readonly IMapper mapper;
 
-        public GetAllFilteredAdvertsQueryHandler(IGenericRepository<AdvertCreate> advertRepository, IEbaRepository ebaRepository, IMapper mapper)
+        public GetAllFilteredAdvertsQueryHandler(
+            IGenericRepository<AdvertCreate> advertRepository,
+            IEbaRepository ebaRepository,
+            IMapper mapper
+            )
         {
             this.advertRepository = advertRepository;
             this.ebaRepository = ebaRepository;
@@ -23,28 +27,31 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
 
         public async Task<ICollection<AdvertListDto>> Handle(GetAllFilteredAdvertsQueryRequest request, CancellationToken cancellationToken)
         {
-            var portalAdverts = (await this.advertRepository.GetAllAsync()).ToList(); //portalda kayıtlı ilanlar
-
-            var ebaForms = await ebaRepository.GetEbaEmployeeRequestForms((ICollection<AdvertListDto>)request); //eBA'da oluşturulan formlar
-            
+            var portalAdverts = await advertRepository.GetAllAdverts(); //portalda kayıtlı ilanlar
             var filterDto = request; //filtre içeriği tanımlanır.
 
+            var ebaForms = await ebaRepository.GetEbaEmployeeRequestForms(portalAdverts); //eBA'da oluşturulan formlar
             var intersectedAdverts = portalAdverts //processId bilgisi eşleşen veriler bir liste değişkenine eklenir.
-                .Where(advert => ebaForms.Any(ebaForm => ebaForm.EbaProcessId == advert.EbaProcessId))
-                .ToList();
+            .Where(advert => ebaForms.Any(ebaForm => ebaForm.EbaProcessId == advert.EbaProcessId))
+            .ToList();
 
-            if (filterDto != null) //eBA'dan uygun kayıtlar döndükten sonra eBA'da olmayan, portaldaki bilgiler için ikinci kez filtrelenir
+            if (filterDto.AdvertNumberId == null) //eBA'dan uygun kayıtlar döndükten sonra eBA'da olmayan, portaldaki bilgiler için ikinci kez filtrelenir
             {
                 intersectedAdverts = FilterByDateRange(intersectedAdverts, filterDto.StartDate, filterDto.EndDate);
-                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionTypeName, x => x.Positions.Select(p=>p.PositionName).ToString());
+                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionTypeName, x => x.PositionKey.ToString());
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertPublisherName, x => x.AdvertPublisherName);
+                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertNumberId.ToString(), x => x.AdvertNumberId.ToString());
+                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionName.ToString(), x => x.PositionKey.ToString());
+            }
+            else
+            {
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertNumberId.ToString(), x => x.AdvertNumberId.ToString());
             }
 
             return this.mapper.Map<ICollection<AdvertListDto>>(intersectedAdverts); //tipi dönüştürülüp sonuç döner.
         }
 
-        private static List<AdvertCreate> FilterByDateRange(List<AdvertCreate> data, DateTime? startDate, DateTime? endDate)
+        private static List<AdvertListDto> FilterByDateRange(List<AdvertListDto> data, DateTime? startDate, DateTime? endDate)
         {
             var filteredData = data;
 
@@ -61,7 +68,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
             return filteredData;
         }
 
-        private static List<AdvertCreate> FilterByString(List<AdvertCreate> data, string value, Func<AdvertCreate, string> selector)
+        private static List<AdvertListDto> FilterByString(List<AdvertListDto> data, string value, Func<AdvertListDto, string> selector)
         {
             var filteredData = data;
 

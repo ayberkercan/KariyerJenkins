@@ -37,8 +37,8 @@ namespace EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping
         {
             return descriptor.Map<MenuListDto>(m => m.Properties(p => p
                 .Keyword(k => k.Name(n => n.Id))
-                .Text(t => t.Name(n => n.Name))
-                .Text(t => t.Name(n => n.RouterIcon))
+                .Text(t => t.Name(n => n.Label))
+                .Text(t => t.Name(n => n.Icon))
                 .Text(t => t.Name(n => n.RouterLink))
             ));
         }

@@ -17,7 +17,7 @@ namespace EKSystemApp.Persistence.Repositories.Adverts
         }
         public async Task<List<GetAdvertQuestionListDto>> GetAdwertQuestionAndContent()
         {
-            var data = await _context.AdvertAdQuestionAnswerContent.Include(p => p.AdvertAdQuestions).Select(p => new { p.Id, p.AnswerContentName, p.AdvertAdQuestions.AdQuestionName, p.AdvertAdQuestions.AnswerContentDefination, p.AdvertAdQuestions.AnswerType }).ToListAsync();
+            var data = await _context.AdvertAdQuestionAnswerContent.Include(p => p.AdvertAdQuestions).Select(p => new { p.Id, p.AnswerContentName, p.AdvertAdQuestions.AdQuestionName, p.AdvertAdQuestions.AnswerContentDefination, p.AdvertAdQuestions.AnswerType }).AsNoTracking().ToListAsync();
 
             List<GetAdvertQuestionListDto> list = new List<GetAdvertQuestionListDto>();
             foreach (var item in data) {
