@@ -134,7 +134,6 @@ namespace EKSystemApp.Persistence.Repositories
                 AdvertNumberId = p.AdvertNumberId,
                 EbaProcessId = p.EbaProcessId,
                 AdvertPublisherName = p.AdvertPublisherName,
-                AppUserId = p.AppUserId,
 
             });
             foreach (var item in k)
