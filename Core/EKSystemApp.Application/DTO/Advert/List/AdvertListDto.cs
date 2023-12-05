@@ -5,6 +5,7 @@ namespace EKSystemApp.Application.DTO.Advert.List
 {
     public class AdvertListDto : BaseEntity
     {
+        public Guid? AppUserId { get; set; }
         public string? WorkDefination { get; set; }
         public string? Brand { get; set; }
         public string? PublicQuality { get; set; }
@@ -37,4 +38,4 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public List<AdvertForeignLanguages> AdvertForeignLanguages { get; set; }
         public List<string> AdvertSkillAndExpertises { get; set; }
     }
-} 
+}

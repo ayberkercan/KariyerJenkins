@@ -565,7 +565,7 @@ namespace EKSystemApp.Persistence.DbInitializerService
                 Menu = newAdvert,
                 Label = "Öne Çıkan İlanlar",
                 Icon = "la la-briefcase",
-                RouterLink = "on-front-adwert"
+                RouterLink = "featured-advert"
             });
             await context.Items.AddAsync(new Items
             {

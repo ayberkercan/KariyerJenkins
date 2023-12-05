@@ -7,6 +7,7 @@ using EKSystemApp.Application.Mappings.AdStatusMap;
 using EKSystemApp.Application.Mappings.AdvertMap;
 using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
+using EKSystemApp.Application.Mappings.Blog;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
 using EKSystemApp.Application.Mappings.Eba;
@@ -104,7 +105,8 @@ namespace EKSystemApp.Application
                     new ApplicationSourceProfile(),
                     new SavedFilterProfile(),
                     new MailMessageProfile(),
-                    new FileProfile()
+                    new FileProfile(),
+                    new BlogProfile()
                 });
             });
         }

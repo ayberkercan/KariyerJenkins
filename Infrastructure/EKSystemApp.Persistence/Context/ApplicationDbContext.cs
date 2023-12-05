@@ -1,5 +1,6 @@
 ﻿using EKSystemApp.Domain.Entities;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
+using EKSystemApp.Domain.Entities.Admin.Blog;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using EKSystemApp.Domain.Entities.File;
 using EKSystemApp.Domain.Entities.UI.SavedFilters;
@@ -73,6 +74,10 @@ namespace EKSystemApp.Persistence.Context
         public DbSet<AdvertAdQuestions> AdvertAdQuestions { get; set; }
         public DbSet<WorkCategory> WorkCategories { get; set; }
         public DbSet<ExperiencePeriod> ExperiencePeriods { get; set; }
+        #endregion
+
+        #region Blog
+        public DbSet<BlogHeadlineManager> BlogHeadlineManagers { get; set; }
         #endregion
         public DbSet<Domain.Entities.Admin.Eba.Profession> Professions { get; set; }
         public DbSet<SavedFiltersOfApprovedCandidateList> SavedFiltersOfApprovedCandidateList { get; set; }

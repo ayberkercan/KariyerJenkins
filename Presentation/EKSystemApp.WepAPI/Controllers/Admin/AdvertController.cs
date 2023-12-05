@@ -22,7 +22,6 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetAllAdvertsQueryRequest()));
         }
-
         #endregion
 
         [HttpPost("[action]")]

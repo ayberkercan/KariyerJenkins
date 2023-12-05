@@ -53,7 +53,7 @@ namespace EKSystemApp.Persistence.Repositories
         public async Task<ICollection<AdvertListDto>> GetAllAdverts()
         {
             List<AdvertListDto> list = new List<AdvertListDto>();
-            var query = _context.AdvertCreates
+            var query = await _context.AdvertCreates
                     .Include(x => x.AdvertAdQuestions)
                     .Include(x => x.AdvertForeignLanguages)
                     .Include(x => x.AdvertSkillAndExpertises)
@@ -73,6 +73,7 @@ namespace EKSystemApp.Persistence.Repositories
                     .Include(x => x.WorkCategories)
                     .Include(x => x.Positions)
                     .Include(x => x.ExperiencePeriods)
+                 
                    .Select(p => new
                    {
                        AdvertAdQuestions = p.AdvertAdQuestions,
@@ -102,8 +103,10 @@ namespace EKSystemApp.Persistence.Repositories
                        PeriotNumberId = p.PeriotNumberId,
                        AdvertNumberId = p.AdvertNumberId,
                        EbaProcessId = p.EbaProcessId,
-                   }).AsNoTracking().ToList();
-            var k = query.Select(p => new {
+                      
+                   }).AsNoTracking().ToListAsync();
+            var k =  query.Select(p => new
+            {
                 AdvertAdQuestions = p.AdvertAdQuestions.ToList(),
                 AdvertForeignLanguages = p.AdvertForeignLanguages.ToList(),
                 AdvertSkillAndExpertises = p.AdvertSkillAndExpertises.Select(p => p.SkillAndExpertiseName).ToList(),
@@ -131,6 +134,7 @@ namespace EKSystemApp.Persistence.Repositories
                 AdvertNumberId = p.AdvertNumberId,
                 EbaProcessId = p.EbaProcessId,
                 AdvertPublisherName = p.AdvertPublisherName,
+                AppUserId = p.AppUserId,
 
             });
             foreach (var item in k)
