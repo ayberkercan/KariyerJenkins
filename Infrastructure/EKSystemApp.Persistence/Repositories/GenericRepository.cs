@@ -1,9 +1,11 @@
 ﻿using System.Linq.Expressions;
 using EKSystemApp.Application.DTO.Advert.List;
 using EKSystemApp.Application.Interfaces;
+using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 using EKSystemApp.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Nest;
 
 namespace EKSystemApp.Persistence.Repositories
 {
@@ -50,7 +52,8 @@ namespace EKSystemApp.Persistence.Repositories
 
         public async Task<ICollection<AdvertListDto>> GetAllAdverts()
         {
-                var query = _context.AdvertCreates
+            List<AdvertListDto> list = new List<AdvertListDto>();
+            var query = _context.AdvertCreates
                     .Include(x => x.AdvertAdQuestions)
                     .Include(x => x.AdvertForeignLanguages)
                     .Include(x => x.AdvertSkillAndExpertises)
@@ -68,57 +71,104 @@ namespace EKSystemApp.Persistence.Repositories
                     .Include(x => x.MillitaryStatuses)
                     .Include(x => x.AdvertStatuses)
                     .Include(x => x.WorkCategories)
-                    .Include(x=>x.Positions)
+                    .Include(x => x.Positions)
                     .Include(x => x.ExperiencePeriods)
-                    .AsNoTracking()
-                    .ToList();
-                List<AdvertListDto> list = new List<AdvertListDto>();
-            var result = query.Select(p =>
-            (
-                p.Id,
-                p.WorkDefination,
-                p.StartDate,
-                p.EndDate,
-                p.AdvertStatuses.Select(x=>x.AdvertStatusName),
-                p.Brands.Select(x=>x.BrandName),
-                p.PublicQuality,
-                p.Positions.Select(x=>x.PositionName),
-                p.PeriotNumberId,
-                p.AdvertNumberId,
-                p.Organizations.Select(x=>x.OrganizationName),
-                p.Groups.Select(x=>x.GroupName),
-                p.Departments.Select(x=>x.DepartmentName),
-                p.Units.Select(x => x.UnitName),
-                p.WorkTypes.Select(x => x.WorkTypeName),
-                p.PositionTypes.Select(x => x.PositionTypeName),
-                p.WorkModels.Select(x => x.WorkModelName),
-                p.EducationLevels.Select(x => x.EducationLevelName)
-            ));
-            foreach (var item in result)
+                   .Select(p => new
+                   {
+                       AdvertAdQuestions = p.AdvertAdQuestions,
+                       AdvertForeignLanguages = p.AdvertForeignLanguages,
+                       AdvertSkillAndExpertises = p.AdvertSkillAndExpertises,
+                       AdvertPublisherName = p.AdvertPublisherName,
+                       Brands = p.Brands,
+                       Logos = p.Logos,
+                       Organizations = p.Organizations,
+                       Groups = p.Groups,
+                       Departments = p.Departments,
+                       Units = p.Units,
+                       WorkTypes = p.WorkTypes,
+                       PositionTypes = p.PositionTypes,
+                       WorkModels = p.WorkModels,
+                       Locations = p.Locations,
+                       EducationLevels = p.EducationLevels,
+                       MillitaryStatuses = p.MillitaryStatuses,
+                       AdvertStatuses = p.AdvertStatuses,
+                       WorkCategories = p.WorkCategories,
+                       Positions = p.Positions,
+                       ExperiencePeriods = p.ExperiencePeriods,
+                       WorkDefination = p.WorkDefination,
+                       StartDAte = p.StartDate,
+                       EndDate = p.EndDate,
+                       PublicQuality = p.PublicQuality,
+                       PeriotNumberId = p.PeriotNumberId,
+                       AdvertNumberId = p.AdvertNumberId,
+                       EbaProcessId = p.EbaProcessId,
+                   }).AsNoTracking().ToList();
+            var k = query.Select(p => new {
+                AdvertAdQuestions = p.AdvertAdQuestions.ToList(),
+                AdvertForeignLanguages = p.AdvertForeignLanguages.ToList(),
+                AdvertSkillAndExpertises = p.AdvertSkillAndExpertises.Select(p => p.SkillAndExpertiseName).ToList(),
+                Brands = p.Brands.Select(p => p.BrandName).FirstOrDefault(),
+                Organizations = p.Organizations.Select(p => p.OrganizationName).FirstOrDefault(),
+                Groups = p.Groups.Select(p => p.GroupName).FirstOrDefault(),
+                Departments = p.Departments.Select(p => p.DepartmentName).FirstOrDefault(),
+                Units = p.Units.Select(p => p.UnitName).FirstOrDefault(),
+                WorkTypes = p.WorkTypes.Select(p => p.WorkTypeKey ).FirstOrDefault(),
+                PositionTypes = p.PositionTypes.Select(p => p.PositionTypeName).FirstOrDefault(),
+                WorkModels = p.WorkModels.Select(p => p.WorkModelName).FirstOrDefault(),
+                Locations = p.Locations.Select(p => p.LocationName).FirstOrDefault(),
+                EducationLevels = p.EducationLevels.Select(p => p.EducationLevelKey).FirstOrDefault(),
+                MillitaryStatuses = p.MillitaryStatuses.Select(p => p.MillitaryStatusName).FirstOrDefault(),
+                AdvertStatuses = p.AdvertStatuses.Select(p => p.AdvertStatusName).FirstOrDefault(),
+                WorkCategories = p.WorkCategories.Select(p => p.WorkCategoryName).FirstOrDefault(),
+                PositionKey = p.Positions.Select(p => p.PositionKey).FirstOrDefault(),
+                PositionValue = p.Positions.Select(p => p.PositionName).FirstOrDefault(),
+                ExperiencePeriods = p.ExperiencePeriods.Select(p => p.ExperiencePeriodName).FirstOrDefault(),
+                WorkDefination = p.WorkDefination,
+                StartDate = p.StartDAte,
+                EndDate = p.EndDate,
+                PublicQuality = p.PublicQuality,
+                PeriotNumberId = p.PeriotNumberId,
+                AdvertNumberId = p.AdvertNumberId,
+                EbaProcessId = p.EbaProcessId,
+                AdvertPublisherName = p.AdvertPublisherName,
+
+            });
+            foreach (var item in k)
             {
                 var advert = new AdvertListDto
                 {
-                    Id = item.Id,
                     WorkDefination = item.WorkDefination,
                     StartDate = Convert.ToDateTime(item.StartDate),
-                    EndDate = Convert.ToDateTime(item.EndDate),
-                    AdvertStatusName = item.Item5.ToString(),
-                    Brand = item.Item6.ToString(),
+                    EndDate = item.EndDate,
+                    AdvertStatusName = item.AdvertStatuses,
+                    Brand = item.Brands.ToString(),
                     PublicQuality = item.PublicQuality,
-                    PositionName = item.Item8.ToString(),
+                    PositionValue = item.PositionValue.ToString(),
+                    PositionKey = item.PositionKey.ToString(),
                     PeriotNumberId = item.PeriotNumberId.ToString(),
                     AdvertNumberId = item.AdvertNumberId.ToString(),
-                    OrganizationName = item.Item11.ToString(),
-                    GroupName = item.Item12.ToString(),
-                    DepartmentName = item.Item13.ToString(),
-                    UnitName = item.Item14.ToString(),
-                    WorkTypeName = item.Item15.ToString(),
-                    PositionTypeName = item.Item16.ToString(),
-                    WorkModelName = item.Item17.ToString(),
-                    EducationLevelName = item.Item18.ToString(),
+                    OrganizationName = item.Organizations.ToString(),
+                    ExperiencePeriod = item.ExperiencePeriods.ToString(),
+                    GroupName = item.Groups.ToString(),
+                    DepartmentName = item.Departments.ToString(),
+                    UnitName = item.Units.ToString(),
+                    WorkTypeName = item.WorkTypes.ToString(),
+                    PositionTypeName = item.PositionTypes.ToString(),
+                    WorkModelName = item.WorkModels.ToString(),
+                    EducationLevelName = item.EducationLevels.ToString(),
+                    EbaProcessId = item.EbaProcessId,
+                    AdvertForeignLanguages = item.AdvertForeignLanguages.ToList(),
+                    AdvertAdQuestions = item.AdvertAdQuestions.ToList(),
+                    AdvertSkillAndExpertises = item.AdvertSkillAndExpertises.ToList(),
+                    AdvertPublisherName = item.AdvertPublisherName.ToString(),
+                    LocationName = item.Locations.ToString(),
+                    MillitaryStatusName = item.MillitaryStatuses.ToString(),
+                    WorkCategory = item.WorkCategories.ToString(),
                 };
                 list.Add(advert);
             }
+         
+            
             return list;
         }
     }

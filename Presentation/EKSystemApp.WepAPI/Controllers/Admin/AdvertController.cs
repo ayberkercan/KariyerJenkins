@@ -24,11 +24,17 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
 
         #endregion
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAdvertById(GetAllFilteredAdvertsQueryRequest request)
+        {
+            return Ok(await this.mediator.Send(request));
+        }
+
         #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
         [HttpPost("[action]")]
         public async Task<IActionResult> GetAllFilteredAdverts(GetAllFilteredAdvertsQueryRequest request)
         {
-            return Ok(await mediator.Send(request));
+            return Ok(await this.mediator.Send(request));
         }
         #endregion
 

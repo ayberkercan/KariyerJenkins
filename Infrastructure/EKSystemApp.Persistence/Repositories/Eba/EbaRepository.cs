@@ -22,6 +22,7 @@ using EKSystemApp.Domain.Entities.Member.Education.Universities;
 using EKSystemApp.Domain.Entities.Member.TurkuvazCompanies;
 using EKSystemApp.Persistence.Context;
 using Microsoft.IdentityModel.Tokens;
+using Nest;
 
 namespace EKSystemApp.Persistence.Repositories.Eba
 {
@@ -303,7 +304,6 @@ namespace EKSystemApp.Persistence.Repositories.Eba
 
         public async Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(ICollection<AdvertListDto> request)
         {
-
             List<AdvertListDto> result = new List<AdvertListDto>();
             foreach (var item in request)
             {
@@ -313,21 +313,23 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                                    where lf.DELETED == 0
                                    where frm.cmbCalismaSekli == item.WorkTypeName
                                    where frm.cmbEgitimDurum == item.EducationLevelName
-                                   select new AdvertListDto 
+                                   where fd.PROCESSID == Convert.ToInt32(item.EbaProcessId)
+                                   select new AdvertListDto
                                    {
-                                        EbaProcessId = item.EbaProcessId,
+                                       EbaProcessId = item.EbaProcessId,
 
                                    }).ToList();
-
                 foreach (var itesm in formDetails)
                 {
                     var k = new AdvertListDto
                     {
-                        Brand = itesm.EbaProcessId
+                        EbaProcessId = itesm.EbaProcessId
                     };
                     result.Add(k);
+
                 }
             }
+
             return _mapper.Map<ICollection<AdvertListDto>>(result); //sonucu çevirip uygun kayıtları döndürür.
         }
     }
