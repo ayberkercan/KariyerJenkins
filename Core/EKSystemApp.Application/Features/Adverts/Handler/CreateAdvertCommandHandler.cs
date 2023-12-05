@@ -113,8 +113,8 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                  PeriotNumberId = request.PeriotNumberId,
                  AdvertNumberId = request.AdvertNumberId,
                  AdvertPublisherName = request.AdvertPublisherName,
-                 EbaProcessId = request.EbaProcessId,
-                 ProcessNumber = request.ProcessNumber
+                 EbaProcessId = request.PeriotNumberId.ToString(),
+                 ProcessNumber = request.PeriotNumberId.ToString()
              });
             #endregion
 
@@ -235,16 +235,16 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                     ForeignLanguageLevels = item.ForeignLanguageLevels
                 });
             }
-            //foreach (var item in request.AdvertAdQuestions)
-            //{
-            //    var newAdvertAdQuestions = await this.AdvertAdQuestionsRepository
-            //   .CreateAsync(
-            //   new AdvertAdQuestions
-            //   {
-            //       AdvertCreateId = newAdvert.Id,
-            //       AdQuestionName = item.AdQuestionName,
-            //   });
-            //}
+            foreach (var item in request.AdvertAdQuestions)
+            {
+                var newAdvertAdQuestions = await this.AdvertAdQuestionsRepository
+               .CreateAsync(
+               new AdvertAdQuestions
+               {
+                   AdvertCreateId = newAdvert.Id,
+                   AdQuestionName = item.AdQuestionName,
+               });
+            }
             var newWorkCategory = await this.WorkCategoryRepository
                .CreateAsync(
                 new WorkCategory

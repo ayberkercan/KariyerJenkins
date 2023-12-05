@@ -311,8 +311,8 @@ namespace EKSystemApp.Persistence.Repositories.Eba
                                    join fd in _context.FlowDocuments on frm.ID equals fd.FILEPROFILEID
                                    join lf in _context.LiveFlows on fd.PROCESSID equals lf.ID
                                    where lf.DELETED == 0
-                                   where frm.cmbCalismaSekli == item.WorkTypeName
-                                   where frm.cmbEgitimDurum == item.EducationLevelName
+                                   where frm.cmbCalismaSekli_TEXT == item.WorkTypeName
+                                   //where frm.cmbEgitimDurum_TEXT == item.EducationLevelName
                                    where fd.PROCESSID == Convert.ToInt32(item.EbaProcessId)
                                    select new AdvertListDto
                                    {

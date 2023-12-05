@@ -41,7 +41,7 @@ namespace EKSystemApp.Application.Features.Adverts.Handler
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionTypeName, x => x.PositionKey.ToString());
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertPublisherName, x => x.AdvertPublisherName);
                 intersectedAdverts = FilterByString(intersectedAdverts, filterDto.AdvertNumberId.ToString(), x => x.AdvertNumberId.ToString());
-                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionName.ToString(), x => x.PositionKey.ToString());
+                intersectedAdverts = FilterByString(intersectedAdverts, filterDto.PositionName.ToString(), x => x.PositionValue.ToString());
             }
             else
             {
