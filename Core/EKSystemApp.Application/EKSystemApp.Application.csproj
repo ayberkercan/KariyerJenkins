@@ -22,12 +22,6 @@
   <ItemGroup>
     <Folder Include="DTO\Blog\Update\" />
     <Folder Include="Features\AdPublishers\Commands\" />
-    <Folder Include="Features\BlogHeadline\Commands\Update\" />
-    <Folder Include="Features\BlogHeadline\Commands\Remove\" />
-    <Folder Include="Features\BlogHeadline\Handlers\Remove\" />
-    <Folder Include="Features\BlogHeadline\Handlers\List\" />
-    <Folder Include="Features\BlogHeadline\Handlers\Update\" />
-    <Folder Include="Features\BlogHeadline\Queries\" />
     <Folder Include="Features\Companies\Commands\" />
     <Folder Include="Features\Companies\Handlers\Create\" />
     <Folder Include="Features\Companies\Handlers\Delete\" />

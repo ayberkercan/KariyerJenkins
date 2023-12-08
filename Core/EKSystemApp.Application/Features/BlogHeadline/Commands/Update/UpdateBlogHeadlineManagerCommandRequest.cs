@@ -1,6 +1,8 @@
-﻿namespace EKSystemApp.Application.DTO.Blog.List
+﻿using MediatR;
+
+namespace EKSystemApp.Application.Features.BlogHeadline.Commands.Update
 {
-    public class BlogHeadlineDto
+    public class UpdateBlogHeadlineManagerCommandRequest : IRequest
     {
         public Guid Id { get; set; }
         public string BlogTitle { get; set; }
@@ -11,5 +13,6 @@
         public string BlogPublicStatu { get; set; }
         public string HeadlinePublicStatu { get; set; }
         public string LinkHeadline { get; set; }
+        public Guid AppUserId { get; set; }
     }
 }

@@ -4,16 +4,15 @@ using EKSystemApp.Application.Features.BlogHeadline.Commands.Create;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Domain.Entities.Admin.Blog;
 using MediatR;
-using Nest;
 
 namespace EKSystemApp.Application.Features.BlogHeadline.Handlers.Create
 {
-    public class CreateBlogHandlineQueryHandler : IRequestHandler<CreateBlogHandlineCommandRequest, BlogHeadlineCreateDto>
+    public class CreateBlogHandlineQueryCommandHandler : IRequestHandler<CreateBlogHandlineCommandRequest, BlogHeadlineCreateDto>
     {
         private readonly IGenericRepository<BlogHeadlineManager> repository;
         private readonly IMapper mapper;
 
-        public CreateBlogHandlineQueryHandler(IGenericRepository<BlogHeadlineManager> repository, IMapper mapper)
+        public CreateBlogHandlineQueryCommandHandler(IGenericRepository<BlogHeadlineManager> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
@@ -26,11 +25,13 @@ namespace EKSystemApp.Application.Features.BlogHeadline.Handlers.Create
                 BlogTitle = request.BlogTitle,
                 BlogPublicStatu = request.BlogPublicStatu,
                 Description = request.Description,
-                HeadlinePublicStatü = request.HeadlinePublicStatü,
+                HeadlinePublicStatu = request.HeadlinePublicStatu,
                 Image = request.Image,
                 LinkHeadline = request.LinkHeadline,
                 PublicationEndDate = request.PublicationEndDate,
-                PublicationPage = request.PublicationPage
+                PublicationPage = request.PublicationPage,
+                AppUserId = request.AppUserId,
+                AppUser = request.AppUser
             };
             var result = await this.repository.CreateAsync(blogHandline);
             return this.mapper.Map<BlogHeadlineCreateDto>(result);

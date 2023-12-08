@@ -66,7 +66,6 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.Create
                 };
                 await companyRepository.CreateAsync(companies);
             }
-            Guid? myGuidVar = null;
             foreach (var menuItem in request.Menues)
             {
                 var say = Guid.Parse(menuItem.ToString()!);
