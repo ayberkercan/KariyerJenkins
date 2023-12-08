@@ -113,8 +113,8 @@ namespace EKSystemApp.Persistence
             //    .AllowCredentials()
             // ));
             //#endregion
-            services.AddAuthentication( CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
         }
-        
+
     }
 }

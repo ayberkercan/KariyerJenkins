@@ -8,5 +8,7 @@ namespace EKSystemApp.Domain.Entities.Admin.MailMesaj
         public string MessageSubject { get; set; }
         public string MessageContent { get; set; }
         public bool OpenClosed { get; set; }
+        public Guid AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

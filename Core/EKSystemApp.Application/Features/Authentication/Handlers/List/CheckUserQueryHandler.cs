@@ -30,15 +30,14 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
         public async Task<CheckUserResponseDto> Handle(CheckUserQueryRequest request, CancellationToken cancellationToken)
         {
             var dto = new CheckUserResponseDto();
-         
+
             var isUser = (await userRepository.GetByFilterAsync(x => x.UserName == request.UserName))!;
             var menus = (await userMenu.GetUserToMenu(isUser.Id));
             var company = (await userMenu.GetUserToCompaniesList(isUser.Id));
-            if (isUser == null)
-            {
-                dto.IsExist = false;
-            }
-            else
+
+            var result = await this.signInManager.CheckPasswordSignInAsync(isUser, request.Password, false);
+
+            if (result.Succeeded)
             {
                 dto.IsExist = true;
                 dto.UserName = isUser.UserName;
@@ -46,6 +45,12 @@ namespace EKSystemApp.Application.Features.Authentication.Handlers.List
                 dto.Id = isUser.Id;
                 dto.Menus = menus;
                 dto.Companies = company;
+
+                return dto;
+            }
+            else
+            {
+                dto.IsExist = false;
             }
             return dto;
         }

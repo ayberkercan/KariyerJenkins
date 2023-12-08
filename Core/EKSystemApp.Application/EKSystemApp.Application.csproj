@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="DTO\Blog\Update\" />
+    <Folder Include="DTO\WorkStepsManager\Delete\" />
     <Folder Include="Features\AdPublishers\Commands\" />
     <Folder Include="Features\Companies\Commands\" />
     <Folder Include="Features\Companies\Handlers\Create\" />

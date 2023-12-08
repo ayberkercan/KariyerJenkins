@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using AutoMapper;
-using EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping;
 using EKSystemApp.Application.Mappings.AdPublisherMap;
 using EKSystemApp.Application.Mappings.AdQuestionMap;
 using EKSystemApp.Application.Mappings.AdStatusMap;
@@ -42,6 +41,7 @@ using EKSystemApp.Application.Mappings.SkillAndExpertisesMap;
 using EKSystemApp.Application.Mappings.TasksTypes;
 using EKSystemApp.Application.Mappings.UIMap;
 using EKSystemApp.Application.Mappings.WorkModelMap;
+using EKSystemApp.Application.Mappings.WorkStepsManagerMap;
 using EKSystemApp.Application.Mappings.WorkTypeMap;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -106,7 +106,8 @@ namespace EKSystemApp.Application
                     new SavedFilterProfile(),
                     new MailMessageProfile(),
                     new FileProfile(),
-                    new BlogProfile()
+                    new BlogProfile(),
+                    new WorkStepManagerProfile(),
                 });
             });
         }

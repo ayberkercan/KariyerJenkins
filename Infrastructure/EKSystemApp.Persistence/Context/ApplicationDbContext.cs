@@ -1,7 +1,9 @@
 ﻿using EKSystemApp.Domain.Entities;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using EKSystemApp.Domain.Entities.Admin.Blog;
+using EKSystemApp.Domain.Entities.Admin.MailMesaj;
 using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
+using EKSystemApp.Domain.Entities.Admin.WorkStepManager;
 using EKSystemApp.Domain.Entities.File;
 using EKSystemApp.Domain.Entities.UI.SavedFilters;
 using EKSystemApp.Persistence.Configurations.AdminPages;
@@ -79,6 +81,15 @@ namespace EKSystemApp.Persistence.Context
         #region Blog
         public DbSet<BlogHeadlineManager> BlogHeadlineManagers { get; set; }
         #endregion
+
+        #region Mail Mesaj Template
+        public DbSet<MailMessageTemplate> MailMessageTemplate { get; set; }
+        #endregion
+        
+        #region Work Step Manager
+        public DbSet<WorksStepManager> WorksStepManagers { get; set; }
+        #endregion
+
         public DbSet<Domain.Entities.Admin.Eba.Profession> Professions { get; set; }
         public DbSet<SavedFiltersOfApprovedCandidateList> SavedFiltersOfApprovedCandidateList { get; set; }
         public DbSet<AdPublisher> AdPublishers { get; set; }
