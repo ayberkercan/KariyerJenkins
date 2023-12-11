@@ -12,6 +12,7 @@ using EKSystemApp.Persistence.Configurations.AppUserCompanies;
 using EKSystemApp.Persistence.Configurations.AppUserMenus;
 using EKSystemApp.Persistence.Configurations.AppUsers;
 using EKSystemApp.Persistence.Configurations.Companies;
+using EKSystemApp.Persistence.Configurations.MailMessage;
 using EKSystemApp.Persistence.Configurations.Menus;
 using EKSystemApp.Persistence.Configurations.Products;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -37,6 +38,7 @@ namespace EKSystemApp.Persistence.Context
             modelBuilder.ApplyConfiguration(new AppUserMenuConfigurations());
             modelBuilder.ApplyConfiguration(new AdvertConfigurations());
             modelBuilder.ApplyConfiguration(new MenuConfiguration());
+            modelBuilder.ApplyConfiguration(new MailMessageConfiguration());
             base.OnModelCreating(modelBuilder);
             #endregion
         }

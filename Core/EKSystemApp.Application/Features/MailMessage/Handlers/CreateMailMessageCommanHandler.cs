@@ -25,7 +25,8 @@ namespace EKSystemApp.Application.Features.MailMessage.Handlers
                 MessageContent = request.MessageContent,
                 MessageScope = request.MessageScope,
                 MessageSubject = request.MessageSubject,
-                OpenClosed = request.OpenClosed
+                OpenClosed = request.OpenClosed,
+                AppUserId = request.AppUserId
             };
             var result = await this.repository.CreateAsync(mailMessage);
             return this.mapper.Map<MailMessageDto>(mailMessage);

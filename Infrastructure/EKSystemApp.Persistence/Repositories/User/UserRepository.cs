@@ -270,7 +270,7 @@ namespace EKSystemApp.Persistence.Repositories.User
                                   .ThenInclude(p => p.AppUserItems)
                                   .ThenInclude(p => p.Items)
                                   .Where(p => p.AppUserId == id)
-                                  .OrderByDescending(d => d)
+                                  
                                   .ToListAsync();
             //var userMenu = await _context.AppUserMenus
             //                        .Include(p => p.Menu)

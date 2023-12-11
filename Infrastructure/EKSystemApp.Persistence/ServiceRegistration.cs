@@ -36,7 +36,7 @@ namespace EKSystemApp.Persistence
             #region DB
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
+                opt.UseNpgsql(configuration.GetConnectionString("Local"));
             });
 
             services.AddDbContext<EbaDbContext>(opt =>

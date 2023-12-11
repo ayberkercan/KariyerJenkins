@@ -9,5 +9,6 @@ namespace EKSystemApp.Application.Features.MailMessage.Commands.Create
         public string MessageSubject { get; set; }
         public string MessageContent { get; set; }
         public bool OpenClosed { get; set; } = true;
+        public Guid AppUserId { get; set; }
     }
 }
