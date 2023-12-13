@@ -8,6 +8,7 @@ using EKSystemApp.Application.DTO.Menus.List;
 using EKSystemApp.Application.Features.Adverts.Queries;
 using EKSystemApp.Application.Features.EBA.TMP.Queries;
 using EKSystemApp.Domain.Entities;
+using EKSystemApp.Domain.Entities.Admin.NewAdvertCreated;
 
 namespace EKSystemApp.Application.Interfaces.IUser
 {
@@ -25,6 +26,6 @@ namespace EKSystemApp.Application.Interfaces.IUser
         Task<ICollection<EbaStrKvpDto>> GetEbaEducationDepartments();
         Task<ICollection<EbaStrKvpDto>> GetEbaSelectableCompanies();
         Task<ICollection<EbaStrKvpDto>> GetEbaApplicationSources();
-        Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(GetAllFilteredAdvertsQueryRequest request = null);
+        Task<ICollection<AdvertListDto>> GetEbaEmployeeRequestForms(ICollection<AdvertListDto> advertCreates);
     }
 }

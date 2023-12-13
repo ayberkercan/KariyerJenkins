@@ -45,7 +45,7 @@ namespace EKSystemApp.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TmpZhrCalisanPersWs>().ToTable("TMP_ZHRCALISANPERSWS");
+             modelBuilder.Entity<TmpZhrCalisanPersWs>().ToTable("TMP_ZHRCALISANPERSWS");
             modelBuilder.Entity<TmpOrganizationTree>().ToTable("TMP_ZHRORGANIZATIONTREE");
             modelBuilder.Entity<TmpOrganizationTreeDr>().ToTable("TMP_ZHRORGANIZATIONTREEDR");
             modelBuilder.Entity<GorevlerFullSap>().ToTable("GOREVLER_FULL_SAP");

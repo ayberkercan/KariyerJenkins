@@ -29,10 +29,11 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
     {
 
         private readonly IMediator mediator;
-
-        public NewAdvertCreateController(IMediator mediator)
+        private readonly IWebHostEnvironment hostingEnvironment;
+        public NewAdvertCreateController(IMediator mediator, IWebHostEnvironment hostingEnvironment)
         {
             this.mediator = mediator;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost("[action]")]
@@ -113,12 +114,12 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllForignLanguage()
+        public async Task<IActionResult> GetAllForeignLanguage()
         {
             return Ok(await this.mediator.Send(new GetForignLanguagesQueryRequest()));
         }
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllForignLanguageLevel()
+        public async Task<IActionResult> GetAllForeignLanguageLevel()
         {
             return Ok(await this.mediator.Send(new GetEbaForeignLanguageLevelsQueryRequest()));
         }
@@ -179,6 +180,5 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetWorkTypesQueryRequest()));
         }
-        
     }
 }

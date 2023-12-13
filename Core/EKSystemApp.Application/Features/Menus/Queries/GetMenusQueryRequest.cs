@@ -1,5 +1,4 @@
-﻿using EKSystemApp.Application.DTO.Menus.List;
-using EKSystemApp.Domain.Entities;
+﻿using EKSystemApp.Domain.Entities;
 using MediatR;
 
 namespace EKSystemApp.Application.Features.Menus.Queries

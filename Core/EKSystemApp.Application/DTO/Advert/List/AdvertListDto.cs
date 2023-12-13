@@ -1,24 +1,21 @@
 ﻿using EKSystemApp.Domain.Common;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EKSystemApp.Application.DTO.Advert.List
 {
     public class AdvertListDto : BaseEntity
     {
+        public Guid? AppUserId { get; set; }
         public string? WorkDefination { get; set; }
         public string? Brand { get; set; }
         public string? PublicQuality { get; set; }
-        public string? PositionName { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string? PositionValue { get; set; }
+        public string? PositionKey { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string? Logo { get; set; } = null;
-        public int PeriotNumberId { get; set; }
-        public int AdvertNumberId { get; set; }
+        public string? PeriotNumberId { get; set; }
+        public string? AdvertNumberId { get; set; }
         public string? TaskTypeName { get; set; }
         public string? CompanyName { get; set; }
         public string? OrganizationName { get; set; }
@@ -37,5 +34,8 @@ namespace EKSystemApp.Application.DTO.Advert.List
         public string? WorkCategory { get; set; }
         public string? ExperiencePeriod { get; set; }
         public string? EbaProcessId { get; set; }
+        public List<AdvertAdQuestions> AdvertAdQuestions { get; set; }
+        public List<AdvertForeignLanguages> AdvertForeignLanguages { get; set; }
+        public List<string> AdvertSkillAndExpertises { get; set; }
     }
-} 
+}

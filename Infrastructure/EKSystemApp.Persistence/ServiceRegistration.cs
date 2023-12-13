@@ -1,6 +1,7 @@
 ﻿using EKSystemApp.Application.ElasticSearcServiceAndMapping.Services;
 using EKSystemApp.Application.Interfaces;
 using EKSystemApp.Application.Interfaces.Adwerts;
+using EKSystemApp.Application.Interfaces.Common;
 using EKSystemApp.Application.Interfaces.IElasticSearchService;
 using EKSystemApp.Application.Interfaces.ILDAPAuthService;
 using EKSystemApp.Application.Interfaces.IUser;
@@ -13,10 +14,12 @@ using EKSystemApp.Persistence.DbInitiliazers;
 using EKSystemApp.Persistence.LDAPAuth;
 using EKSystemApp.Persistence.Repositories;
 using EKSystemApp.Persistence.Repositories.Adverts;
+using EKSystemApp.Persistence.Repositories.Common;
 using EKSystemApp.Persistence.Repositories.Eba;
 using EKSystemApp.Persistence.Repositories.User;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +27,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
-
 namespace EKSystemApp.Persistence
 {
     public static class ServiceRegistration
@@ -34,7 +36,7 @@ namespace EKSystemApp.Persistence
             #region DB
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
+                opt.UseNpgsql(configuration.GetConnectionString("Local"));
             });
 
             services.AddDbContext<EbaDbContext>(opt =>
@@ -95,6 +97,9 @@ namespace EKSystemApp.Persistence
             services.AddScoped<IDbInitiliazerContext, DBInitiliazerContext>();
             services.AddScoped<IEbaRepository, EbaRepository>();
             services.AddScoped<ILDAPAuthService, LDAPAuthService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IFileConverterService, FileConverterService>();
+
             services.AddScoped<IAdvertQuestionsAndContent, AdvertQuestionsAndContentRepository>();
             services.AddScoped(typeof(IElasticSearchService<>), typeof(ElasticSearchService<>));
             #endregion
@@ -108,8 +113,8 @@ namespace EKSystemApp.Persistence
             //    .AllowCredentials()
             // ));
             //#endregion
-            services.AddAuthentication( CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
         }
-        
+
     }
 }

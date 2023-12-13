@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Domain.Entities.Admin.Eba;
+﻿using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
+using EKSystemApp.Domain.Entities.Admin.Eba;
 
 namespace EKSystemApp.Application.DTO.Advert.Create
 {

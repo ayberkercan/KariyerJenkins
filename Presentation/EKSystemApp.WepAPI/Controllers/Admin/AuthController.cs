@@ -1,4 +1,5 @@
-﻿using EKSystemApp.Application.Features.Authentication.Commands.Register;
+﻿using System;
+using EKSystemApp.Application.Features.Authentication.Commands.Register;
 using EKSystemApp.Application.Features.Authentication.Commands.Remove;
 using EKSystemApp.Application.Features.Authentication.Commands.Update;
 using EKSystemApp.Application.Features.Authentication.Queries;
@@ -25,6 +26,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         [HttpGet("[action]")]
         public async Task<IActionResult> GetUsers()
         {
+           
             //var result = await _mediator.Send(new GetUsersQueryRequest());
             var result = await this.elasticSearchService.GetDocuments("users");
             return Ok(result);
@@ -81,6 +83,7 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await _mediator.Send(new RemoveUserCommandRequest(id)));
         }
+        
 
     }
 }

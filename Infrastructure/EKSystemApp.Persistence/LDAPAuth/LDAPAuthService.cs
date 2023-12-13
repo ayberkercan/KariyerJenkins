@@ -15,10 +15,7 @@ namespace EKSystemApp.Persistence.LDAPAuth
             this.configuration = configuration;
         }
 
-        /// <summary>
-        /// Kullanıcı doğrulama metodudur
-        /// </summary>
-        /// <returns>AuthApiResponseDto</returns>
+        #region Doğrulama Methodu
         public async Task<AuthApiResponseDto> ValidateUser(CheckUserValidatedQueryRequest request)
         {
             var client = new HttpClient();
@@ -27,12 +24,12 @@ namespace EKSystemApp.Persistence.LDAPAuth
 
             var apiTokenValue = GetApiTokenAsync();
 
-            if (String.IsNullOrEmpty(apiTokenValue.Result)) 
+            if (String.IsNullOrEmpty(apiTokenValue.Result))
             {
                 request.ValidationError = "Turkuvaz Kullanıcı doğrulama servisinden dönüş alınamadı.";
                 return new AuthApiResponseDto() { Message = request.ValidationError, Result = apiTokenValue.Result, User = request.Email };
             }
-            
+
             var postParams = new Dictionary<string, string>
             {
                 { "api_token", apiTokenValue.Result },
@@ -76,11 +73,9 @@ namespace EKSystemApp.Persistence.LDAPAuth
 
             return new AuthApiResponseDto() { Result = "fail", User = request.Email, Message = request.ValidationError };
         }
+        #endregion
 
-        /// <summary>
-        /// LDAP doğrulaması için gerekli olan token bilgisinin alınmasını sağlar.
-        /// </summary>
-        /// <returns>string</returns>
+        #region  LDAP doğrulaması için gerekli olan token bilgisinin alınmasını sağlar.
         public async Task<string> GetApiTokenAsync()
         {
             try
@@ -96,7 +91,7 @@ namespace EKSystemApp.Persistence.LDAPAuth
 
                 var webRequest = await client.PostAsync(configuration.GetSection("TurkuvazAuth").GetSection("TokenEndPoint").Value, new FormUrlEncodedContent(postParams));
 
-                if (webRequest.IsSuccessStatusCode) 
+                if (webRequest.IsSuccessStatusCode)
                 {
                     var result = JsonConvert.DeserializeObject<TokenApiResponseDto>(webRequest.Content.ReadAsStringAsync().Result);
                     return result != null ? result.Token.ToString() : webRequest.Content.ReadAsStringAsync().Result;
@@ -111,5 +106,8 @@ namespace EKSystemApp.Persistence.LDAPAuth
                 return ex.Message;
             }
         }
+        #endregion
+
+
     }
 }

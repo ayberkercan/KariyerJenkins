@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EKSystemApp.Domain.Entities;
+﻿using EKSystemApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,22 +10,27 @@ namespace EKSystemApp.Persistence.Configurations.Companies
         {
 
             builder.HasData(
+               new Company
+               {
+                   Id = Guid.NewGuid(),
+                   CompanyName = "Holding",
+               },
+               new Company
+               {
+                   Id = Guid.NewGuid(),
+                   CompanyName = "D&R"
+               },
                 new Company
                 {
                     Id = Guid.NewGuid(),
-                    CompanyName = "Holding",
-                },
-                new Company
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyName = "D&R"
-                },
-                 new Company
-                 {
-                     Id = Guid.NewGuid(),
-                     CompanyName = "D&R Market"
-                 }
-                );
+                    CompanyName = "D&R Market"
+                }
+               );
+            builder
+                .HasMany(p => p.CompaniesKeys)
+                .WithOne(p => p.Company)
+                .HasForeignKey(p => p.CompanyId)
+                .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 using AutoMapper;
-using EKSystemApp.Application.ElasticSearcServiceAndMapping.Mapping;
 using EKSystemApp.Application.Mappings.AdPublisherMap;
 using EKSystemApp.Application.Mappings.AdQuestionMap;
 using EKSystemApp.Application.Mappings.AdStatusMap;
 using EKSystemApp.Application.Mappings.AdvertMap;
 using EKSystemApp.Application.Mappings.AppRoleMAp;
 using EKSystemApp.Application.Mappings.AppUserMap;
+using EKSystemApp.Application.Mappings.Blog;
 using EKSystemApp.Application.Mappings.CategoriesProfileMap;
 using EKSystemApp.Application.Mappings.CompanyMap;
 using EKSystemApp.Application.Mappings.Eba;
@@ -19,8 +19,10 @@ using EKSystemApp.Application.Mappings.Eba.EbaPositionMap;
 using EKSystemApp.Application.Mappings.Eba.EbaUnitMap;
 using EKSystemApp.Application.Mappings.EducationLevelMap;
 using EKSystemApp.Application.Mappings.ExperiencePeriodMap;
+using EKSystemApp.Application.Mappings.FileMap;
 using EKSystemApp.Application.Mappings.ForignLanguagesMap;
 using EKSystemApp.Application.Mappings.JobCategoriesMap;
+using EKSystemApp.Application.Mappings.MailMessageMap;
 using EKSystemApp.Application.Mappings.Member.ApplicationSourceMap;
 using EKSystemApp.Application.Mappings.Member.CityMap;
 using EKSystemApp.Application.Mappings.Member.CompanyMap;
@@ -39,6 +41,7 @@ using EKSystemApp.Application.Mappings.SkillAndExpertisesMap;
 using EKSystemApp.Application.Mappings.TasksTypes;
 using EKSystemApp.Application.Mappings.UIMap;
 using EKSystemApp.Application.Mappings.WorkModelMap;
+using EKSystemApp.Application.Mappings.WorkStepsManagerMap;
 using EKSystemApp.Application.Mappings.WorkTypeMap;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -75,7 +78,6 @@ namespace EKSystemApp.Application
                     new AdQuestionProfile(),
                     new AdStatusProfile(),
                     new EducationLevelProfile(),
-                    new ForignLanguagesProfile(),
                     new JobCategoriesProfile(),
                     new MillitaryStatusesProfile(),
                     new PositionTypeProfile(),
@@ -101,7 +103,11 @@ namespace EKSystemApp.Application
                     new SalaryTypeProfile(),
                     new CurrencyProfile(),
                     new ApplicationSourceProfile(),
-                    new SavedFilterProfile()
+                    new SavedFilterProfile(),
+                    new MailMessageProfile(),
+                    new FileProfile(),
+                    new BlogProfile(),
+                    new WorkStepManagerProfile(),
                 });
             });
         }

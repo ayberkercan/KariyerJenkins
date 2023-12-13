@@ -1,8 +1,5 @@
-﻿using Azure.Core;
-using EKSystemApp.Application.Features.Adverts.Commands.Create;
-using EKSystemApp.Application.Features.Adverts.Handler;
+﻿using EKSystemApp.Application.DTO.File;
 using EKSystemApp.Application.Features.Adverts.Queries;
-using EKSystemApp.Application.Features.Companies.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,14 +22,19 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         {
             return Ok(await this.mediator.Send(new GetAllAdvertsQueryRequest()));
         }
-
         #endregion
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAdvertById(GetAllFilteredAdvertsQueryRequest request)
+        {
+            return Ok(await this.mediator.Send(request));
+        }
 
         #region Parametrik filtre bilgileri ile uygun ilanları listeleyen endpoint.
         [HttpPost("[action]")]
         public async Task<IActionResult> GetAllFilteredAdverts(GetAllFilteredAdvertsQueryRequest request)
         {
-            return Ok(await mediator.Send(request));
+            return Ok(await this.mediator.Send(request));
         }
         #endregion
 
@@ -44,5 +46,21 @@ namespace EKSystemApp.WepAPI.Controllers.Admin
         }
         #endregion
 
+        #region Yüklenen dosyayı base64 içeriğe dönüştüren endpoint.
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetBase64StringFromFile([FromForm] IFormFile file)
+        {
+            return Ok(await this.mediator.Send(new Base64QueryRequest(file)));
+        }
+        #endregion
+
+        #region Parametrik base64 metni dosyaya dönüştüren endpoint.
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetFileFromBase64String(FileQueryRequest request)
+        {
+            var fileData = await this.mediator.Send(request);
+            return File(fileData.FileBytes, "application/octet-stream", $"{fileData.FileName}");
+        }
+        #endregion
     }
 }

@@ -1,40 +1,40 @@
 ﻿using EKSystemApp.Application.DTO.Advert.Create;
 using EKSystemApp.Domain.Entities.Admin.AdminBaseEntity;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace EKSystemApp.Application.Features.Adverts.Commands.Create
 {
-    public class NewAdvertCreateCommandRequest:IRequest<CreateAdvertDto>
+    public class NewAdvertCreateCommandRequest : IRequest<CreateAdvertDto>
     {
-        public string WorkDefination { get; set; }
-        public string PublicQuality { get; set; }
-        public string Brand { get; set; }
-        public string PositionName { get; set; }
+        public Guid AppUserId { get; set; }
+        public string? WorkDefination { get; set; }
+        public string Brands { get; set; }
+        public string? PublicQuality { get; set; }
+        public string Positions { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string? Logo { get; set; } = null;
-        public int PeriotNumberId { get; set; }
-        public int AdvertNumberId { get; set; }
-        public string? TaskTypeName { get; set; }
-        public string? CompanyName { get; set; }
-        public string OrganizationName { get; set; }
-        public string GroupName { get; set; }
-        public string DepartmentName { get; set; }
-        public string UnitName { get; set; }
-        public string WorkTypeName { get; set; }
-        public string PositionTypeName { get; set; }
-        public string WorkModelName { get; set; }
-        public string LocationName { get; set; }
-        public string EducationLevelName { get; set; }
-        public string? ExperiencePeriodName { get; set; }
-        public string MillitaryStatusName { get; set; }
-        public string? AdvertStatusName { get; set; }
+        public IFormFile? Logo { get; set; }
+        public int? PeriotNumberId { get; set; }
+        public int? AdvertNumberId { get; set; }
+        public string Organizations { get; set; }
+        public string Groups { get; set; }
+        public string Departments { get; set; }
+        public string Units { get; set; }
+        public string WorkTypes { get; set; }
+        public string PositionTypes { get; set; }
+        public string WorkModels { get; set; }
+        public string Locations { get; set; }
+        public string EducationLevels { get; set; }
+        public string MillitaryStatuses { get; set; }
+        public string AdvertStatuses { get; set; }
         public string? AdvertPublisherName { get; set; }
-        public List<object>? SkillAndExpertises { get; set; }
-        public string? ForeignLanguages { get; set; }
-        public string? ForeignLanguageLevels { get; set; }
-        public List<object>? AdQuestions { get; set; }
-        public string? WorkCategory { get; set; }
+        public List<AdvertSkillAndExpertises> AdvertSkillAndExpertises { get; set; }
+        public List<AdvertForeignLanguages> AdvertForeignLanguages { get; set; }
+        public List<AdvertAdQuestions>? AdvertAdQuestions { get; set; }
+        public string? WorkCategories { get; set; }
+        public string ExperiencePeriods { get; set; }
         public string? EbaProcessId { get; set; }
+        public string? ProcessNumber { get; set; }
     }
 }

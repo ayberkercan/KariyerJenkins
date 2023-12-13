@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,19 +19,22 @@ namespace EKSystemApp.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdPublisher", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AdPublisherKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("AdPublisherName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -56,13 +60,16 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("AdvertAdQuestionsId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AnswerContentKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("AnswerContentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -75,20 +82,22 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AdQuestionKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("AdQuestionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<Guid?>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("AnswerContentDefination")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("AnswerType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -97,42 +106,45 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("AdvertAdQuestions");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertForignLanguages", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertForeignLanguages", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.Property<Guid>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<Guid?>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ForeignLanguageKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("ForeignLanguageLevels")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ForeignLanguageName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AdvertCreateId");
 
-                    b.ToTable("AdvertForignLanguages");
+                    b.ToTable("AdvertForeignLanguages");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertSkillAndExpertises", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("AdvertCreateId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("SkillAndExpertiseKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("SkillAndExpertiseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -141,17 +153,94 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("AdvertSkillAndExpertises");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AdvertStatusKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AdvertStatusName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("AdvertStatuses");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Brand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("BrandKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Department", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DepartmentKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Departments");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.EducationLevel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("EducationLevelKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("EducationLevelName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
 
                     b.ToTable("EducationLevels");
                 });
@@ -160,73 +249,250 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ExperiencePeriodKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("ExperiencePeriodName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
 
                     b.ToTable("ExperiencePeriods");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.JobCategory", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Group", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("JobCategoryName")
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("GroupKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GroupName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("JobCategories");
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Location", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("LocationKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LocationName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Logo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<byte[]>("FileData")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Logos");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.MillitaryStatus", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("MillitaryStatusKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("MillitaryStatusName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdvertCreateId");
+
                     b.ToTable("MillitaryStatuses");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Organization", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("OrganizationKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OrganizationName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Position", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("PositionKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PositionName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.PositionType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("PositionTypeKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("PositionTypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdvertCreateId");
+
                     b.ToTable("PositionTypes");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Unit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UnitKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UnitName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("Units");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.WorkCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("WorkCategoryKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("WorkCategoryName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
+
+                    b.ToTable("WorkCategories");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.WorkModel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("WorkModelKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("WorkModelName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
 
                     b.ToTable("WorkModels");
                 });
@@ -235,296 +501,219 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AdvertCreateId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("WorkTypeKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("WorkTypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertCreateId");
 
                     b.ToTable("WorkTypes");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Eba", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Blog.BlogHeadlineManager", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
 
-                    b.ToTable("Ebas");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaCompany", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("BlogPublicStatu")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EbaCompanies");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaDepartment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DepartmentName")
+                    b.Property<string>("BlogTitle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EbaDepartments");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("GroupName")
+                    b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EbaGroups");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.EbaUnit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UnitName")
+                    b.Property<string>("HeadlinePublicStatu")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EbaUnits");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Location", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LocationName")
+                    b.Property<string>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Organization", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("OrganizationName")
+                    b.Property<string>("LinkHeadline")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("PublicationEndDate")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.ToTable("Organizations");
-                });
-
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Position", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("PositionName")
+                    b.Property<string>("PublicationPage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Positions");
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("BlogHeadlineManagers");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.Profession", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ProfessionName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Professions");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Eba.TaskType", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.MailMesaj.MailMessageTemplate", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("TaskName")
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("MessageContent")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("MessageScope")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MessageSubject")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("OpenClosed")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskTypes");
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("MailMessageTemplate");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("AdvertNumberId")
-                        .HasColumnType("int");
+                    b.Property<int?>("AdvertNumberId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("AdvertPublisherName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("AdvertStatusName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("EbaProcessId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("EducationLevelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("PeriotNumberId")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("ExperiencePeriod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GroupName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MillitaryStatusName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrganizationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PeriotNumberId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PositionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PositionTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ProcessNumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("PublicQuality")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TaskTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnitName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WorkCategory")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("WorkDefination")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WorkModelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WorkTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.ToTable("AdvertCreates");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.WorkStepManager.WorksStepManager", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Defination")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("WorkSteps")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("WorkStepsTitle")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("WorksStepManagers");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Definition")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
                 });
@@ -533,69 +722,69 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("AppRoleId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Registry")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
@@ -606,8 +795,7 @@ namespace EKSystemApp.Persistence.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -615,10 +803,10 @@ namespace EKSystemApp.Persistence.Migrations
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserCompany", b =>
                 {
                     b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("AppUserId", "CompanyId");
 
@@ -627,13 +815,28 @@ namespace EKSystemApp.Persistence.Migrations
                     b.ToTable("AppUserCompany");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserItem", b =>
+                {
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("AppUserId", "ItemId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("AppUserItems");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserMenu", b =>
                 {
                     b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("MenuId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("AppUserId", "MenuId");
 
@@ -646,25 +849,25 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Defination")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Company", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -673,335 +876,234 @@ namespace EKSystemApp.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ad87b4c6-9e16-40e5-85a1-8beffc29d3a1"),
+                            Id = new Guid("fcd9b5fc-9ed2-4cea-960a-9c78b5748a7e"),
                             CompanyName = "Holding"
                         },
                         new
                         {
-                            Id = new Guid("dd2f6eec-6c11-48f3-a67d-04b6bea98866"),
+                            Id = new Guid("41988532-57ca-48a8-b48a-00bc8aba4d9a"),
                             CompanyName = "D&R"
                         },
                         new
                         {
-                            Id = new Guid("00d497a5-a692-4bc9-a249-97d73cda2fbb"),
+                            Id = new Guid("6198ef0d-e177-4fd3-ab97-11c4422a5c34"),
                             CompanyName = "D&R Market"
                         });
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.CompanyKey", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CompaniesKey")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("CompanyKeys");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.File.FormFiles", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FileData")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormFiles");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("KeyId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("MenuId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("RouterLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("queryParams")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("url")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Menu", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("HtmlTag")
+                    b.Property<string>("Icon")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("KeyId")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("RouterIcon")
+                    b.Property<string>("Label")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RouterLink")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8a3f72c9-2e1f-4a30-87b8-14724e12b50f"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['dashboard']\" routerLinkActive=\"router-link-active\"> <i class=\"la la-home\"></i> Admin Kariyer Giriş</a>  </li></ul>",
-                            Name = "Admin Kariyer | Giriş",
-                            RouterIcon = "la la-home",
-                            RouterLink = "dashboard"
-                        },
-                        new
-                        {
-                            Id = new Guid("8486c8ed-aa4a-455a-b0fe-9193a486e460"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['new-adwert-create']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-tie\"></i>Yeni İlan Oluştur</a>  </li></ul>",
-                            Name = "Yeni İlan Oluştur",
-                            RouterIcon = "la la-user-tie",
-                            RouterLink = "new-adwert-create"
-                        },
-                        new
-                        {
-                            Id = new Guid("79b58664-e773-4576-b246-d5d7cd1fa859"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwerts']\" routerLinkActive=\"router-link-active\"><i class=\"la la-paper-plane\"></i>İlanlar</a>  </li></ul>",
-                            Name = "İlanlar",
-                            RouterIcon = "la la-paper-plane",
-                            RouterLink = "adwerts"
-                        },
-                        new
-                        {
-                            Id = new Guid("c62b7329-eb10-4313-a8b3-bc34fa03120c"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['on-front-adwert']\" routerLinkActive=\"router-link-active\"><i class=\"la la-briefcase\"></i> Öne Çıkan İlanlar </a>  </li></ul>",
-                            Name = "Öne Çıkan İlanlar",
-                            RouterIcon = "la la-briefcase",
-                            RouterLink = "on-front-adwert"
-                        },
-                        new
-                        {
-                            Id = new Guid("8c5f8947-9e99-4c1d-ae6b-bb8af67d49bd"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['application-candidate-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-file-invoice\"></i> Başvuran Aday Listesi </a>  </li></ul>",
-                            Name = "Başvuran Aday Listeleri",
-                            RouterIcon = "la la-file-invoice",
-                            RouterLink = "application-candidate-lists"
-                        },
-                        new
-                        {
-                            Id = new Guid("891538d4-f466-4f1f-aa1e-c8b834702626"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-question-and-answer-lists']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bookmark-o\"></i>Aday Soru/Cevap Listeleri</a>  </li></ul>",
-                            Name = "Aday Soru | Cevap Listeleri",
-                            RouterIcon = "la la-bookmark-o",
-                            RouterLink = "candidate-question-and-answer-lists"
-                        },
-                        new
-                        {
-                            Id = new Guid("1a566925-9f86-408e-b3c1-7abc16b082ba"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-pool']\" routerLinkActive=\"router-link-active\"><i class=\"la la-box\"></i>Aday Havuzu</a>  </li></ul>",
-                            Name = "Aday Havuzu",
-                            RouterIcon = "la la-box",
-                            RouterLink = "candidate-pool"
-                        },
-                        new
-                        {
-                            Id = new Guid("63f7a993-c6b1-4c86-a94c-a228864460f5"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-comment-o\"></i>Mail/Mesaj Yönetimi</a>  </li></ul>",
-                            Name = "Mail | Mesaj Yönetimi",
-                            RouterIcon = "la la-comment-o",
-                            RouterLink = "mail-message-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("c31ab4d3-f6b3-4b5b-867e-89e0fefe0487"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['candidate-files']\" routerLinkActive=\"router-link-active\"><i class=\"la la-bell\"></i>Aday Dosyaları</a>  </li></ul>",
-                            Name = "Aday Dosyaları",
-                            RouterIcon = "la la-bell",
-                            RouterLink = "candidate-files"
-                        },
-                        new
-                        {
-                            Id = new Guid("3e93c699-821a-4ab9-9472-68a590b6027b"),
-                            HtmlTag = "",
-                            Name = "Tanımlamalar",
-                            RouterIcon = "la la-lock",
-                            RouterLink = "navlink dropdown-toggle"
-                        },
-                        new
-                        {
-                            Id = new Guid("66ed0d2e-8e80-4187-9763-5a375928595d"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['skills-and-experties']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-alt\"></i>Yetenek ve Uzmanlıklar</a>  </li></ul>",
-                            Name = "Yetenek ve Uzmanlıklar",
-                            RouterIcon = "la la-user-alt",
-                            RouterLink = "skills-and-experties"
-                        },
-                        new
-                        {
-                            Id = new Guid("77cd15c2-9b94-41b5-a71f-f01121a3fa5d"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['mail-message-template']\" routerLinkActive=\"router-link-active\"><i class=\"la la-sign-out\"></i>Mail/Mesaj Şablonu</a>   </li></ul>",
-                            Name = "Mail | Mesaj Şablonu ",
-                            RouterIcon = "la la-sign-out",
-                            RouterLink = "mail-message-template "
-                        },
-                        new
-                        {
-                            Id = new Guid("b8faf30d-9b7a-4d1e-94aa-8e6811ff5401"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['logo-import-screen']\" routerLinkActive=\"router-link-active\"><i class=\"la la-cloud-upload-alt\"></i>Logo Yükleme Ekranı</a>  </li></ul>",
-                            Name = "Logo Yükleme Ekranı",
-                            RouterIcon = "la la-cloud-upload-alt",
-                            RouterLink = "logo-import-screen"
-                        },
-                        new
-                        {
-                            Id = new Guid("1f368b13-fa8c-413c-9784-c5e72cea094e"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['adwert-question-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-question\"></i> İlan Soru Tanımlama</a>  </li></ul>",
-                            Name = "İlan Soru Tanımlama",
-                            RouterIcon = "la la-question",
-                            RouterLink = "adwert-question-defination"
-                        },
-                        new
-                        {
-                            Id = new Guid("4434a541-25d8-4246-a50b-623d810d3d07"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['transfer-requested-posination-name']\" routerLinkActive=\"router-link-active\"><i class=\"la la-exchange-alt\"></i> Talep Edilen Pozisyon Adı Aktar</a>  </li></ul>",
-                            Name = "Talep Edilen Pozisyon Adı Aktar",
-                            RouterIcon = "la la-exchange-alt",
-                            RouterLink = "transfer-requested-posination-name"
-                        },
-                        new
-                        {
-                            Id = new Guid("e05617a6-37cf-446d-ae24-4c7eefe543e9"),
-                            HtmlTag = "",
-                            Name = "Portal | Ana Sayfa İçerik Yönetimi",
-                            RouterIcon = "",
-                            RouterLink = ""
-                        },
-                        new
-                        {
-                            Id = new Guid("f42d2ec2-034e-41d7-a91b-a11694be259d"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['blog-headline-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-newspaper\"></i> Blog Manşet Yönetimi </a>  </li></ul>",
-                            Name = "Blog Manşet Yönetimi",
-                            RouterIcon = "la la-newspaper",
-                            RouterLink = "blog-headline-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("7ae31168-83ab-43df-8ba2-1af0a4d317bf"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-step-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-list\"></i>İş Adımları Yönetimi </a>  </li></ul>",
-                            Name = "İş Adımları Yönetimi",
-                            RouterIcon = "la la-list",
-                            RouterLink = "work-step-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("15184604-e97a-4fc5-b48f-08140a4a759a"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['work-category-manager']\" routerLinkActive=\"router-link-active\"><i class=\"la la-boxes\"></i>İş Kategori Yönetimi </a>  </li></ul>",
-                            Name = "İş Kategorileri Yönetimi",
-                            RouterIcon = "la la-boxes",
-                            RouterLink = "work-category-manager"
-                        },
-                        new
-                        {
-                            Id = new Guid("aacd97d2-b5c1-43bc-bd4d-6d13a0821925"),
-                            HtmlTag = "",
-                            Name = "Raporlar",
-                            RouterIcon = "la la-file-alt",
-                            RouterLink = "report"
-                        },
-                        new
-                        {
-                            Id = new Guid("13378713-de3c-4c2e-bd6c-85d77df794a7"),
-                            HtmlTag = "",
-                            Name = "Kullanıcı Ayarları",
-                            RouterIcon = " ",
-                            RouterLink = " "
-                        },
-                        new
-                        {
-                            Id = new Guid("32ef5caa-7861-4b0f-b2b3-27b2200bb7da"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['auth-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-user-plus\"></i>Yetki Tanımlama </a>  </li></ul>",
-                            Name = "Yetki Tanımlama",
-                            RouterIcon = "la la-user-plus",
-                            RouterLink = "auth-defination"
-                        },
-                        new
-                        {
-                            Id = new Guid("c8095941-720d-42b7-9a6e-bf4d19f2bde9"),
-                            HtmlTag = "<ul class=\"navigation\" ><li><a [routerLink]=\"['role-defination']\" routerLinkActive=\"router-link-active\"><i class=\"la la-plus-circle\"></i>Rol Tanımlama</a>  </li></ul>",
-                            Name = "Rol Tanımlama",
-                            RouterIcon = "la la-plus-circle",
-                            RouterLink = "role-defination"
-                        });
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Price")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Stock")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.UI.SavedFilters.SavedFiltersOfApprovedCandidateList", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("AdvertNumberId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("BackedUpCaption")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CandidateStatus")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Caption")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DrivingLicenseName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("EducationDepartmentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("EducationLevelName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExperienceTotalRange")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ExperiencedDepartmentName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ExperiencedProfessionName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ForeignLanguageLevelName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ForeignLanguageName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LocationName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Owner")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PositionName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PositionTypeName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProvinceName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -1012,18 +1114,18 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -1036,18 +1138,18 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -1059,16 +1161,16 @@ namespace EKSystemApp.Persistence.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -1080,10 +1182,10 @@ namespace EKSystemApp.Persistence.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -1095,16 +1197,16 @@ namespace EKSystemApp.Persistence.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -1124,18 +1226,18 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("AdvertAdQuestions")
-                        .HasForeignKey("AdvertCreateId");
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("AdvertCreate");
                 });
 
-            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertForignLanguages", b =>
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertForeignLanguages", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
-                        .WithMany("AdvertForignLanguages")
+                        .WithMany("AdvertForeignLanguages")
                         .HasForeignKey("AdvertCreateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("AdvertCreate");
                 });
@@ -1144,9 +1246,228 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
                         .WithMany("AdvertSkillAndExpertises")
-                        .HasForeignKey("AdvertCreateId");
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.AdvertStatus", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("AdvertStatuses")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Brand", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Brands")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Department", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Departments")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.EducationLevel", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("EducationLevels")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.ExperiencePeriod", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("ExperiencePeriods")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Group", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Groups")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Location", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Locations")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Logo", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Logos")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.MillitaryStatus", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("MillitaryStatuses")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Organization", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Organizations")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Position", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Positions")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.PositionType", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("PositionTypes")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.Unit", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("Units")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.WorkCategory", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("WorkCategories")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.WorkModel", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("WorkModels")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.AdminBaseEntity.WorkType", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", "AdvertCreate")
+                        .WithMany("WorkTypes")
+                        .HasForeignKey("AdvertCreateId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AdvertCreate");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.Blog.BlogHeadlineManager", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.MailMesaj.MailMessageTemplate", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany("MailMessageTemplates")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.NewAdvertCreated.AdvertCreate", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany("AdvertCreates")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Admin.WorkStepManager.WorksStepManager", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany("WorksStepManagers")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUser", b =>
@@ -1179,6 +1500,25 @@ namespace EKSystemApp.Persistence.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserItem", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
+                        .WithMany("AppUserItems")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EKSystemApp.Domain.Entities.Items", "Items")
+                        .WithMany("AppUserItems")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUserMenu", b =>
                 {
                     b.HasOne("EKSystemApp.Domain.Entities.AppUser", "AppUser")
@@ -1194,6 +1534,26 @@ namespace EKSystemApp.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+
+                    b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.CompanyKey", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Company", "Company")
+                        .WithMany("CompaniesKeys")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.HasOne("EKSystemApp.Domain.Entities.Menu", "Menu")
+                        .WithMany("Items")
+                        .HasForeignKey("MenuId");
 
                     b.Navigation("Menu");
                 });
@@ -1269,9 +1629,41 @@ namespace EKSystemApp.Persistence.Migrations
                 {
                     b.Navigation("AdvertAdQuestions");
 
-                    b.Navigation("AdvertForignLanguages");
+                    b.Navigation("AdvertForeignLanguages");
 
                     b.Navigation("AdvertSkillAndExpertises");
+
+                    b.Navigation("AdvertStatuses");
+
+                    b.Navigation("Brands");
+
+                    b.Navigation("Departments");
+
+                    b.Navigation("EducationLevels");
+
+                    b.Navigation("ExperiencePeriods");
+
+                    b.Navigation("Groups");
+
+                    b.Navigation("Locations");
+
+                    b.Navigation("Logos");
+
+                    b.Navigation("MillitaryStatuses");
+
+                    b.Navigation("Organizations");
+
+                    b.Navigation("PositionTypes");
+
+                    b.Navigation("Positions");
+
+                    b.Navigation("Units");
+
+                    b.Navigation("WorkCategories");
+
+                    b.Navigation("WorkModels");
+
+                    b.Navigation("WorkTypes");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppRole", b =>
@@ -1281,9 +1673,17 @@ namespace EKSystemApp.Persistence.Migrations
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.AppUser", b =>
                 {
+                    b.Navigation("AdvertCreates");
+
                     b.Navigation("AppUserCompanies");
 
+                    b.Navigation("AppUserItems");
+
                     b.Navigation("AppUserMenus");
+
+                    b.Navigation("MailMessageTemplates");
+
+                    b.Navigation("WorksStepManagers");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Category", b =>
@@ -1294,11 +1694,20 @@ namespace EKSystemApp.Persistence.Migrations
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Company", b =>
                 {
                     b.Navigation("AppUserCompanies");
+
+                    b.Navigation("CompaniesKeys");
+                });
+
+            modelBuilder.Entity("EKSystemApp.Domain.Entities.Items", b =>
+                {
+                    b.Navigation("AppUserItems");
                 });
 
             modelBuilder.Entity("EKSystemApp.Domain.Entities.Menu", b =>
                 {
                     b.Navigation("AppUserMenus");
+
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
